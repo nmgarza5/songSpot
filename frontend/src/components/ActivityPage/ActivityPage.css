@@ -1,6 +1,6 @@
 .activity-container {
     width: 1000px;
-    height: 100vh;
+    height: fit-content;
     margin: auto;
     background: white;
     color: black;
@@ -9,24 +9,46 @@
 }
 
 .main-container {
+    align-items: center;
     width: 700px;
-    height: 100vh;
-    background: lightblue;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
 }
 .side-container {
-    width: 300px;
-    height: 100vh;
-    background: lightcoral;
+    width: 250px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
 }
 
 .inner-main {
-    height: 300px;
+    min-height: 350px;
     width: 600px;
     margin: 20px auto;
     background-color: rgb(173, 173, 241);
+    border-radius: 5px;
 }
 .inner-side {
     height: 300px;
     margin: 20px 0;
     background-color: rgb(173, 173, 241);
+    border-radius: 5px;
+}
+
+.song-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.song {
+    width: 120px;
+    height: 120px;
+    padding: 5px;
+    background: grey;
+}
+
+.see-more-btn {
+    float: right;
 }
