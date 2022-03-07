@@ -12,13 +12,6 @@ function Navigation({ isLoaded }) {
     let sessionLinks;
     if (sessionUser) {
         sessionLinks = <ProfileButton user={sessionUser} />;
-    } else {
-        sessionLinks = (
-            <>
-                <LoginFormModal />
-                <SignUpFormModal />
-            </>
-        );
     }
     const placeholder = "Songs, playlists, and genres...";
 
