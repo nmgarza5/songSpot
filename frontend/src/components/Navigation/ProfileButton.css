@@ -1,0 +1,19 @@
+.username {
+    color: white;
+}
+
+.username:hover {
+    cursor: pointer;
+    color: rgb(148, 148, 148);
+}
+
+.profile-dropdown {
+    background: grey;
+}
+
+li {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

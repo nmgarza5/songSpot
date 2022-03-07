@@ -52,10 +52,9 @@
 }
 
 .search-btn:hover {
-    color: black;
-    background: white;
-    border-radius: 10px;
+    color: rgb(148, 148, 148);
     cursor: pointer;
+    right: 20px;
 }
 
 #bars {
