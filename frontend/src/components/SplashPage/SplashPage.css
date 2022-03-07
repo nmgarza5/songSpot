@@ -1,0 +1,14 @@
+.image-container {
+    width: 70vw;
+    padding-top: 10vh;
+    border-radius: 5px;
+}
+
+.text-container {
+    width: 400px;
+    background-color: white;
+    text-align: center;
+    position: fixed;
+    left: 60vw;
+    top: 30vh;
+}
