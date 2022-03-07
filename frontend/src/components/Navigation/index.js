@@ -50,7 +50,6 @@ function Navigation({ isLoaded }) {
                         </button>
                     </form>
                 </li>
-                <li>Songs</li>
                 <li>{isLoaded && sessionLinks}</li>
             </ul>
         </nav>

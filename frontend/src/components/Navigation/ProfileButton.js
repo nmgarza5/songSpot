@@ -37,7 +37,7 @@ function ProfileButton({ user }) {
             </div>
             {showMenu && (
                 <ul className="profile-dropdown">
-                    <li>
+                    <li className="dropdown-item">
                         <i class="fa-solid fa-circle-heart"></i>
                         <NavLink to="/">Likes</NavLink>
                     </li>
