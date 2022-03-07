@@ -1,1 +1,13 @@
 /* TODO Add site wide styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "NTR", sans-serif;
+}
+
+#root {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(45deg, rgb(46, 0, 77), rgb(0, 0, 0));
+}
