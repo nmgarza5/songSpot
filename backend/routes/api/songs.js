@@ -1,56 +1,127 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const { restoreUser } = require("../../utils/auth");
+const { check } = require("express-validator");
+const { handleValidationErrors } = require("../../utils/validation");
+const { restoreUser, requireAuth } = require("../../utils/auth");
 const { Song, User } = require("../../db/models");
 
 const router = express.Router();
 
+const validateSong = [
+    check("genre")
+        .exists({ checkFalsy: true })
+        .withMessage("Must enter a genre"),
+    check("title")
+        .exists({ checkFalsy: true })
+        .withMessage("The song must have a name."),
+    check("title")
+        .isLength({ max: 120 })
+        .withMessage("Song title can't be longer than 120 characters."),
+    check("imageUrl")
+        .exists({ checkFalsy: true })
+        .isURL()
+        .withMessage("Please enter a valid URL for the song image."),
+    check("audioUrl")
+        .exists({ checkFalsy: true })
+        .isURL()
+        .withMessage("Please enter a valid URL for the song audio."),
+    handleValidationErrors,
+];
+
+//use handleValidation errors
+const songNotFoundError = (id) => {
+    const err = Error("Tweet not found");
+    err.errors = [`Song with id of ${id} could not be found.`];
+    err.title = "Tweet not found.";
+    err.status = 404;
+    return err;
+};
+
+// get all songs and associated user in order from most recently created
 router.get(
     "/",
     asyncHandler(async (req, res) => {
-        const songs = await Song.findAll();
-        res.json(songs);
+        const songs = await Song.findAll({
+            include: [{ model: User, as: "user", attributes: ["username"] }],
+            order: [["createdAt", "DESC"]],
+            attributes: ["title", "imageUrl", "audioUrl"],
+        });
+        if (songs) res.json({ songs });
     })
 );
+
+// get a specific song
+router.get(
+    "/:id",
+    asyncHandler(async (req, res, next) => {
+        const song = await Song.findOne({
+            where: {
+                id: req.params.id,
+            },
+            include: [{ model: User, as: "user", attributes: ["username"] }],
+        });
+        if (song) {
+            res.json({ song });
+        } else {
+            next(songNotFoundError(req.params.id));
+        }
+    })
+);
+
 router.post(
     "/",
     restoreUser,
+    requireAuth,
+    validateSong,
     asyncHandler(async (req, res) => {
-        const userId = req.user.id;
-        const genreId = req.body.genre;
-        const title = req.body.title;
-        const imageUrl = req.body.imageUrl;
-        const audioUrl = req.body.audioUrl;
-
-        await Song.create({
-            userId,
-            genreId,
+        const { title, genre, imageUrl, audioUrl } = req.body;
+        const song = await Song.create({
+            userId: req.user.id,
             title,
+            genre,
             imageUrl,
             audioUrl,
         });
-        res.redirect("/");
+        if (song) res.json({ song });
     })
 );
 
 router.put(
     "/:id",
     restoreUser,
+    requireAuth,
+    validateSong,
     asyncHandler(async (req, res) => {
-        const userId = req.user.id;
-        const genreId = req.body.genre;
-        const title = req.body.title;
-        const imageUrl = req.body.imageUrl;
-        const audioUrl = req.body.audioUrl;
         const songId = req.params.id;
-
+        const { title, genre, imageUrl, audioUrl } = req.body;
         const song = await Song.findByPk(songId);
-        song.genreId = genreId;
-        song.title = title;
-        song.imageUrl = imageUrl;
-        song.audioUrl = audioUrl;
-        await review.save();
-        res.json({ song });
+
+        if (song) {
+            await song.update({
+                title,
+                genre,
+                imageUrl,
+                audioUrl,
+            });
+            return res.json({ song });
+        }
+    })
+);
+
+router.delete(
+    "/id",
+    restoreUser,
+    requireAuth,
+    asyncHandler(async (req, res) => {
+        const song = await Song.findOne({
+            where: {
+                id: req.params.id,
+            },
+        });
+        if (song) {
+            await song.destroy();
+            res.json({ response: "Success" });
+        }
     })
 );
 
