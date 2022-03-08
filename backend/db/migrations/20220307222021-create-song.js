@@ -15,12 +15,9 @@ module.exports = {
                     model: "Users",
                 },
             },
-            genreId: {
+            genre: {
                 allowNull: false,
-                type: Sequelize.INTEGER,
-                references: {
-                    model: "Genres",
-                },
+                type: Sequelize.STRING(50),
             },
             title: {
                 allowNull: false,
