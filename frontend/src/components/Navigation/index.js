@@ -32,14 +32,14 @@ function Navigation({ isLoaded }) {
             <ul className="nav-items">
                 <li>
                     <form className="search-bar">
-                        <label for="search">Search</label>
+                        <label htmlFor="search">Search</label>
                         <input
                             name="search"
                             className="search-input"
                             placeholder={placeholder}
                         ></input>
                         <button type="submit" className="search-btn">
-                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i className="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </form>
                 </li>

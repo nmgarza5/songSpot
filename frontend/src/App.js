@@ -26,6 +26,9 @@ function App() {
                     </Route>
                 </Switch>
             )}
+            <footer className="footer">
+                Node.js - Express - Sequelize - React - Redux
+            </footer>
         </>
     );
 }

@@ -9,8 +9,8 @@ import SignUpFormModal from "../SignUpFormModal";
 const SplashPage = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
-    const [credential] = useState("demoUser");
-    const [password] = useState("123456");
+    const [credential] = useState("Demo-lition");
+    const [password] = useState("password");
     const [errors, setErrors] = useState([]);
 
     if (sessionUser) return <Redirect to="/activity" />;
