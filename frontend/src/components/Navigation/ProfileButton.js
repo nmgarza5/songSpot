@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink, Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./ProfileButton.css";
 
 function ProfileButton({ user }) {
+    const history = useHistory();
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
 
@@ -28,6 +29,7 @@ function ProfileButton({ user }) {
     const logout = (e) => {
         e.preventDefault();
         dispatch(sessionActions.logout());
+        history.push("/"); //neither methds working
         return <Redirect to="/" />;
     };
 
@@ -39,21 +41,21 @@ function ProfileButton({ user }) {
             {showMenu && (
                 <ul className="profile-dropdown">
                     <li className="dropdown-item">
-                        <i class="fa-solid fa-circle-heart"></i>
+                        <i className="fa-solid fa-circle-heart"></i>
                         <NavLink to="/">Likes</NavLink>
                     </li>
                     <li>
-                        <i class="fa-solid fa-waveform-lines"></i>
+                        <i className="fa-solid fa-waveform-lines"></i>
                         <NavLink to="/">Songs</NavLink>
                     </li>
                     <li>
-                        <i class="fa-solid fa-list-music"></i>
+                        <i className="fa-solid fa-list-music"></i>
                         <NavLink to="/">Playlists</NavLink>
                     </li>
                     <li className="signout">
                         <i
                             onClick={logout}
-                            class="fa-solid fa-arrow-right-from-bracket"
+                            className="fa-solid fa-arrow-right-from-bracket"
                         />
                         <div onClick={logout}>Sign Out</div>
                     </li>
