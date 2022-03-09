@@ -28,11 +28,11 @@ function App() {
                     <Route path="/home">
                         <HomePage />
                     </Route>
-                    <Route path="/songs">
-                        <SongsPage />
-                    </Route>
                     <Route path="/songs/:id">
                         <SingleSong songs={songs} />
+                    </Route>
+                    <Route path="/songs">
+                        <SongsPage />
                     </Route>
                 </Switch>
             )}

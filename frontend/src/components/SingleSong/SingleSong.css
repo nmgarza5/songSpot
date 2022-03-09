@@ -1,0 +1,9 @@
+.singleSong {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.song-content {
+    display: flex;
+    flex-direction: row;
+}
