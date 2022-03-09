@@ -35,7 +35,7 @@ function ProfileButton({ user }) {
 
     return (
         <>
-            <div className="username" onClick={openMenu}>
+            <div className="username-dropdown" onClick={openMenu}>
                 {user.username}
             </div>
             {showMenu && (

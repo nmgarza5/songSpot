@@ -4,11 +4,14 @@ import "./SongDetail.css";
 const SongDetail = ({ id, title, genre, imageUrl, audioUrl, user }) => {
     return (
         <div className="song-details">
-            <NavLink to={`/songs/${id}`} className="title">
+            <NavLink to={`/songs/${id}`}>
                 <img src={imageUrl} className="image"></img>
             </NavLink>
             <NavLink to={`/songs/${id}`} className="title">
-                {title} - {user.username}
+                {title}
+            </NavLink>
+            <NavLink to={`/songs/${user.username}`} className="username">
+                {user.username}
             </NavLink>
         </div>
     );

@@ -2,9 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
-import LoginFormModal from "../LoginFormModal";
 import "./Navigation.css";
-import SignUpFormModal from "../SignUpFormModal";
+import SongFormModal from "../SongFormModal";
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector((state) => state.session.user);
@@ -19,6 +18,7 @@ function Navigation({ isLoaded }) {
         <nav className="navbar">
             <NavLink exact to="/" className="navbar-logo">
                 <div id="bars">
+                    <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -42,6 +42,9 @@ function Navigation({ isLoaded }) {
                             <i className="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </form>
+                </li>
+                <li className="upload">
+                    <SongFormModal />
                 </li>
                 <li>{isLoaded && sessionLinks}</li>
             </ul>

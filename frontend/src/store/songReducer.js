@@ -1,3 +1,5 @@
+import { csrfFetch } from "./csrf";
+
 const LOAD_SONGS = "songs/loadSongs";
 const ADD_SONG = "song/addSong";
 const UPDATE_SONG = "song/updateSong";
@@ -43,10 +45,22 @@ export const fetchSongs = () => async (dispatch) => {
     const res = await fetch(`/api/songs`);
     if (res.ok) {
         const data = await res.json();
-        console.log("res SONGS", data.songs);
         dispatch(loadSongs(data.songs));
         return data.songs;
     }
+};
+
+export const addSongForm = (songData) => async (dispatch) => {
+    console.log("songData ", songData);
+    const res = await csrfFetch("/api/songs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(songData),
+    });
+    const newSong = await res.json();
+    console.log("newSong ", newSong);
+    dispatch(addSong(newSong));
+    return newSong;
 };
 
 const initialState = {
