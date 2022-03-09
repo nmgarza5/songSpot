@@ -26,10 +26,10 @@ const updateSong = (song) => {
     };
 };
 
-const deleteSong = (song) => {
+const deleteSong = (songId) => {
     return {
         type: DELETE_SONG,
-        song,
+        songId,
     };
 };
 
@@ -62,6 +62,27 @@ export const addSongForm = (songData) => async (dispatch) => {
     dispatch(addSong(newSong));
     return newSong;
 };
+export const updateSongForm = (songData) => async (dispatch) => {
+    const res = await csrfFetch(`/api/songs/${songData.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(songData),
+    });
+    const updatedSong = await res.json();
+    dispatch(updateSong(updatedSong));
+    return updatedSong;
+};
+
+export const deleteSongThunk = (id) => async (dispatch) => {
+    const res = await fetch(`/api/songs/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+    });
+    if (res.ok) {
+        dispatch(deleteSong(id));
+        return;
+    }
+};
 
 const initialState = {
     songList: {},
@@ -74,11 +95,20 @@ const songReducer = (state = initialState, action) => {
         case LOAD_SONGS:
             action.songs.forEach((song) => (newList[song.id] = song));
             newState.songList = newList;
-            console.log(newState);
             return newState;
         case ADD_SONG:
             newList = { ...state.list };
             newList[action.song.id] = action.song;
+            newState.songList = newList;
+            return newState;
+        case UPDATE_SONG:
+            newList = { ...state.list };
+            newList[action.song.id] = action.song;
+            newState.songList = newList;
+            return newState;
+        case DELETE_SONG:
+            newList = { ...state.list };
+            delete newList[action.id];
             newState.songList = newList;
             return newState;
         default:
