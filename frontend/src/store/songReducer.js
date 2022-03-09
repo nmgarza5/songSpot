@@ -39,40 +39,36 @@ export const fetchSong = (id) => async (dispatch) => {
         return song;
     }
 };
-export const fetchSongs = (id) => async (dispatch) => {
-    const res = await fetch(`/api/songs/${id}`);
+export const fetchSongs = () => async (dispatch) => {
+    const res = await fetch(`/api/songs`);
     if (res.ok) {
-        const songs = await res.json();
-        dispatch(loadSongs(songs));
-        return songs;
+        const data = await res.json();
+        console.log("res SONGS", data.songs);
+        dispatch(loadSongs(data.songs));
+        return data.songs;
     }
 };
 
 const initialState = {
-    list: {},
+    songList: {},
 };
 
 const songReducer = (state = initialState, action) => {
-    let newState;
-    let newList;
+    let newState = { ...state };
+    let newList = {};
     switch (action.type) {
         case LOAD_SONGS:
-            newState = { ...state };
-            newList = {};
             action.songs.forEach((song) => (newList[song.id] = song));
-            newState.list = newList;
+            newState.songList = newList;
+            console.log(newState);
             return newState;
         case ADD_SONG:
-            newState = { ...state };
-            // console.log("new state: ", newState)
             newList = { ...state.list };
-            // console.log("new entries: ", newEntries)
-            newList[action.newSong.id] = action.newSong;
-            // console.log("new entries with added article: ", newEntries)
-            newState.entries = newEntries;
-            // console.log("new state with all entries: ", newState)
+            newList[action.song.id] = action.song;
+            newState.songList = newList;
             return newState;
         default:
             return state;
     }
 };
+export default songReducer;

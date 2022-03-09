@@ -44,7 +44,6 @@ router.get(
         const songs = await Song.findAll({
             include: [{ model: User, as: "user", attributes: ["username"] }],
             order: [["createdAt", "DESC"]],
-            attributes: ["title", "imageUrl", "audioUrl"],
         });
         if (songs) res.json({ songs });
     })
