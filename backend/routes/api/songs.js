@@ -43,7 +43,7 @@ router.get(
     asyncHandler(async (req, res) => {
         const songs = await Song.findAll({
             include: [{ model: User, as: "user", attributes: ["username"] }],
-            order: [["createdAt", "DESC"]],
+            order: [["createdAt"]],
         });
         if (songs) res.json({ songs });
     })

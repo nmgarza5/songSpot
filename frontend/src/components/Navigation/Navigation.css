@@ -29,10 +29,17 @@
     margin-right: 2rem;
 }
 
+.home-container {
+    margin: auto 0;
+    justify-content: center;
+    align-items: center;
+}
+.home-link,
 .upload {
     margin: auto 0.5rem;
     margin-right: 1rem;
 }
+.home-link,
 .upload-navlink {
     color: white;
     text-decoration: none;
@@ -64,6 +71,12 @@
     color: rgb(148, 148, 148);
     cursor: pointer;
     right: 20px;
+}
+
+.drop-li {
+    margin: auto 0;
+    justify-content: center;
+    align-items: center;
 }
 
 #bars {

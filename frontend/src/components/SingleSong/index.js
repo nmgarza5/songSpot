@@ -6,6 +6,7 @@ const SingleSong = ({ songs }) => {
     const { id } = useParams();
 
     const singleSong = songs.find((song) => song.id === +id);
+    console.log(singleSong.title);
 
     return (
         <div className="singleSong">

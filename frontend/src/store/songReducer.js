@@ -51,14 +51,14 @@ export const fetchSongs = () => async (dispatch) => {
 };
 
 export const addSongForm = (songData) => async (dispatch) => {
-    console.log("songData ", songData);
+    // console.log("songData ", songData);
     const res = await csrfFetch("/api/songs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(songData),
     });
     const newSong = await res.json();
-    console.log("newSong ", newSong);
+    // console.log("newSong ", newSong);
     dispatch(addSong(newSong));
     return newSong;
 };

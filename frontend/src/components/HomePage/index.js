@@ -1,5 +1,6 @@
 import "./HomePage.css";
 import SongList from "../SongList";
+import { NavLink } from "react-router-dom";
 
 const ActivityPage = () => {
     return (
@@ -11,7 +12,9 @@ const ActivityPage = () => {
                         <div className="song-container">
                             <SongList className="song" />
                         </div>
-                        <button className="see-more-btn">See More...</button>
+                        <NavLink className="see-more" to="/songs">
+                            <button>See More...</button>
+                        </NavLink>
                     </div>
                     {/* <div className="inner-main">Charts: Top 50 Songs</div>
                     <div className="inner-main">Your Top Songs</div> */}

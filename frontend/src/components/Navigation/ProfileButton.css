@@ -1,6 +1,7 @@
 .username-dropdown {
     color: white;
     height: 100%;
+    cursor: pointer;
 }
 
 .username:hover {

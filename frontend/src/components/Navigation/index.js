@@ -30,6 +30,11 @@ function Navigation({ isLoaded }) {
                 SongSpot
             </NavLink>
             <ul className="nav-items">
+                <li className="home-container">
+                    <NavLink className="home-link" to="/home">
+                        Home
+                    </NavLink>
+                </li>
                 <li>
                     <form className="search-bar">
                         <label htmlFor="search">Search</label>
@@ -46,7 +51,7 @@ function Navigation({ isLoaded }) {
                 <li className="upload">
                     <SongFormModal />
                 </li>
-                <li>{isLoaded && sessionLinks}</li>
+                <li className="drop-li">{isLoaded && sessionLinks}</li>
             </ul>
         </nav>
     );

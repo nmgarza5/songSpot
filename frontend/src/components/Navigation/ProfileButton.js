@@ -46,7 +46,7 @@ function ProfileButton({ user }) {
                     </li>
                     <li>
                         <i className="fa-solid fa-waveform-lines"></i>
-                        <NavLink to="/">Songs</NavLink>
+                        <NavLink to="/songs">Songs</NavLink>
                     </li>
                     <li>
                         <i className="fa-solid fa-list-music"></i>
