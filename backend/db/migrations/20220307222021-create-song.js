@@ -17,11 +17,11 @@ module.exports = {
             },
             genre: {
                 allowNull: false,
-                type: Sequelize.STRING(50),
+                type: Sequelize.STRING,
             },
             title: {
                 allowNull: false,
-                type: Sequelize.STRING(50),
+                type: Sequelize.STRING(30),
             },
             imageUrl: {
                 allowNull: false,

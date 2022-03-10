@@ -15,8 +15,8 @@ const validateSong = [
         .exists({ checkFalsy: true })
         .withMessage("The song must have a name."),
     check("title")
-        .isLength({ max: 120 })
-        .withMessage("Song title can't be longer than 120 characters."),
+        .isLength({ max: 30 })
+        .withMessage("Song title can't be longer than 30 characters."),
     check("imageUrl")
         .exists({ checkFalsy: true })
         .isURL()
