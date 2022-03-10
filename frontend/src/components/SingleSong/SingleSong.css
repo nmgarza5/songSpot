@@ -13,3 +13,8 @@
     height: 300px;
     border-radius: 5px;
 }
+
+.other-songs {
+    display: flex;
+    flex-direction: row;
+}

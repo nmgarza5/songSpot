@@ -8,7 +8,7 @@ const ActivityPage = () => {
             <div className="activity-container">
                 <div className="main-container">
                     <div className="inner-main">
-                        <h2>Recently Added</h2>
+                        <h2>Recently Added Songs</h2>
                         <div className="song-container">
                             <SongList className="song" />
                         </div>

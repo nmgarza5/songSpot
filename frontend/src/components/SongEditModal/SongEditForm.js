@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { updateSongForm } from "../../store/songReducer";
 
-function SongEditForm({ id }) {
+function SongEditForm(props) {
     const dispatch = useDispatch();
     const history = useHistory();
+    const id = props.id;
     const currentSong = useSelector((state) => state.songState[id]);
     const [title, setTitle] = useState(currentSong.title);
     const [genre, setGenre] = useState(currentSong.genre);
@@ -24,9 +25,10 @@ function SongEditForm({ id }) {
             }
         );
         if (updatedSong) {
-            history.push(`/songs`);
-            // history.push(`/songs/${updatedSong.retSong.id}`); // NOT WORKING - MODAL STILL SHOWS
+            // history.push(`/songs`);
+            history.push(`/songs/${updatedSong?.retSong?.id}`); // NOT WORKING - MODAL STILL SHOWS
         }
+        props.onClose();
     };
 
     // const genreOptions = [

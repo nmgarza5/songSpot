@@ -14,7 +14,7 @@ module.exports = {
                 {
                     userId: 1,
                     genre: "Rock",
-                    title: "Don't You Think Lose",
+                    title: "Don't You Think",
                     imageUrl:
                         "https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
                     audioUrl:
@@ -57,7 +57,7 @@ module.exports = {
                 {
                     userId: 2,
                     genre: "EDM",
-                    title: "Yesterday - Extended Version",
+                    title: "Yesterday",
                     imageUrl:
                         "https://images.unsplash.com/photo-1607523751915-5291fab91551?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8eWVzdGVyZGF5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
                     audioUrl:
