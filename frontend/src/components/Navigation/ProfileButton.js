@@ -37,27 +37,36 @@ function ProfileButton({ user }) {
         <>
             <div className="username-dropdown" onClick={openMenu}>
                 {user.username}
+                <i className="fa fa-caret-down" aria-hidden="true"></i>
             </div>
             {showMenu && (
                 <ul className="profile-dropdown">
                     <li className="dropdown-item">
-                        <i className="fa-solid fa-circle-heart"></i>
-                        <NavLink to="/">Likes</NavLink>
+                        <i className="fa-regular fa-heart"></i>
+                        <NavLink className="inner-drop" to="/">
+                            Likes
+                        </NavLink>
                     </li>
-                    <li>
-                        <i className="fa-solid fa-waveform-lines"></i>
-                        <NavLink to="/songs">Songs</NavLink>
+                    <li className="dropdown-item">
+                        <i className="fa-solid fa-guitar"></i>
+                        <NavLink className="inner-drop" to="/songs">
+                            Songs
+                        </NavLink>
                     </li>
-                    <li>
-                        <i className="fa-solid fa-list-music"></i>
-                        <NavLink to="/">Playlists</NavLink>
+                    <li className="dropdown-item">
+                        <i className="fa-solid fa-music"></i>
+                        <NavLink className="inner-drop" to="/">
+                            Playlists
+                        </NavLink>
                     </li>
-                    <li className="signout">
+                    <li className="signout dropdown-item">
                         <i
                             onClick={logout}
                             className="fa-solid fa-arrow-right-from-bracket"
                         />
-                        <div onClick={logout}>Sign Out</div>
+                        <div className="inner-drop" onClick={logout}>
+                            Sign Out
+                        </div>
                     </li>
                 </ul>
             )}
