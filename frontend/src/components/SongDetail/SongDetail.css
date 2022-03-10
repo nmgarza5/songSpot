@@ -15,9 +15,6 @@
     color: black;
     text-decoration: none;
     padding: 0;
-    height: 1rem;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .title {

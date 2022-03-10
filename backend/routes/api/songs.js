@@ -52,14 +52,15 @@ router.get(
 router.get(
     "/:id",
     asyncHandler(async (req, res, next) => {
-        const song = await Song.findOne({
-            where: {
-                id: req.params.id,
-            },
-            include: [{ model: User, as: "user", attributes: ["username"] }],
-        });
+        const songId = req.params.id;
+        const song = await Song.findByPk(songId);
         if (song) {
-            res.json({ song });
+            const retSong = await Song.findByPk(song.id, {
+                include: [
+                    { model: User, as: "user", attributes: ["username"] },
+                ],
+            });
+            res.json({ retSong });
         } else {
             next(songNotFoundError(req.params.id));
         }
@@ -80,7 +81,10 @@ router.post(
             imageUrl,
             audioUrl,
         });
-        if (song) res.json({ song });
+        const retSong = await Song.findByPk(song.id, {
+            include: [{ model: User, as: "user", attributes: ["username"] }],
+        });
+        if (retSong) res.json({ retSong });
     })
 );
 
@@ -93,7 +97,6 @@ router.put(
         const songId = req.params.id;
         const { title, genre, imageUrl, audioUrl } = req.body;
         const song = await Song.findByPk(songId);
-
         if (song) {
             await song.update({
                 title,
@@ -101,7 +104,12 @@ router.put(
                 imageUrl,
                 audioUrl,
             });
-            return res.json({ song });
+            const retSong = await Song.findByPk(song.id, {
+                include: [
+                    { model: User, as: "user", attributes: ["username"] },
+                ],
+            });
+            return res.json({ retSong });
         } else {
             next(songNotFoundError(req.params.id));
         }

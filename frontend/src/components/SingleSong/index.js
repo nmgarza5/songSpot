@@ -2,8 +2,9 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SongEditModal from "../SongEditModal";
 import "./SingleSong.css";
-import { deleteSongThunk } from "../../store/songReducer";
+import { deleteSongThunk, fetchSong } from "../../store/songReducer";
 import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
 
 const SingleSong = ({ songs }) => {
     const { id } = useParams();
@@ -11,14 +12,17 @@ const SingleSong = ({ songs }) => {
     const history = useHistory();
     const song = songs.find((song) => song.id === +id);
     const sessionUser = useSelector((state) => state.session.user);
-    const currentUser = sessionUser.username;
-    const songOwner = song.user.username;
-    // console.log("song ", song);
-    // console.log("song.user ", song.user);
-    // console.log("song.user.username ", song.user.username);
+    const currentUser = sessionUser?.username;
+    const songOwner = song?.user?.username;
+    // console.log("sessionUser.username", sessionUser?.username);
+    // console.log("song.user.username ", song?.user?.username);
 
-    const handleDelete = (e) => {
-        dispatch(deleteSongThunk(id));
+    useEffect(() => {
+        dispatch(fetchSong(id));
+    }, [dispatch]);
+
+    const handleDelete = async (e) => {
+        await dispatch(deleteSongThunk(id));
         history.push(`/songs`);
     };
 
@@ -33,7 +37,7 @@ const SingleSong = ({ songs }) => {
                 <div className="song-details">
                     <h1>{song?.title}</h1>
                     <p>{songOwner}</p>
-                    <p>{song.genre}</p>
+                    <p>{song?.genre}</p>
                     {songOwner === currentUser ? (
                         <>
                             <button>
@@ -45,7 +49,7 @@ const SingleSong = ({ songs }) => {
                 </div>
             </div>
             <div className="other-songs">
-                <h3>Songs related to {song.title}</h3>
+                <h3>Songs related to {song?.title}</h3>
                 <p>Song1</p>
                 <p>Song1</p>
                 <p>Song1</p>

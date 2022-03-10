@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addSongForm } from "../../store/songReducer";
 import { useHistory } from "react-router-dom";
 
-function SongForm() {
+function SongForm(props) {
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
@@ -19,14 +19,18 @@ function SongForm() {
         e.preventDefault();
         const songData = { userId, title, genre, imageUrl, audioUrl };
         setErrors([]);
-        let newSong = dispatch(addSongForm(songData)).catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
-        });
+        let newSong = await dispatch(addSongForm(songData)).catch(
+            async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            }
+        );
         if (newSong) {
-            history.push(`/songs`);
-            // history.push(`/songs/${updatedSong.retSong.id}`); // NOT WORKING - MODAL STILL SHOWS
+            console.log("newSong ", newSong);
+            // history.push(`/songs`);
+            history.push(`/songs/${newSong?.retSong?.id}`); // NOT WORKING - MODAL STILL SHOWS
         }
+        props.onClose();
     };
 
     return (
@@ -50,8 +54,12 @@ function SongForm() {
                 <select
                     type="text"
                     onChange={(e) => setGenre(e.target.value)}
+                    defaultValue={"Default"}
                     required
                 >
+                    <option value="Default" disabled>
+                        Select Genre...
+                    </option>
                     <option value="Rock">Rock</option>
                     <option value="EDM">EDM</option>
                     <option value="Pop">Pop</option>

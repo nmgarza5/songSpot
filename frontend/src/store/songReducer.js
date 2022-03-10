@@ -20,7 +20,6 @@ const addSong = (song) => {
 };
 
 const updateSong = (song) => {
-    console.log("SONG ", song);
     return {
         type: UPDATE_SONG,
         song,
@@ -38,6 +37,7 @@ export const fetchSong = (id) => async (dispatch) => {
     const res = await fetch(`/api/songs/${id}`);
     if (res.ok) {
         const song = await res.json();
+        console.log("fetchSongs Thunk - song", song);
         dispatch(addSong(song));
         return song;
     }
@@ -46,6 +46,7 @@ export const fetchSongs = () => async (dispatch) => {
     const res = await fetch(`/api/songs`);
     if (res.ok) {
         const data = await res.json();
+        console.log("fetchSongs Thunk - data.songs", data.songs);
         dispatch(loadSongs(data.songs));
         return data.songs;
     }
@@ -59,7 +60,7 @@ export const addSongForm = (songData) => async (dispatch) => {
         body: JSON.stringify(songData),
     });
     const newSong = await res.json();
-    // console.log("newSong ", newSong);
+    console.log("newSong ", newSong);
     dispatch(addSong(newSong));
     return newSong;
 };
@@ -94,20 +95,20 @@ const songReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_SONGS:
             action.songs.forEach((song) => (newState[song.id] = song));
+            console.log("LOAD_SONGS ", newState);
             return newState;
         case ADD_SONG:
-            newState[action.song.retSong.id] = action.retSong.song;
+            newState[action.song.retSong.id] = action.song.retSong;
+            console.log("ADD_SONG ", newState);
             return newState;
         case UPDATE_SONG:
-            console.log("action.song.retSong ", action.song.retSong);
-            console.log("action.song.retSong.id ", action.song.retSong.id);
             newState[action.song.retSong.id] = action.song.retSong;
-            console.log(newState);
+            console.log("UPDATE_SONG ", newState);
             return newState;
         case DELETE_SONG:
-            console.log(newState);
-            delete newState[action.id];
-            console.log(newState);
+            console.log("newState ", newState);
+            console.log("ACTION ", action);
+            delete newState[action.songId];
             return newState;
         default:
             return state;

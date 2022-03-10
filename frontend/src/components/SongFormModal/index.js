@@ -13,7 +13,7 @@ function SongFormModal() {
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <SongForm />
+                    <SongForm onClose={() => setShowModal(false)} />
                 </Modal>
             )}
         </>

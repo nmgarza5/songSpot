@@ -16,9 +16,13 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
 }
+.page-container {
+    flex: 1 0 auto;
+}
 footer {
     color: white;
     text-align: center;
+    flex-shrink: 0;
 }
 /*
 #root {
