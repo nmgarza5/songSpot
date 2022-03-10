@@ -43,8 +43,6 @@ router.get(
     asyncHandler(async (req, res) => {
         const songs = await Song.findAll({
             include: [{ model: User, as: "user", attributes: ["username"] }],
-            order: [["createdAt", "DESC"]],
-            attributes: ["title", "imageUrl", "audioUrl"],
         });
         if (songs) res.json({ songs });
     })
@@ -104,20 +102,19 @@ router.put(
                 audioUrl,
             });
             return res.json({ song });
+        } else {
+            next(songNotFoundError(req.params.id));
         }
     })
 );
 
 router.delete(
-    "/id",
+    "/:id",
     restoreUser,
     requireAuth,
     asyncHandler(async (req, res) => {
-        const song = await Song.findOne({
-            where: {
-                id: req.params.id,
-            },
-        });
+        const songId = req.params.id;
+        const song = await Song.findByPk(songId);
         if (song) {
             await song.destroy();
             res.json({ response: "Success" });

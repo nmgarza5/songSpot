@@ -1,0 +1,14 @@
+.singleSong {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.song-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.song-image {
+    width: 300px;
+    height: 300px;
+}

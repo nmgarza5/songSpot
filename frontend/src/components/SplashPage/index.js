@@ -13,7 +13,7 @@ const SplashPage = () => {
     const [password] = useState("password");
     const [errors, setErrors] = useState([]);
 
-    if (sessionUser) return <Redirect to="/activity" />;
+    if (sessionUser) return <Redirect to="/home" />;
 
     const demoLogin = (e) => {
         e.preventDefault();

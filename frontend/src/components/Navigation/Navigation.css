@@ -29,10 +29,21 @@
     margin-right: 2rem;
 }
 
-/* .nav-items li {
+.home-container {
+    margin: auto 0;
+    justify-content: center;
+    align-items: center;
+}
+.home-link,
+.upload {
+    margin: auto 0.5rem;
+    margin-right: 1rem;
+}
+.home-link,
+.upload-navlink {
     color: white;
-} */
-
+    text-decoration: none;
+}
 .search-bar {
     color: white;
     padding: 0 2rem;
@@ -60,6 +71,12 @@
     color: rgb(148, 148, 148);
     cursor: pointer;
     right: 20px;
+}
+
+.drop-li {
+    margin: auto 0;
+    justify-content: center;
+    align-items: center;
 }
 
 #bars {
@@ -93,40 +110,33 @@
 
 .bar:nth-child(1) {
     animation-duration: 474ms;
-    /* animation: color1 5s infinite;
-    background-color: blue; */
+    background: red;
 }
-
-@keyframes color1 {
-    50% {
-        background-color: blueviolet;
-    }
-}
-
 .bar:nth-child(2) {
-    animation-duration: 433ms;
+    animation-duration: 407ms;
+    background: orange;
 }
 .bar:nth-child(3) {
-    animation-duration: 407ms;
+    animation-duration: 458ms;
+    background: yellow;
 }
 .bar:nth-child(4) {
-    animation-duration: 458ms;
+    animation-duration: 427ms;
+    background: green;
 }
 .bar:nth-child(5) {
-    animation-duration: 400ms;
+    animation-duration: 441ms;
+    background: aqua;
 }
 .bar:nth-child(6) {
-    animation-duration: 427ms;
+    animation-duration: 419ms;
+    background: blue;
 }
 .bar:nth-child(7) {
-    animation-duration: 441ms;
+    animation-duration: 487ms;
+    background: blueviolet;
 }
 .bar:nth-child(8) {
-    animation-duration: 419ms;
-}
-.bar:nth-child(9) {
-    animation-duration: 487ms;
-}
-.bar:nth-child(10) {
     animation-duration: 442ms;
+    background: rgb(128, 0, 28);
 }

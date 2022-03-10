@@ -2,9 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
-import LoginFormModal from "../LoginFormModal";
 import "./Navigation.css";
-import SignUpFormModal from "../SignUpFormModal";
+import SongFormModal from "../SongFormModal";
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector((state) => state.session.user);
@@ -19,17 +18,23 @@ function Navigation({ isLoaded }) {
         <nav className="navbar">
             <NavLink exact to="/" className="navbar-logo">
                 <div id="bars">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
                 </div>
                 SongSpot
             </NavLink>
             <ul className="nav-items">
+                <li className="home-container">
+                    <NavLink className="home-link" to="/home">
+                        Home
+                    </NavLink>
+                </li>
                 <li>
                     <form className="search-bar">
                         <label htmlFor="search">Search</label>
@@ -43,7 +48,10 @@ function Navigation({ isLoaded }) {
                         </button>
                     </form>
                 </li>
-                <li>{isLoaded && sessionLinks}</li>
+                <li className="upload">
+                    <SongFormModal />
+                </li>
+                <li className="drop-li">{isLoaded && sessionLinks}</li>
             </ul>
         </nav>
     );
