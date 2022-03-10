@@ -1,35 +1,26 @@
 "use strict";
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable("Songs", {
+        return queryInterface.createTable("JoinSPs", {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER,
             },
-            userId: {
+            playlistId: {
                 allowNull: false,
                 type: Sequelize.INTEGER,
                 references: {
-                    model: "Users",
+                    model: "Playlists",
                 },
             },
-            genre: {
+            songId: {
                 allowNull: false,
-                type: Sequelize.STRING(50),
-            },
-            title: {
-                allowNull: false,
-                type: Sequelize.STRING(50),
-            },
-            imageUrl: {
-                allowNull: false,
-                type: Sequelize.TEXT,
-            },
-            audioUrl: {
-                allowNull: false,
-                type: Sequelize.TEXT,
+                type: Sequelize.INTEGER,
+                references: {
+                    model: "Songs",
+                },
             },
             createdAt: {
                 allowNull: false,
@@ -44,6 +35,6 @@ module.exports = {
         });
     },
     down: (queryInterface, Sequelize) => {
-        return queryInterface.dropTable("Songs");
+        return queryInterface.dropTable("JoinSPs");
     },
 };
