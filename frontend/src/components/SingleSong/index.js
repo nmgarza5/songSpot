@@ -12,10 +12,10 @@ const SingleSong = ({ songs }) => {
     const song = songs.find((song) => song.id === +id);
     const sessionUser = useSelector((state) => state.session.user);
     const currentUser = sessionUser.username;
-    const songUser = song.user.username;
-    console.log("song ", song);
-    console.log("song.user ", song.user);
-    console.log("song.user.username ", song.user.username);
+    const songOwner = song.user.username;
+    // console.log("song ", song);
+    // console.log("song.user ", song.user);
+    // console.log("song.user.username ", song.user.username);
 
     const handleDelete = (e) => {
         dispatch(deleteSongThunk(id));
@@ -32,9 +32,9 @@ const SingleSong = ({ songs }) => {
                 />
                 <div className="song-details">
                     <h1>{song?.title}</h1>
-                    <p>{song.user.username}</p>
+                    <p>{songOwner}</p>
                     <p>{song.genre}</p>
-                    {songUser === currentUser ? (
+                    {songOwner === currentUser ? (
                         <>
                             <button>
                                 <SongEditModal id={id} />

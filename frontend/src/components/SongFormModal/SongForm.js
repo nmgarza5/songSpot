@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addSongForm } from "../../store/songReducer";
+import { useHistory } from "react-router-dom";
 
 function SongForm() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
     const [title, setTitle] = useState("");
     const [genre, setGenre] = useState("");
@@ -13,27 +15,19 @@ function SongForm() {
 
     const userId = sessionUser.id;
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const songData = { userId, title, genre, imageUrl, audioUrl };
         setErrors([]);
-        // <Redirect to="/home"></Redirect>;
-        return dispatch(addSongForm(songData)).catch(async (res) => {
+        let newSong = dispatch(addSongForm(songData)).catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors);
         });
+        if (newSong) {
+            history.push(`/songs`);
+            // history.push(`/songs/${updatedSong.retSong.id}`); // NOT WORKING - MODAL STILL SHOWS
+        }
     };
-
-    // const genreOptions = [
-    //     "Rock",
-    //     "EDM",
-    //     "Pop",
-    //     "Hip-Hop",
-    //     "R&B",
-    //     "Country",
-    //     "Jazz",
-    //     "Classical",
-    // ];
 
     return (
         <form onSubmit={handleSubmit}>

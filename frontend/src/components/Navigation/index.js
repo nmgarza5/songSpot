@@ -48,9 +48,11 @@ function Navigation({ isLoaded }) {
                         </button>
                     </form>
                 </li>
-                <li className="upload">
-                    <SongFormModal />
-                </li>
+                {sessionUser ? (
+                    <li className="upload">
+                        <SongFormModal />
+                    </li>
+                ) : null}
                 <li className="drop-li">{isLoaded && sessionLinks}</li>
             </ul>
         </nav>
