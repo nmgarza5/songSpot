@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SongDetail from "../SongDetail";
-// 5. Replace import of action creator with thunk creator
 import { fetchSongs } from "../../store/songReducer";
 
 const SongList = () => {

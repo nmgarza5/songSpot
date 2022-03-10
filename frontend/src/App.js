@@ -34,6 +34,9 @@ function App() {
                     <Route path="/songs">
                         <SongsPage />
                     </Route>
+                    <Route path="/playlists">
+                        <Playlists />
+                    </Route>
                 </Switch>
             )}
             <footer className="footer">

@@ -35,6 +35,11 @@ function Navigation({ isLoaded }) {
                         Home
                     </NavLink>
                 </li>
+                <li className="home-container">
+                    <NavLink className="home-link" to="/">
+                        About
+                    </NavLink>
+                </li>
                 <li>
                     <form className="search-bar">
                         <label htmlFor="search">Search</label>

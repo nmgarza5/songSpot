@@ -1,7 +1,8 @@
 .image-container {
     width: 70vw;
-    padding-top: 10vh;
+    margin-top: 10vh;
     border-radius: 5px;
+    border: black solid;
 }
 
 .text-container {
@@ -12,6 +13,7 @@
     left: 60vw;
     top: 30vh;
     border-radius: 5px;
+    border: black solid;
 }
 
 button {
