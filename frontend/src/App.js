@@ -11,7 +11,7 @@ import SingleSong from "./components/SingleSong";
 function App() {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
-    const songsObject = useSelector((state) => state.songState.songList);
+    const songsObject = useSelector((state) => state.songState);
     const songs = Object.values(songsObject);
     useEffect(() => {
         dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));

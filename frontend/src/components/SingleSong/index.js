@@ -1,26 +1,25 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SongEditModal from "../SongEditModal";
 import "./SingleSong.css";
 import { deleteSongThunk } from "../../store/songReducer";
+import { useHistory } from "react-router-dom";
 
 const SingleSong = ({ songs }) => {
     const { id } = useParams();
     const dispatch = useDispatch();
+    const history = useHistory();
     const song = songs.find((song) => song.id === +id);
     const sessionUser = useSelector((state) => state.session.user);
     const currentUser = sessionUser.username;
     const songUser = song.user.username;
-    const [errors, setErrors] = useState([]);
+    console.log("song ", song);
+    console.log("song.user ", song.user);
+    console.log("song.user.username ", song.user.username);
 
     const handleDelete = (e) => {
-        e.preventDefault();
-        setErrors([]);
-        return dispatch(deleteSongThunk(id)).catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
-        });
+        dispatch(deleteSongThunk(id));
+        history.push(`/songs`);
     };
 
     return (

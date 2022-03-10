@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
 import { addSongForm } from "../../store/songReducer";
 
 function SongForm() {
@@ -26,16 +24,16 @@ function SongForm() {
         });
     };
 
-    const genreOptions = [
-        "Rock",
-        "EDM",
-        "Pop",
-        "Hip-Hop",
-        "R&B",
-        "Country",
-        "Jazz",
-        "Classical",
-    ];
+    // const genreOptions = [
+    //     "Rock",
+    //     "EDM",
+    //     "Pop",
+    //     "Hip-Hop",
+    //     "R&B",
+    //     "Country",
+    //     "Jazz",
+    //     "Classical",
+    // ];
 
     return (
         <form onSubmit={handleSubmit}>

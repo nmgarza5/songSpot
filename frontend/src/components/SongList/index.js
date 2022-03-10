@@ -1,8 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
-
-import SingleSong from "../SingleSong";
 import SongDetail from "../SongDetail";
 // 5. Replace import of action creator with thunk creator
 import { fetchSongs } from "../../store/songReducer";
@@ -10,7 +7,7 @@ import { fetchSongs } from "../../store/songReducer";
 const SongList = () => {
     const dispatch = useDispatch();
 
-    const songsObject = useSelector((state) => state.songState.songList);
+    const songsObject = useSelector((state) => state.songState);
     const songs = Object.values(songsObject);
     useEffect(() => {
         dispatch(fetchSongs());

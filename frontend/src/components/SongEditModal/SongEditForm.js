@@ -1,27 +1,24 @@
 import React, { useState } from "react";
-import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { updateSongForm } from "../../store/songReducer";
 
 function SongEditForm({ id }) {
     const dispatch = useDispatch();
-    const sessionUser = useSelector((state) => state.session.user);
-    const [title, setTitle] = useState("");
-    const [genre, setGenre] = useState("");
-    const [imageUrl, setImageUrl] = useState("");
-    const [audioUrl, setAudioUrl] = useState("");
+    const history = useHistory();
+    const currentSong = useSelector((state) => state.songState[id]);
+    const [title, setTitle] = useState(currentSong.title);
+    const [genre, setGenre] = useState(currentSong.genre);
+    const [imageUrl, setImageUrl] = useState(currentSong.imageUrl);
+    const [audioUrl, setAudioUrl] = useState(currentSong.audioUrl);
     const [errors, setErrors] = useState([]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const songData = { id, title, genre, imageUrl, audioUrl };
         setErrors([]);
-        // <Redirect to="/home"></Redirect>;
-        return dispatch(updateSongForm(songData)).catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
-        });
+        history.push(`/songs/${id}`);
+        return dispatch(updateSongForm(songData));
     };
 
     // const genreOptions = [
