@@ -20,8 +20,16 @@ const ActivityPage = () => {
                     <div className="inner-main">Your Top Songs</div> */}
                 </div>
                 <div className="side-container">
-                    <div className="inner-side">Your Likes</div>
-                    <div className="inner-side">Listening History</div>
+                    <div className="inner-side">
+                        <h2> Coming Soon! </h2>
+                        <h2> Likes </h2>
+                        <i className="fa-regular fa-heart icon"></i>
+                    </div>
+                    <div className="inner-side">
+                        <h2> Coming Soon! </h2>
+                        <h2> Listening History </h2>
+                        <i class="fa-brands fa-soundcloud icon"></i>
+                    </div>
                 </div>
             </div>
             ;
