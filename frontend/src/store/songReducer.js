@@ -20,6 +20,7 @@ const addSong = (song) => {
 };
 
 const updateSong = (song) => {
+    console.log("SONG ", song);
     return {
         type: UPDATE_SONG,
         song,
@@ -69,6 +70,7 @@ export const updateSongForm = (songData) => async (dispatch) => {
         body: JSON.stringify(songData),
     });
     const updatedSong = await res.json();
+    console.log("updatedsong", updatedSong);
     dispatch(updateSong(updatedSong));
     return updatedSong;
 };
@@ -94,10 +96,13 @@ const songReducer = (state = initialState, action) => {
             action.songs.forEach((song) => (newState[song.id] = song));
             return newState;
         case ADD_SONG:
-            newState[action.song.song.id] = action.song.song;
+            newState[action.song.retSong.id] = action.retSong.song;
             return newState;
         case UPDATE_SONG:
-            newState[action.song.song.id] = action.song.song;
+            console.log("action.song.retSong ", action.song.retSong);
+            console.log("action.song.retSong.id ", action.song.retSong.id);
+            newState[action.song.retSong.id] = action.song.retSong;
+            console.log(newState);
             return newState;
         case DELETE_SONG:
             console.log(newState);

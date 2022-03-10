@@ -13,12 +13,20 @@ function SongEditForm({ id }) {
     const [audioUrl, setAudioUrl] = useState(currentSong.audioUrl);
     const [errors, setErrors] = useState([]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const songData = { id, title, genre, imageUrl, audioUrl };
         setErrors([]);
-        history.push(`/songs/${id}`);
-        return dispatch(updateSongForm(songData));
+        let updatedSong = await dispatch(updateSongForm(songData)).catch(
+            async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            }
+        );
+        if (updatedSong) {
+            history.push(`/songs`);
+            // history.push(`/songs/${updatedSong.retSong.id}`); // NOT WORKING - MODAL STILL SHOWS
+        }
     };
 
     // const genreOptions = [
