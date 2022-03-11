@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import SongEditModal from "../SongEditModal";
+import PlaylistEditModal from "../PlaylistEditModal";
 import "./SinglePlaylist.css";
 // import { deleteSongThunk, fetchSong } from "../../store/songReducer";
 import { useHistory } from "react-router-dom";
@@ -20,9 +20,9 @@ const SinglePlaylist = ({ playlists }) => {
     const playlistOwner = playlist?.user?.username;
     // console.log("sessionUser.username", sessionUser?.username);
     // console.log("song.user.username ", song?.user?.username);
-    console.log("playlist - singlePlaylist ", playlist);
+    // console.log("playlist - singlePlaylist ", playlist);
     const songs = playlist?.songs;
-    console.log("songs - singlePlaylist ", songs);
+    // console.log("songs - singlePlaylist ", songs);
 
     useEffect(() => {
         dispatch(fetchPlaylist(id));
@@ -30,27 +30,37 @@ const SinglePlaylist = ({ playlists }) => {
 
     const handleDelete = async (e) => {
         await dispatch(deletePlaylistThunk(id));
-        history.push(`/songs`);
+        history.push(`/playlists`);
     };
 
     return (
         <div className="singlePlaylist">
             <h1 className="">{playlist?.name}</h1>
             <h3>Created By - {playlistOwner}</h3>
+            {currentUser === playlistOwner ? (
+                <div>
+                    <button>
+                        <PlaylistEditModal id={id} />
+                    </button>
+                    <button onClick={handleDelete}>Delete Playlist</button>
+                </div>
+            ) : null}
             {songs?.map(({ title, user, audioUrl, imageUrl, JoinSP }) => (
                 <div key={JoinSP.songId} className="playlist-songs">
                     <img className="playlist-image" src={imageUrl}></img>
                     <div className="song-info">
                         <h3>{title}</h3>
-                        <h4>{user?.username}</h4>
+                        <h4>Created By - {user?.username}</h4>
                     </div>
                     <div className="song-btns">
                         <button>
                             <i className="fa-regular fa-square-plus"></i>
                         </button>
-                        <button>
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
+                        {currentUser === playlistOwner ? (
+                            <button>
+                                <i className="fa-solid fa-trash-can"></i>
+                            </button>
+                        ) : null}
                     </div>
                 </div>
             ))}

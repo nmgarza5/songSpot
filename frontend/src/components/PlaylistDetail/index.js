@@ -1,15 +1,20 @@
 import { NavLink } from "react-router-dom";
 import "./PlaylistDetail.css";
 
-const PlaylistDetail = ({ id, name, songs, user, userId }) => {
-    const firstImg = songs[0].imageUrl;
+const PlaylistDetail = ({ playlist }) => {
+    let firstImg = playlist?.songs[0]?.imageUrl;
+    if (!firstImg) firstImg = "/images/default-playlist.jpg";
     return (
         <div className="playlist-details">
             <img className="playlist-img" src={firstImg} alt={""}></img>
-            <NavLink to={`./playlists/${id}`} className="navLink">
-                <h2 className="navLink">Name - {name}</h2>
-                <h3 className="navLink">Owner - {user.username}</h3>
-                <h3 className="navLink">Numer of Songs - {songs.length}</h3>
+            <NavLink to={`./playlists/${playlist?.id}`} className="navLink">
+                <h2 className="navLink">Name - {playlist?.name}</h2>
+                <h3 className="navLink">
+                    Created By - {playlist?.user?.username}
+                </h3>
+                <h3 className="navLink">
+                    Number of Songs - {playlist?.songs?.length}
+                </h3>
             </NavLink>
         </div>
     );

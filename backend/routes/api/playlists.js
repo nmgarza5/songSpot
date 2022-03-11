@@ -75,4 +75,80 @@ router.get(
     })
 );
 
+router.post(
+    "/",
+    restoreUser,
+    requireAuth,
+    validatePlaylist,
+    asyncHandler(async (req, res) => {
+        const { name } = req.body;
+        const playlist = await Playlist.create({
+            userId: req.user.id,
+            name,
+        });
+        const retPlaylist = await Playlist.findByPk(playlist.id, {
+            include: [
+                { model: User, as: "user", attributes: ["username"] },
+                {
+                    model: Song,
+                    as: "songs",
+                    attributes: ["title", "genre", "imageUrl", "audioUrl"],
+                    include: [
+                        {
+                            model: User,
+                            as: "user",
+                            attributes: ["username"],
+                        },
+                    ],
+                },
+            ],
+        });
+        if (retPlaylist) res.json({ retPlaylist });
+    })
+);
+router.put(
+    "/:id",
+    restoreUser,
+    requireAuth,
+    validatePlaylist,
+    asyncHandler(async (req, res) => {
+        // const playlistId = req.body;
+        // const playlist = await Playlist.create({
+        //     userId: req.user.id,
+        //     name,
+        // });
+        const retPlaylist = await Playlist.findByPk(playlist.id, {
+            include: [
+                { model: User, as: "user", attributes: ["username"] },
+                {
+                    model: Song,
+                    as: "songs",
+                    attributes: ["title", "genre", "imageUrl", "audioUrl"],
+                    include: [
+                        {
+                            model: User,
+                            as: "user",
+                            attributes: ["username"],
+                        },
+                    ],
+                },
+            ],
+        });
+        if (retPlaylist) res.json({ retPlaylist });
+    })
+);
+
+router.delete(
+    "/:id",
+    restoreUser,
+    requireAuth,
+    asyncHandler(async (req, res) => {
+        const playlistId = req.params.id;
+        const playlist = await Playlist.findByPk(playlistId);
+        if (playlist) {
+            await playlist.destroy();
+            res.json({ response: "Success" });
+        }
+    })
+);
 module.exports = router;

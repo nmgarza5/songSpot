@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPlaylists } from "../../store/playlistReducer";
 import PlaylistDetail from "../PlaylistDetail";
+import PlaylistNewModal from "../PlaylistNewModal";
 import "./Playlists.css";
 
 const Playlists = () => {
     const dispatch = useDispatch();
     const playlistObject = useSelector((state) => state.playlistState);
     const playlists = Object.values(playlistObject);
-    console.log(playlists);
     useEffect(() => {
         dispatch(fetchPlaylists());
     }, [dispatch]);
@@ -16,15 +16,19 @@ const Playlists = () => {
     return (
         <div className="playlist-container">
             <h1>Playlists</h1>
+            <button>
+                <PlaylistNewModal />
+            </button>
             <div className="playlists">
-                {playlists.map(({ id, name, songs, user, userId }) => (
+                {playlists.map((playlist) => (
                     <PlaylistDetail
-                        key={id}
-                        id={id}
-                        name={name}
-                        songs={songs}
-                        user={user}
-                        userId={userId}
+                        key={playlist.id}
+                        playlist={playlist}
+                        // id={id}
+                        // name={name}
+                        // songs={songs}
+                        // user={user}
+                        // userId={userId}
                     />
                 ))}
             </div>

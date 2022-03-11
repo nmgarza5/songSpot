@@ -13,11 +13,11 @@ module.exports = {
             [
                 {
                     playlistId: 1,
-                    songId: 1,
+                    songId: 2,
                 },
                 {
                     playlistId: 1,
-                    songId: 2,
+                    songId: 1,
                 },
                 {
                     playlistId: 1,
@@ -61,6 +61,10 @@ module.exports = {
                 },
                 {
                     playlistId: 3,
+                    songId: 4,
+                },
+                {
+                    playlistId: 3,
                     songId: 1,
                 },
                 {
@@ -70,10 +74,6 @@ module.exports = {
                 {
                     playlistId: 3,
                     songId: 3,
-                },
-                {
-                    playlistId: 3,
-                    songId: 4,
                 },
                 {
                     playlistId: 3,
@@ -85,6 +85,10 @@ module.exports = {
                 },
                 {
                     playlistId: 4,
+                    songId: 5,
+                },
+                {
+                    playlistId: 4,
                     songId: 1,
                 },
                 {
@@ -98,10 +102,6 @@ module.exports = {
                 {
                     playlistId: 4,
                     songId: 4,
-                },
-                {
-                    playlistId: 4,
-                    songId: 5,
                 },
                 {
                     playlistId: 4,
