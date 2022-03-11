@@ -7,12 +7,15 @@ import SplashPage from "./components/SplashPage";
 import HomePage from "./components/HomePage";
 import SongsPage from "./components/SongsPage";
 import SingleSong from "./components/SingleSong";
+import Playlists from "./components/Playlists";
 
 function App() {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
     const songsObject = useSelector((state) => state.songState);
     const songs = Object.values(songsObject);
+    const playlistObject = useSelector((state) => state.playlistState);
+    const playlists = Object.values(playlistObject);
     useEffect(() => {
         dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
     }, [dispatch]);
@@ -33,6 +36,9 @@ function App() {
                     </Route>
                     <Route path="/songs">
                         <SongsPage />
+                    </Route>
+                    <Route path="/playlists/:id">
+                        <Playlists playlists={playlists} />
                     </Route>
                     <Route path="/playlists">
                         <Playlists />

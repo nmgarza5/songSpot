@@ -38,6 +38,7 @@ export const fetchPlaylist = (id) => async (dispatch) => {
     const res = await fetch(`/api/playlists/${id}`);
     if (res.ok) {
         const playlist = await res.json();
+        console.log("playlist ", playlist);
         dispatch(addPlaylist(playlist));
         return playlist;
     }
@@ -46,8 +47,10 @@ export const fetchPlaylist = (id) => async (dispatch) => {
 //fetch all playlists
 export const fetchPlaylists = () => async (dispatch) => {
     const res = await fetch(`/api/playlists`);
+    // console.log(res);
     if (res.ok) {
         const data = await res.json();
+        // console.log("data ", data);
         dispatch(loadPlaylists(data.playlists));
         return data.playlists;
     }
@@ -97,7 +100,7 @@ const playlistReducer = (state = initialState, action) => {
     let newState = { ...state };
     switch (action.type) {
         case LOAD_PLAYLISTS:
-            action.songs.forEach(
+            action.playlists.forEach(
                 (playlist) => (newState[playlist.id] = playlist)
             );
             return newState;

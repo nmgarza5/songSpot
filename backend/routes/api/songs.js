@@ -30,14 +30,14 @@ const validateSong = [
 
 //use handleValidation errors
 const songNotFoundError = (id) => {
-    const err = Error("Tweet not found");
+    const err = Error("Song not found");
     err.errors = [`Song with id of ${id} could not be found.`];
-    err.title = "Tweet not found.";
+    err.title = "Song not found.";
     err.status = 404;
     return err;
 };
 
-// get all songs and associated user in order from most recently created
+// get all songs and associated user
 router.get(
     "/",
     asyncHandler(async (req, res) => {

@@ -1,30 +1,33 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPlaylists } from "../../store/playlistReducer";
+import PlaylistDetail from "../PlaylistDetail";
+import "./Playlists.css";
 
 const Playlists = () => {
     const dispatch = useDispatch();
     const playlistObject = useSelector((state) => state.playlistState);
-    console.log(playlistObject);
     const playlists = Object.values(playlistObject);
     console.log(playlists);
     useEffect(() => {
-        dispatchEvent(fetchPlaylists());
+        dispatch(fetchPlaylists());
     }, [dispatch]);
 
     return (
         <div className="playlist-container">
-            {/* {playlists.map(({ id, name, genre, imageUrl, audioUrl, user }) => (
-                <PlaylistSongs
-                    key={id}
-                    id={id}
-                    title={title}
-                    genre={genre}
-                    imageUrl={imageUrl}
-                    audioUrl={audioUrl}
-                    user={user}
-                />
-            ))} */}
+            <h1>Playlists</h1>
+            <div className="playlists">
+                {playlists.map(({ id, name, songs, user, userId }) => (
+                    <PlaylistDetail
+                        key={id}
+                        id={id}
+                        name={name}
+                        songs={songs}
+                        user={user}
+                        userId={userId}
+                    />
+                ))}
+            </div>
         </div>
     );
 };

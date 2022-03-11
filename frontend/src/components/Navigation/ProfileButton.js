@@ -55,7 +55,7 @@ function ProfileButton({ user }) {
                     </li>
                     <li className="dropdown-item">
                         <i className="fa-solid fa-music"></i>
-                        <NavLink className="inner-drop" to="/">
+                        <NavLink className="inner-drop" to="/playlists">
                             Playlists
                         </NavLink>
                     </li>

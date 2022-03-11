@@ -2,7 +2,7 @@ import "./HomePage.css";
 import SongList from "../SongList";
 import { NavLink } from "react-router-dom";
 
-const ActivityPage = () => {
+const HomePage = () => {
     return (
         <>
             <div className="activity-container">
@@ -28,7 +28,7 @@ const ActivityPage = () => {
                     <div className="inner-side">
                         <h2> Coming Soon! </h2>
                         <h2> Listening History </h2>
-                        <i class="fa-brands fa-soundcloud icon"></i>
+                        <i className="fa-brands fa-soundcloud icon"></i>
                     </div>
                 </div>
             </div>
@@ -37,4 +37,4 @@ const ActivityPage = () => {
     );
 };
 
-export default ActivityPage;
+export default HomePage;
