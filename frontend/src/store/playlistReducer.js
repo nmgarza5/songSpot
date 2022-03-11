@@ -36,9 +36,9 @@ const deletePlaylist = (playlistId) => {
 //fetch single playlist
 export const fetchPlaylist = (id) => async (dispatch) => {
     const res = await fetch(`/api/playlists/${id}`);
+    console.log(res);
     if (res.ok) {
         const playlist = await res.json();
-        console.log("playlist ", playlist);
         dispatch(addPlaylist(playlist));
         return playlist;
     }
@@ -47,10 +47,8 @@ export const fetchPlaylist = (id) => async (dispatch) => {
 //fetch all playlists
 export const fetchPlaylists = () => async (dispatch) => {
     const res = await fetch(`/api/playlists`);
-    // console.log(res);
     if (res.ok) {
         const data = await res.json();
-        // console.log("data ", data);
         dispatch(loadPlaylists(data.playlists));
         return data.playlists;
     }
@@ -82,7 +80,7 @@ export const updatePlaylistForm = (playlistData) => async (dispatch) => {
 };
 
 //delete a playlist
-export const deleteSongThunk = (id) => async (dispatch) => {
+export const deletePlaylistThunk = (id) => async (dispatch) => {
     console.log(id);
     const res = await csrfFetch(`/api/playlists/${id}`, {
         method: "DELETE",
@@ -105,8 +103,10 @@ const playlistReducer = (state = initialState, action) => {
             );
             return newState;
         case ADD_PLAYLIST:
+            console.log("ACTION ", action);
             newState[action.playlist.retPlaylist.id] =
                 action.playlist.retPlaylist;
+            console.log("NEWSTATE ", newState);
             return newState;
         case UPDATE_PLAYLIST:
             newState[action.playlist.retPlaylist.id] =

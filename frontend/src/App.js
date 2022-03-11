@@ -8,6 +8,7 @@ import HomePage from "./components/HomePage";
 import SongsPage from "./components/SongsPage";
 import SingleSong from "./components/SingleSong";
 import Playlists from "./components/Playlists";
+import SinglePlaylist from "./components/SinglePlaylist";
 
 function App() {
     const dispatch = useDispatch();
@@ -38,7 +39,7 @@ function App() {
                         <SongsPage />
                     </Route>
                     <Route path="/playlists/:id">
-                        <Playlists playlists={playlists} />
+                        <SinglePlaylist playlists={playlists} />
                     </Route>
                     <Route path="/playlists">
                         <Playlists />

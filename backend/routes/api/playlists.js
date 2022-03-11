@@ -44,5 +44,35 @@ router.get(
         if (playlists) res.json({ playlists });
     })
 );
+// get a specific playlist
+router.get(
+    "/:id",
+    asyncHandler(async (req, res) => {
+        const playlistId = req.params.id;
+        const playlist = await Playlist.findByPk(playlistId);
+        if (playlist) {
+            const retPlaylist = await Playlist.findByPk(playlist.id, {
+                include: [
+                    { model: User, as: "user", attributes: ["username"] },
+                    {
+                        model: Song,
+                        as: "songs",
+                        attributes: ["title", "genre", "imageUrl", "audioUrl"],
+                        include: [
+                            {
+                                model: User,
+                                as: "user",
+                                attributes: ["username"],
+                            },
+                        ],
+                    },
+                ],
+            });
+            res.json({ retPlaylist });
+        } else {
+            next(playlistNotFoundError(req.params.id));
+        }
+    })
+);
 
 module.exports = router;

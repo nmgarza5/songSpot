@@ -5,7 +5,10 @@ import "./SinglePlaylist.css";
 // import { deleteSongThunk, fetchSong } from "../../store/songReducer";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
-import { fetchPlaylist } from "../../store/playlistReducer";
+import {
+    fetchPlaylist,
+    deletePlaylistThunk,
+} from "../../store/playlistReducer";
 
 const SinglePlaylist = ({ playlists }) => {
     const { id } = useParams();
@@ -17,26 +20,28 @@ const SinglePlaylist = ({ playlists }) => {
     const playlistOwner = playlist?.user?.username;
     // console.log("sessionUser.username", sessionUser?.username);
     // console.log("song.user.username ", song?.user?.username);
-    const songs = playlist.songs;
+    console.log("playlist - singlePlaylist ", playlist);
+    const songs = playlist?.songs;
+    console.log("songs - singlePlaylist ", songs);
 
     useEffect(() => {
         dispatch(fetchPlaylist(id));
     }, [dispatch]);
 
     const handleDelete = async (e) => {
-        await dispatch(PlaylistThunk(id));
+        await dispatch(deletePlaylistThunk(id));
         history.push(`/songs`);
     };
 
     return (
         <div className="singlePlaylist">
             <div className="playlist-content">
-                <h1>{playlist.name}</h1>
+                <h1>{playlist?.name}</h1>
                 {songs.map((song) => {
                     <div className="song-details">
-                        <img src={song.imageUrl}></img>
-                        <p>{song.name}</p>
-                        <p>{song.user.username}</p>
+                        <img src={song?.imageUrl}></img>
+                        <p>{song?.title}</p>
+                        <p>{song?.user?.username}</p>
                     </div>;
                 })}
             </div>
