@@ -21,15 +21,7 @@ const Playlists = () => {
             </button>
             <div className="playlists">
                 {playlists.map((playlist) => (
-                    <PlaylistDetail
-                        key={playlist.id}
-                        playlist={playlist}
-                        // id={id}
-                        // name={name}
-                        // songs={songs}
-                        // user={user}
-                        // userId={userId}
-                    />
+                    <PlaylistDetail key={playlist.id} playlist={playlist} />
                 ))}
             </div>
         </div>

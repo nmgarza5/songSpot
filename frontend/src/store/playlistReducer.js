@@ -65,14 +65,29 @@ export const addPlaylistForm = (playlistData) => async (dispatch) => {
     return newPlaylist;
 };
 
-//update a playlist
+//update a playlist name
 export const updatePlaylistForm = (playlistData) => async (dispatch) => {
+    console.log("playlist data ", playlistData);
     const res = await csrfFetch(`/api/playlists/${playlistData.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(playlistData),
     });
     const updatedPlaylist = await res.json();
+    console.log("UPDATED PLAYLIST ", updatePlaylist);
+    dispatch(updatePlaylist(updatedPlaylist));
+    return updatedPlaylist;
+};
+//update a playlist name
+export const addSongThunk = (playlistData) => async (dispatch) => {
+    console.log("playlist data ", playlistData);
+    const res = await csrfFetch(`/api/playlists/${playlistData.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(playlistData),
+    });
+    const updatedPlaylist = await res.json();
+    console.log("UPDATED PLAYLIST ", updatePlaylist);
     dispatch(updatePlaylist(updatedPlaylist));
     return updatedPlaylist;
 };

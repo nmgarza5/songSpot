@@ -112,29 +112,30 @@ router.put(
     requireAuth,
     validatePlaylist,
     asyncHandler(async (req, res) => {
-        // const playlistId = req.body;
-        // const playlist = await Playlist.create({
-        //     userId: req.user.id,
-        //     name,
-        // });
-        const retPlaylist = await Playlist.findByPk(playlist.id, {
-            include: [
-                { model: User, as: "user", attributes: ["username"] },
-                {
-                    model: Song,
-                    as: "songs",
-                    attributes: ["title", "genre", "imageUrl", "audioUrl"],
-                    include: [
-                        {
-                            model: User,
-                            as: "user",
-                            attributes: ["username"],
-                        },
-                    ],
-                },
-            ],
-        });
-        if (retPlaylist) res.json({ retPlaylist });
+        const { name, id } = req.body;
+        const playlist = await Playlist.findByPk(id);
+
+        if (playlist) {
+            await playlist.update({ name });
+            const retPlaylist = await Playlist.findByPk(playlist.id, {
+                include: [
+                    { model: User, as: "user", attributes: ["username"] },
+                    {
+                        model: Song,
+                        as: "songs",
+                        attributes: ["title", "genre", "imageUrl", "audioUrl"],
+                        include: [
+                            {
+                                model: User,
+                                as: "user",
+                                attributes: ["username"],
+                            },
+                        ],
+                    },
+                ],
+            });
+            return res.json({ retPlaylist });
+        }
     })
 );
 
@@ -152,3 +153,44 @@ router.delete(
     })
 );
 module.exports = router;
+// router.put(
+//     '/',
+//     asyncHandler(async (req, res) => {
+//         const { args } = req.body;
+//         const { songId, playlistId } = args;
+//         const join = await SongPlayListJoin.create({
+//             playlistId,
+//             songId
+//         });
+//         if (join) {
+//             res.json(join);
+//         }
+
+//     })
+// )
+
+// router.put(
+//     '/remove',
+//     asyncHandler(async (req, res) => {
+//         const { data } = req.body;
+//         const { songId, playlistId } = data;
+//         const join = await SongPlayListJoin.findOne({
+//             where: {
+//                 songId,
+//                 playlistId
+//             }
+//         });
+//         if (join) {
+//             await join.destroy();
+//             const updatedPlaylist = await Playlist.findByPk(playlistId, {
+//                 include: {
+//                     model: Song
+//                 }
+//             });
+//             if (updatedPlaylist) {
+//                 res.json(updatedPlaylist)
+//             };
+//         };
+
+//     })
+// )

@@ -8,13 +8,12 @@ function PlaylistEditForm(props) {
     const history = useHistory();
     const id = props.id;
     const currentPlaylist = useSelector((state) => state.playlistState[id]);
-    console.log(currentPlaylist);
     const [name, setName] = useState(currentPlaylist.name);
     const [errors, setErrors] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const playlistData = { name };
+        const playlistData = { name, id };
         setErrors([]);
         let updatedPlaylist = await dispatch(
             updatePlaylistForm(playlistData)
@@ -23,7 +22,6 @@ function PlaylistEditForm(props) {
             if (data && data.errors) setErrors(data.errors);
         });
         if (updatedPlaylist) {
-            // history.push(`/songs`);
             history.push(`/playlists/${updatedPlaylist?.retPlaylist?.id}`);
         }
         props.onClose();

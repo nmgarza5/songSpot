@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import PlaylistEditModal from "../PlaylistEditModal";
+import PlaylistDropdown from "../PlaylistDropdown";
 import "./SinglePlaylist.css";
 // import { deleteSongThunk, fetchSong } from "../../store/songReducer";
 import { useHistory } from "react-router-dom";
@@ -18,11 +19,7 @@ const SinglePlaylist = ({ playlists }) => {
     const sessionUser = useSelector((state) => state.session.user);
     const currentUser = sessionUser?.username;
     const playlistOwner = playlist?.user?.username;
-    // console.log("sessionUser.username", sessionUser?.username);
-    // console.log("song.user.username ", song?.user?.username);
-    // console.log("playlist - singlePlaylist ", playlist);
     const songs = playlist?.songs;
-    // console.log("songs - singlePlaylist ", songs);
 
     useEffect(() => {
         dispatch(fetchPlaylist(id));
@@ -54,7 +51,11 @@ const SinglePlaylist = ({ playlists }) => {
                     </div>
                     <div className="song-btns">
                         <button>
-                            <i className="fa-regular fa-square-plus"></i>
+                            <PlaylistDropdown
+                                playlists={playlists}
+                                currentUser={currentUser}
+                                songId={JoinSP.songId}
+                            />
                         </button>
                         {currentUser === playlistOwner ? (
                             <button>
