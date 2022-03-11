@@ -35,25 +35,25 @@ const SinglePlaylist = ({ playlists }) => {
 
     return (
         <div className="singlePlaylist">
-            <div className="playlist-content">
-                <h1>{playlist?.name}</h1>
-                {songs.map((song) => {
-                    <div className="song-details">
-                        <img src={song?.imageUrl}></img>
-                        <p>{song?.title}</p>
-                        <p>{song?.user?.username}</p>
-                    </div>;
-                })}
-            </div>
-            {/* <div>
-                <h3>Songs related to {song?.title}</h3>
-                <div className="other-songs">
-                    <p>Song1</p>
-                    <p>Song1</p>
-                    <p>Song1</p>
-                    <p>Song1</p>
+            <h1 className="">{playlist?.name}</h1>
+            <h3>Created By - {playlistOwner}</h3>
+            {songs?.map(({ title, user, audioUrl, imageUrl, JoinSP }) => (
+                <div key={JoinSP.songId} className="playlist-songs">
+                    <img className="playlist-image" src={imageUrl}></img>
+                    <div className="song-info">
+                        <h3>{title}</h3>
+                        <h4>{user?.username}</h4>
+                    </div>
+                    <div className="song-btns">
+                        <button>
+                            <i className="fa-regular fa-square-plus"></i>
+                        </button>
+                        <button>
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
                 </div>
-            </div> */}
+            ))}
         </div>
     );
 };

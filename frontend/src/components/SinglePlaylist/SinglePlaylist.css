@@ -1,0 +1,31 @@
+.singlePlaylist {
+    width: 1000px;
+    margin: 0 auto;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.playlist-content {
+    justify-content: center;
+    align-items: center;
+}
+
+.playlist-songs {
+    width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    border: black solid;
+    border-radius: 7px;
+    margin-bottom: 20px;
+}
+
+.playlist-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px 0 0 5px;
+}
