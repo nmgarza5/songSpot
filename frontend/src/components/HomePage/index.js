@@ -1,6 +1,7 @@
 import "./HomePage.css";
 import SongList from "../SongList";
 import { NavLink } from "react-router-dom";
+import Playlists from "../Playlists";
 
 const HomePage = () => {
     return (
@@ -16,8 +17,15 @@ const HomePage = () => {
                             <button>See More...</button>
                         </NavLink>
                     </div>
-                    {/* <div className="inner-main">Charts: Top 50 Songs</div>
-                    <div className="inner-main">Your Top Songs</div> */}
+                    <div className="inner-main">
+                        <h2>Recently Added Playlists</h2>
+                        <div className="song-container">
+                            <Playlists className="song" />
+                        </div>
+                        <NavLink className="see-more" to="/songs">
+                            <button>See More...</button>
+                        </NavLink>
+                    </div>
                 </div>
                 <div className="side-container">
                     <div className="inner-side">

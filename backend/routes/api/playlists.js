@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { restoreUser, requireAuth } = require("../../utils/auth");
-const { Playlist, User, Song } = require("../../db/models");
+const { Playlist, User, Song, JoinSP } = require("../../db/models");
 
 const router = express.Router();
 
@@ -107,17 +107,18 @@ router.post(
     })
 );
 router.put(
-    "/:id",
+    "/addSong",
     restoreUser,
     requireAuth,
     validatePlaylist,
     asyncHandler(async (req, res) => {
-        const { name, id } = req.body;
-        const playlist = await Playlist.findByPk(id);
-
-        if (playlist) {
-            await playlist.update({ name });
-            const retPlaylist = await Playlist.findByPk(playlist.id, {
+        const { songId, playlistId } = req.body;
+        const newEntry = await JoinSP.create({
+            songId,
+            playlistId,
+        });
+        if (newEntry) {
+            const retPlaylist = await Playlist.findByPk(playlistId, {
                 include: [
                     { model: User, as: "user", attributes: ["username"] },
                     {
@@ -134,7 +135,45 @@ router.put(
                     },
                 ],
             });
-            return res.json({ retPlaylist });
+            if (retPlaylist) res.json({ retPlaylist });
+        }
+    })
+);
+router.put(
+    "/deleteSong",
+    restoreUser,
+    requireAuth,
+    validatePlaylist,
+    asyncHandler(async (req, res) => {
+        const { songId, id } = req.body;
+        console.log("REQ.BODY ", req.body);
+        const entry = await JoinSP.findOne({
+            where: {
+                songId: songId,
+                playlistId: id,
+            },
+        });
+        console.log("ENTRY ", entry);
+        if (entry) {
+            await entry.destroy();
+            const retPlaylist = await Playlist.findByPk(id, {
+                include: [
+                    { model: User, as: "user", attributes: ["username"] },
+                    {
+                        model: Song,
+                        as: "songs",
+                        attributes: ["title", "genre", "imageUrl", "audioUrl"],
+                        include: [
+                            {
+                                model: User,
+                                as: "user",
+                                attributes: ["username"],
+                            },
+                        ],
+                    },
+                ],
+            });
+            if (retPlaylist) res.json({ retPlaylist });
         }
     })
 );

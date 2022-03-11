@@ -5,16 +5,18 @@ import PlaylistDropdown from "../PlaylistDropdown";
 import "./SinglePlaylist.css";
 // import { deleteSongThunk, fetchSong } from "../../store/songReducer";
 import { useHistory } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
     fetchPlaylist,
     deletePlaylistThunk,
+    deleteSongThunk,
 } from "../../store/playlistReducer";
 
 const SinglePlaylist = ({ playlists }) => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
+    const [songId, setSongId] = useState("");
     const playlist = playlists.find((playlist) => playlist.id === +id);
     const sessionUser = useSelector((state) => state.session.user);
     const currentUser = sessionUser?.username;
@@ -28,6 +30,11 @@ const SinglePlaylist = ({ playlists }) => {
     const handleDelete = async (e) => {
         await dispatch(deletePlaylistThunk(id));
         history.push(`/playlists`);
+    };
+    const deleteSong = async (songId) => {
+        const playlistData = { songId, id };
+        await dispatch(deleteSongThunk(playlistData));
+        history.push(`/playlists/${id}`);
     };
 
     return (
@@ -58,7 +65,11 @@ const SinglePlaylist = ({ playlists }) => {
                             />
                         </button>
                         {currentUser === playlistOwner ? (
-                            <button>
+                            <button
+                                onClick={() => {
+                                    deleteSong(JoinSP.songId);
+                                }}
+                            >
                                 <i className="fa-solid fa-trash-can"></i>
                             </button>
                         ) : null}
