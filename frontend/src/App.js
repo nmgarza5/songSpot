@@ -7,7 +7,7 @@ import SplashPage from "./components/SplashPage";
 import HomePage from "./components/HomePage";
 import SongsPage from "./components/SongsPage";
 import SingleSong from "./components/SingleSong";
-import Playlists from "./components/Playlists";
+import PlaylistsPage from "./components/PlaylistsPage";
 import SinglePlaylist from "./components/SinglePlaylist";
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
                         <SinglePlaylist playlists={playlists} />
                     </Route>
                     <Route path="/playlists">
-                        <Playlists />
+                        <PlaylistsPage />
                     </Route>
                 </Switch>
             )}
