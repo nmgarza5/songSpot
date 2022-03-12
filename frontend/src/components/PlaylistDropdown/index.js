@@ -9,10 +9,6 @@ function PlaylistDropdown({ playlists, currentUser, songId }) {
     const userPlaylists = playlists.filter(
         (playlist) => currentUser === playlist.user.username
     );
-    console.log("PLAYLISTS ", playlists);
-    console.log("USER PLAYLISTS ", userPlaylists);
-    console.log("CURRENT USER ", currentUser);
-    console.log("SONG ID ", songId);
 
     const addSong = async (playlistId) => {
         const addSongData = { songId, playlistId };

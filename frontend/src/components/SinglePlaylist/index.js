@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import PlaylistEditModal from "../PlaylistEditModal";
 import PlaylistDropdown from "../PlaylistDropdown";
 import "./SinglePlaylist.css";
-// import { deleteSongThunk, fetchSong } from "../../store/songReducer";
 import { useHistory } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
     fetchPlaylist,
     deletePlaylistThunk,
@@ -16,7 +15,6 @@ const SinglePlaylist = ({ playlists }) => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
-    const [songId, setSongId] = useState("");
     const playlist = playlists.find((playlist) => playlist.id === +id);
     const sessionUser = useSelector((state) => state.session.user);
     const currentUser = sessionUser?.username;
@@ -25,7 +23,7 @@ const SinglePlaylist = ({ playlists }) => {
 
     useEffect(() => {
         dispatch(fetchPlaylist(id));
-    }, [dispatch]);
+    }, [dispatch, id]);
 
     const handleDelete = async (e) => {
         await dispatch(deletePlaylistThunk(id));
@@ -51,7 +49,7 @@ const SinglePlaylist = ({ playlists }) => {
             ) : null}
             {songs?.map(({ title, user, audioUrl, imageUrl, JoinSP }) => (
                 <div key={JoinSP.songId} className="playlist-songs">
-                    <img className="playlist-image" src={imageUrl}></img>
+                    <img className="playlist-image" src={imageUrl} alt=""></img>
                     <div className="song-info">
                         <h3>{title}</h3>
                         <h4>Created By - {user?.username}</h4>

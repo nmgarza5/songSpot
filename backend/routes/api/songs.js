@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { restoreUser, requireAuth } = require("../../utils/auth");
-const { Song, User } = require("../../db/models");
+const { Song, User, JoinSP } = require("../../db/models");
 
 const router = express.Router();
 
@@ -122,6 +122,11 @@ router.delete(
     requireAuth,
     asyncHandler(async (req, res) => {
         const songId = req.params.id;
+        await JoinSP.destroy({
+            where: {
+                songId,
+            },
+        });
         const song = await Song.findByPk(songId);
         if (song) {
             await song.destroy();

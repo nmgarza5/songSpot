@@ -25,7 +25,7 @@ function PlaylistNewForm(props) {
         // console.log("newPlayList ", newPlaylist);
         if (newPlaylist) {
             // history.push(`/songs`);
-            history.push(`/playlists/${newPlaylist?.retPlaylist?.id}`);
+            history.push(`/songs`);
         }
         props.onClose();
     };
