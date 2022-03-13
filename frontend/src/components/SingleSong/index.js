@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SongEditModal from "../SongEditModal";
 import PlaylistDropdown from "../PlaylistDropdown";
+import Player from "../Player";
 import "./SingleSong.css";
 import { deleteSongThunk, fetchSong } from "../../store/songReducer";
 import { useHistory } from "react-router-dom";
@@ -12,19 +13,16 @@ const SingleSong = ({ songs }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const song = songs.find((song) => song.id === +id);
+    const songAudio = song.audioUrl;
     const playlistObject = useSelector((state) => state.playlistState);
     const playlists = Object.values(playlistObject);
     const sessionUser = useSelector((state) => state.session.user);
     const currentUser = sessionUser?.username;
     const songOwner = song?.user?.username;
-    // console.log(playlistObject);
-    console.log(playlists);
-    // console.log("sessionUser.username", sessionUser?.username);
-    // console.log("song.user.username ", song?.user?.username);
 
     useEffect(() => {
         dispatch(fetchSong(id));
-    }, [dispatch]);
+    }, [dispatch, id]);
 
     const handleDelete = async (e) => {
         await dispatch(deleteSongThunk(id));
@@ -43,6 +41,7 @@ const SingleSong = ({ songs }) => {
                     <h1>{song?.title}</h1>
                     <p>Artist - {songOwner}</p>
                     <p>Genre - {song?.genre}</p>
+                    <Player songAudio={songAudio} />
                     {songOwner === currentUser ? (
                         <>
                             <button>
