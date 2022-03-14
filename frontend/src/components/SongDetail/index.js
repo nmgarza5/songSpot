@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./SongDetail.css";
 
-const SongDetail = ({ id, title, genre, imageUrl, audioUrl, user }) => {
+const SongDetail = ({ id, title, genre, imageUrl, audioUrl, user, userId }) => {
     return (
         <div className="song-details">
             <NavLink to={`/songs/${id}`} id={id}>
@@ -10,7 +10,7 @@ const SongDetail = ({ id, title, genre, imageUrl, audioUrl, user }) => {
             <NavLink to={`/songs/${id}`} className="title">
                 {title}
             </NavLink>
-            <NavLink to={`/songs/${user.username}`} className="username">
+            <NavLink to={`/${userId}`} className="username">
                 {user.username}
             </NavLink>
         </div>

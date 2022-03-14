@@ -16,16 +16,16 @@ module.exports = {
                     userId: 1,
                 },
                 {
+                    name: "Rock On",
+                    userId: 3,
+                },
+                {
                     name: "Lofi Coding Jams",
                     userId: 2,
                 },
                 {
-                    name: "SPRINT",
+                    name: " GET SPRINTING",
                     userId: 1,
-                },
-                {
-                    name: "SOLO DOLO REACT",
-                    userId: 2,
                 },
             ],
             {}

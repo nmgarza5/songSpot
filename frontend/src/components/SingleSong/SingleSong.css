@@ -1,20 +1,24 @@
 .singleSong {
     width: 1000px;
     margin: 0 auto;
+    background-color: white;
 }
 
 .song-content {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .song-image {
     width: 300px;
     height: 300px;
+    text-align: center;
     border-radius: 5px;
+    margin-left: 5%;
 }
 
-.other-songs {
-    display: flex;
-    flex-direction: row;
+.song-info {
+    width: 70%;
+    text-align: center;
 }

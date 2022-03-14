@@ -1,10 +1,23 @@
 import "./HomePage.css";
 import SongList from "../SongList";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Playlists from "../Playlists";
 import PlaylistDetail from "../PlaylistDetail";
 
-const HomePage = () => {
+const HomePage = ({ songs, playlists }) => {
+    const sessionUser = useSelector((state) => state.session.user);
+    const currentUser = sessionUser?.username;
+
+    const userSongs = songs.filter(
+        (song) => song.user.username === currentUser
+    );
+    const userPlaylists = playlists.filter(
+        (playlist) => playlist.user.username === currentUser
+    );
+    console.log("USER SONGS", userSongs);
+    console.log("USER PLAYLISTS", userPlaylists);
+
     return (
         <>
             <div className="activity-container">
@@ -20,9 +33,9 @@ const HomePage = () => {
                     </div>
                     <div className="inner-main">
                         <h2>Recently Added Playlists</h2>
-                        <div className="song-container">
-                            <Playlists className="song" />
-                        </div>
+
+                        <Playlists className="song" />
+
                         <NavLink className="see-more" to="/playlists">
                             <button>See More...</button>
                         </NavLink>

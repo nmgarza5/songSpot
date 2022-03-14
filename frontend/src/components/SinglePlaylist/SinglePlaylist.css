@@ -14,7 +14,7 @@
 }
 
 .playlist-songs {
-    width: 500px;
+    width: 70%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -28,4 +28,9 @@
     width: 100px;
     height: 100px;
     border-radius: 5px 0 0 5px;
+}
+
+.song-info {
+    text-decoration: none;
+    color: black;
 }

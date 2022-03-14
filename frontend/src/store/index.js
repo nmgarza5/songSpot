@@ -1,14 +1,34 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import storage from "redux-persist/lib/storage";
+import { persistReducer } from "redux-persist";
 import thunk from "redux-thunk";
 import playlistReducer from "./playlistReducer";
 import sessionReducer from "./session";
 import songReducer from "./songReducer";
 
+import { createSlice } from "@reduxjs/toolkit";
+
+const counterSlice = createSlice({
+    name: "counter",
+    initialState: 0,
+    reducers: {
+        increment: (state) => state + 1,
+    },
+});
+
+const persistConfig = {
+    key: "counter",
+    storage,
+};
+
 const rootReducer = combineReducers({
+    counter: counterSlice,
     session: sessionReducer,
     songState: songReducer,
-    playlistState: playlistReducer
+    playlistState: playlistReducer,
 });
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 let enhancer;
 
@@ -22,7 +42,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const configureStore = (preloadedState) => {
-    return createStore(rootReducer, preloadedState, enhancer);
+    return createStore(persistedReducer, preloadedState, enhancer);
 };
 
 export default configureStore;

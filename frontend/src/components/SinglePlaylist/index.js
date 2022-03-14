@@ -1,7 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import PlaylistEditModal from "../PlaylistEditModal";
 import PlaylistDropdown from "../PlaylistDropdown";
+import Player from "../Player";
 import "./SinglePlaylist.css";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
@@ -47,13 +49,17 @@ const SinglePlaylist = ({ playlists }) => {
                     <button onClick={handleDelete}>Delete Playlist</button>
                 </div>
             ) : null}
+            <Player songs={songs} />
             {songs?.map(({ title, user, audioUrl, imageUrl, JoinSP }) => (
                 <div key={JoinSP.songId} className="playlist-songs">
                     <img className="playlist-image" src={imageUrl} alt=""></img>
-                    <div className="song-info">
+                    <NavLink
+                        to={`/songs/${JoinSP.songId}`}
+                        className="song-info"
+                    >
                         <h3>{title}</h3>
                         <h4>Created By - {user?.username}</h4>
-                    </div>
+                    </NavLink>
                     <div className="song-btns">
                         <button>
                             <PlaylistDropdown

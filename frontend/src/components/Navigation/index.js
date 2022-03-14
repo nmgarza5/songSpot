@@ -12,7 +12,6 @@ function Navigation({ isLoaded }) {
     if (sessionUser) {
         sessionLinks = <ProfileButton user={sessionUser} />;
     }
-    const placeholder = "Songs, playlists, and genres...";
 
     return (
         <nav className="navbar">
@@ -36,8 +35,13 @@ function Navigation({ isLoaded }) {
                     </NavLink>
                 </li>
                 <li className="home-container">
-                    <NavLink className="home-link" to="/">
-                        About
+                    <NavLink className="home-link" to="/songs">
+                        Songs
+                    </NavLink>
+                </li>
+                <li className="home-container">
+                    <NavLink className="home-link" to="/playlists">
+                        Playlists
                     </NavLink>
                 </li>
                 <li>
@@ -46,7 +50,7 @@ function Navigation({ isLoaded }) {
                         <input
                             name="search"
                             className="search-input"
-                            placeholder={placeholder}
+                            placeholder="Coming Soon..."
                         ></input>
                         <button type="submit" className="search-btn">
                             <i className="fa-solid fa-magnifying-glass"></i>

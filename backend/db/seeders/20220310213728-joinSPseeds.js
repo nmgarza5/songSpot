@@ -13,11 +13,11 @@ module.exports = {
             [
                 {
                     playlistId: 1,
-                    songId: 2,
+                    songId: 1,
                 },
                 {
                     playlistId: 1,
-                    songId: 1,
+                    songId: 2,
                 },
                 {
                     playlistId: 1,
@@ -37,35 +37,19 @@ module.exports = {
                 },
                 {
                     playlistId: 2,
-                    songId: 1,
+                    songId: 7,
                 },
                 {
                     playlistId: 2,
-                    songId: 2,
+                    songId: 8,
                 },
                 {
                     playlistId: 2,
-                    songId: 3,
-                },
-                {
-                    playlistId: 2,
-                    songId: 4,
-                },
-                {
-                    playlistId: 2,
-                    songId: 5,
-                },
-                {
-                    playlistId: 2,
-                    songId: 6,
+                    songId: 9,
                 },
                 {
                     playlistId: 3,
                     songId: 4,
-                },
-                {
-                    playlistId: 3,
-                    songId: 1,
                 },
                 {
                     playlistId: 3,
@@ -89,23 +73,19 @@ module.exports = {
                 },
                 {
                     playlistId: 4,
-                    songId: 1,
-                },
-                {
-                    playlistId: 4,
-                    songId: 2,
-                },
-                {
-                    playlistId: 4,
-                    songId: 3,
-                },
-                {
-                    playlistId: 4,
                     songId: 4,
                 },
                 {
                     playlistId: 4,
-                    songId: 6,
+                    songId: 7,
+                },
+                {
+                    playlistId: 4,
+                    songId: 8,
+                },
+                {
+                    playlistId: 4,
+                    songId: 5,
                 },
             ],
             {}
