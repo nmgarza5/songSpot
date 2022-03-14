@@ -25,7 +25,7 @@ function SongEditForm(props) {
             }
         );
         if (updatedSong) {
-            history.push(`/songs/${updatedSong?.retSong?.id}`); // NOT WORKING - MODAL STILL SHOWS
+            history.push(`/songs/${updatedSong?.retSong?.id}`);
             props.onClose();
         }
     };

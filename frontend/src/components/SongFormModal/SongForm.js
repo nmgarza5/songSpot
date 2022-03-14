@@ -30,7 +30,6 @@ function SongForm(props) {
             props.onClose();
         }
     };
-    console.log("errors ", errors);
     return (
         <div className="form">
             <form onSubmit={handleSubmit}>

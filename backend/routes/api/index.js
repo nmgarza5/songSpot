@@ -12,9 +12,4 @@ router.use("/songs", songsRouter);
 
 router.use("/playlists", playlistsRouter);
 
-//for testing user auth
-// router.post("/test", (req, res) => {
-//     res.json({ requestBody: req.body });
-// });
-
 module.exports = router;
