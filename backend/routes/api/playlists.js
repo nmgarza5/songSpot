@@ -112,7 +112,6 @@ router.put(
     "/addSong",
     restoreUser,
     requireAuth,
-    validatePlaylist,
     asyncHandler(async (req, res) => {
         const { songId, playlistId } = req.body;
         const newEntry = await JoinSP.create({
@@ -145,7 +144,6 @@ router.put(
     "/deleteSong",
     restoreUser,
     requireAuth,
-    validatePlaylist,
     asyncHandler(async (req, res) => {
         const { songId, id } = req.body;
         const entry = await JoinSP.findOne({
