@@ -8,7 +8,7 @@ This is a clone of [SoundCloud](https://soundcloud.com/). Access the [SongSpot M
 1. Clone this repo.
     - `git clone git@github.com:nmgarza5/songSpot.git`
     
-2. Install dependencies from teh root directory.
+2. Install dependencies from the root directory.
     - `npm install`
     
 3. Create a Postgresql user with CREATDB and PASSWORD in PSQL.
@@ -30,10 +30,10 @@ This is a clone of [SoundCloud](https://soundcloud.com/). Access the [SongSpot M
 8. Start the server in the backend directory.
     - `npm start`
 
-9. Start the server in the frontend directory, which should opwn the project in your default browser. If not, navigate to [http://localhost:3000](http://localhost:3000)
+9. Start the server in the frontend directory, which should open the project in your default browser. If not, navigate to [http://localhost:3000](http://localhost:3000)
     - `npm start`
 
-10. You can use the Demo user or create and account to begin using SongSpot.
+10. You can use the Demo user or create an account to begin using SongSpot.
 
 
 ## Features
@@ -45,3 +45,4 @@ Logged out users can perform the following actions.
 Logged in users can perform the following actions
    - View/Add/Edit/Delete Songs
    - View/Add/Edit/Delete Playlists
+   - Listen to Songs/Playlists
