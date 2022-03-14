@@ -20,9 +20,9 @@ const HomePage = () => {
                     </div>
                     <div className="inner-main">
                         <h2>Recently Added Playlists</h2>
-                        <div className="song-container">
-                            <Playlists className="song" />
-                        </div>
+
+                        <Playlists className="song" />
+
                         <NavLink className="see-more" to="/playlists">
                             <button>See More...</button>
                         </NavLink>

@@ -22,8 +22,6 @@ const SinglePlaylist = ({ playlists }) => {
     const currentUser = sessionUser?.username;
     const playlistOwner = playlist?.user?.username;
     const songs = playlist?.songs;
-    const audioArr = songs.map((song) => song.audioUrl);
-    console.log(audioArr);
 
     useEffect(() => {
         dispatch(fetchPlaylist(id));
@@ -51,7 +49,7 @@ const SinglePlaylist = ({ playlists }) => {
                     <button onClick={handleDelete}>Delete Playlist</button>
                 </div>
             ) : null}
-            <Player songAudio={audioArr} />
+            <Player songs={songs} />
             {songs?.map(({ title, user, audioUrl, imageUrl, JoinSP }) => (
                 <div key={JoinSP.songId} className="playlist-songs">
                     <img className="playlist-image" src={imageUrl} alt=""></img>

@@ -36,8 +36,13 @@ function Navigation({ isLoaded }) {
                     </NavLink>
                 </li>
                 <li className="home-container">
-                    <NavLink className="home-link" to="/">
-                        About
+                    <NavLink className="home-link" to="/songs">
+                        Songs
+                    </NavLink>
+                </li>
+                <li className="home-container">
+                    <NavLink className="home-link" to="/playlists">
+                        Playlists
                     </NavLink>
                 </li>
                 <li>

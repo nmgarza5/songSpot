@@ -41,7 +41,7 @@ const SingleSong = ({ songs }) => {
                     <h1>{song?.title}</h1>
                     <p>Artist - {songOwner}</p>
                     <p>Genre - {song?.genre}</p>
-                    <Player songAudio={songAudio} />
+                    <Player songs={song} />
                     {songOwner === currentUser ? (
                         <>
                             <button>
@@ -59,15 +59,6 @@ const SingleSong = ({ songs }) => {
                             />
                         </button>
                     ) : null}
-                </div>
-            </div>
-            <div>
-                <h3>Songs related to {song?.title}</h3>
-                <div className="other-songs">
-                    <p>Song1</p>
-                    <p>Song1</p>
-                    <p>Song1</p>
-                    <p>Song1</p>
                 </div>
             </div>
         </div>
