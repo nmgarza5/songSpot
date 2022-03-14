@@ -13,6 +13,7 @@ const validatePlaylist = [
         .withMessage("Must enter a name")
         .isLength({ max: 30 })
         .withMessage("Playlist name can't be longer than 30 characters."),
+    handleValidationErrors,
 ];
 
 //use handleValidation errors
