@@ -27,11 +27,3 @@ body {
     width: 40%;
     justify-content: space-around;
 }
-/*
-#root {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100vw;
-    background: rgb(0, 0, 0);
-} */

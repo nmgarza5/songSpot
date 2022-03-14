@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink, Redirect, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./ProfileButton.css";
 
@@ -12,8 +12,7 @@ function ProfileButton({ user }) {
     const logout = async (e) => {
         e.preventDefault();
         await dispatch(sessionActions.logout());
-        history.push("/"); //neither methods working
-        // return <Redirect to="/" />;
+        history.push("/");
     };
 
     return (

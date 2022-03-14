@@ -39,12 +39,10 @@ button {
     border-radius: 5px;
     color: #ffffff;
     background: #3b3b3b;
-    /* background-image: linear-gradient(144deg, #a00e0e, #0003c2 50%, #008d2f); */
     text-align: center;
     cursor: pointer;
 }
 
 button:hover {
-    /* background-image: linear-gradient(144deg, #0003c2, #008d2f 50%, #a00e0e);*/
     background: #535353;
 }

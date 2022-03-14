@@ -147,14 +147,12 @@ router.put(
     validatePlaylist,
     asyncHandler(async (req, res) => {
         const { songId, id } = req.body;
-        console.log("REQ.BODY ", req.body);
         const entry = await JoinSP.findOne({
             where: {
                 songId: songId,
                 playlistId: id,
             },
         });
-        console.log("ENTRY ", entry);
         if (entry) {
             await entry.destroy();
             const retPlaylist = await Playlist.findByPk(id, {

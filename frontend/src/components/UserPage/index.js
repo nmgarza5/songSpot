@@ -8,12 +8,10 @@ import "./UserPage.css";
 const ProfilePage = ({ songs, playlists }) => {
     const sessionUser = useSelector((state) => state.session.user);
     const currentUserId = sessionUser?.id;
-    console.log(currentUserId);
 
     const { userId } = useParams();
 
     const displaySongs = songs.filter((song) => song.userId === +userId);
-    console.log(displaySongs);
     const displayPlaylists = playlists.filter(
         (playlist) => playlist.userId === +userId
     );

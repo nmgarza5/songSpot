@@ -51,7 +51,6 @@ export const fetchSongs = () => async (dispatch) => {
 };
 
 export const addSongForm = (songData) => async (dispatch) => {
-    // console.log("songData ", songData);
     const res = await csrfFetch("/api/songs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -73,7 +72,6 @@ export const updateSongForm = (songData) => async (dispatch) => {
 };
 
 export const deleteSongThunk = (id) => async (dispatch) => {
-    console.log(id);
     const res = await csrfFetch(`/api/songs/${id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
