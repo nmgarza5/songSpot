@@ -14,17 +14,20 @@ const SongList = () => {
 
     return (
         <div className="song-container">
-            {songs.map(({ id, title, genre, imageUrl, audioUrl, user }) => (
-                <SongDetail
-                    key={id}
-                    id={id}
-                    title={title}
-                    genre={genre}
-                    imageUrl={imageUrl}
-                    audioUrl={audioUrl}
-                    user={user}
-                />
-            ))}
+            {songs.map(
+                ({ id, title, genre, imageUrl, audioUrl, user, userId }) => (
+                    <SongDetail
+                        key={id}
+                        id={id}
+                        title={title}
+                        genre={genre}
+                        imageUrl={imageUrl}
+                        audioUrl={audioUrl}
+                        user={user}
+                        userId={userId}
+                    />
+                )
+            )}
         </div>
     );
 };

@@ -1,0 +1,55 @@
+import React from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import SongDetail from "../SongDetail";
+import PlaylistDetail from "../PlaylistDetail";
+import "./UserPage.css";
+
+const ProfilePage = ({ songs, playlists }) => {
+    const sessionUser = useSelector((state) => state.session.user);
+    const currentUserId = sessionUser?.id;
+    console.log(currentUserId);
+
+    const { userId } = useParams();
+
+    const displaySongs = songs.filter((song) => song.userId === +userId);
+    console.log(displaySongs);
+    const displayPlaylists = playlists.filter(
+        (playlist) => playlist.userId === +userId
+    );
+    return (
+        <div className="userpage-container">
+            {currentUserId === userId ? (
+                <h1>My Music</h1>
+            ) : (
+                <h1>{displaySongs[0].user.username}'s Music</h1>
+            )}
+            <div className="music-wrapper">
+                <section className="user-songs">
+                    <h1>Songs</h1>
+                    {displaySongs.map(
+                        ({ id, title, genre, imageUrl, audioUrl, user }) => (
+                            <SongDetail
+                                key={id}
+                                id={id}
+                                title={title}
+                                genre={genre}
+                                imageUrl={imageUrl}
+                                audioUrl={audioUrl}
+                                user={user}
+                            />
+                        )
+                    )}
+                </section>
+                <section className="user-playlists">
+                    <h1>Playlists</h1>
+                    {displayPlaylists.map((playlist) => (
+                        <PlaylistDetail key={playlist.id} playlist={playlist} />
+                    ))}
+                </section>
+            </div>
+        </div>
+    );
+};
+
+export default ProfilePage;

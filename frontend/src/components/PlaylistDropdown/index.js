@@ -22,7 +22,6 @@ function PlaylistDropdown({ playlists, currentUser, songId }) {
                 className="username-dropdown"
                 onClick={() => setShowMenu(!showMenu)}
             >
-                Add to Playlist
                 <i className="fa-regular fa-square-plus"></i>
             </div>
             {showMenu && (

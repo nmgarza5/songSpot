@@ -17,8 +17,8 @@ const Player = ({ songs }) => {
         playerSongs?.[nextSongIndex]?.title || playerSongs?.title;
     const nextSongArtist =
         playerSongs?.[nextSongIndex]?.user?.username ||
+        playerSongs?.[0]?.user?.username ||
         playerSongs?.user?.username;
-    console.log(playerSongs);
 
     //increment the song index
     useEffect(() => {
@@ -57,8 +57,6 @@ const Player = ({ songs }) => {
         <div className="audio-player">
             <audio
                 ref={audioElement}
-                controls
-                // className="audioPlayer"
                 src={currentSong.audioUrl}
                 preload="auto"
             />

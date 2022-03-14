@@ -21,7 +21,7 @@ const Footer = () => {
                     className="a-tag"
                     href="https://www.linkedin.com/in/nikolas-garza-7a3202139/"
                 >
-                    <FaLinkedin />
+                    <FaLinkedin className="a-tag" />
                 </a>
             </section>
         </footer>

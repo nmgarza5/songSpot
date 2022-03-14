@@ -10,7 +10,6 @@ function PlaylistEditForm(props) {
     const currentPlaylist = useSelector((state) => state.playlistState[id]);
     const [name, setName] = useState(currentPlaylist.name);
     const [errors, setErrors] = useState([]);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const playlistData = { name, id };
@@ -23,26 +22,26 @@ function PlaylistEditForm(props) {
         });
         if (updatedPlaylist) {
             history.push(`/playlists/${updatedPlaylist?.retPlaylist?.id}`);
+            props.onClose();
         }
-        props.onClose();
     };
     return (
-        <form onSubmit={handleSubmit}>
-            <ul>
+        <div className="form">
+            <form onSubmit={handleSubmit}>
                 {errors.map((error, idx) => (
                     <li key={idx}>{error}</li>
                 ))}
-            </ul>
-            <label>
-                Name
-                <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
-            </label>
-            <button type="submit">Update</button>
-        </form>
+                <div className="input-container">
+                    <label>Name</label>
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     );
 }
 

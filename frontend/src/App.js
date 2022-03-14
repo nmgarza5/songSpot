@@ -10,6 +10,7 @@ import SingleSong from "./components/SingleSong";
 import PlaylistsPage from "./components/PlaylistsPage";
 import SinglePlaylist from "./components/SinglePlaylist";
 import Footer from "./components/Footer";
+import ProfilePage from "./components/UserPage";
 
 function App() {
     const dispatch = useDispatch();
@@ -31,7 +32,7 @@ function App() {
                         <SplashPage />
                     </Route>
                     <Route path="/home">
-                        <HomePage />
+                        <HomePage songs={songs} playlists={playlists} />
                     </Route>
                     <Route path="/songs/:id">
                         <SingleSong songs={songs} />
@@ -44,6 +45,9 @@ function App() {
                     </Route>
                     <Route path="/playlists">
                         <PlaylistsPage />
+                    </Route>
+                    <Route path="/:userId">
+                        <ProfilePage songs={songs} playlists={playlists} />
                     </Route>
                 </Switch>
             )}

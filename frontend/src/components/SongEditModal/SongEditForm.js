@@ -25,78 +25,74 @@ function SongEditForm(props) {
             }
         );
         if (updatedSong) {
-            // history.push(`/songs`);
             history.push(`/songs/${updatedSong?.retSong?.id}`); // NOT WORKING - MODAL STILL SHOWS
+            props.onClose();
         }
-        props.onClose();
     };
 
-    // const genreOptions = [
-    //     "Rock",
-    //     "EDM",
-    //     "Pop",
-    //     "Hip-Hop",
-    //     "R&B",
-    //     "Country",
-    //     "Jazz",
-    //     "Classical",
-    // ];
-
     return (
-        <form onSubmit={handleSubmit}>
-            <ul>
-                {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-            </ul>
-            <label>
-                Title
-                <input
-                    type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-            </label>
-            <label>
-                Genre
-                <select
-                    type="text"
-                    value={genre}
-                    onChange={(e) => setGenre(e.target.value)}
-                    required
-                >
-                    <option value="Rock">Rock</option>
-                    <option value="EDM">EDM</option>
-                    <option value="Pop">Pop</option>
-                    <option value="Hip-Hop">Hip-hop</option>
-                    <option value="R&B">R&B</option>
-                    <option value="Jazz">Jazz</option>
-                    <option value="Classical">Classical</option>
-                    {/* {genreOptions.forEach((genre) => {
-                        <option value={genre}>{genre}</option>;
-                    })} */}
-                </select>
-            </label>
-            <label>
-                Image URL
-                <input
-                    type="text"
-                    value={imageUrl}
-                    onChange={(e) => setImageUrl(e.target.value)}
-                    required
-                />
-            </label>
-            <label>
-                Audio URL
-                <input
-                    type="text"
-                    value={audioUrl}
-                    onChange={(e) => setAudioUrl(e.target.value)}
-                    required
-                />
-            </label>
-            <button type="submit">Update</button>
-        </form>
+        <div className="form">
+            <form onSubmit={handleSubmit}>
+                <div>
+                    {errors.map((error, idx) => (
+                        <li key={idx}>{error}</li>
+                    ))}
+                </div>
+                <div className="input-container">
+                    <label>Title</label>
+                    <input
+                        value={title}
+                        className="label"
+                        type="text"
+                        onChange={(e) => setTitle(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="input-container">
+                    <label>Genre</label>
+                    <select
+                        value={genre}
+                        className="label"
+                        type="text"
+                        onChange={(e) => setGenre(e.target.value)}
+                        defaultValue={"Default"}
+                        required
+                    >
+                        <option value="Default" disabled>
+                            Select Genre...
+                        </option>
+                        <option value="Rock">Rock</option>
+                        <option value="EDM">EDM</option>
+                        <option value="Pop">Pop</option>
+                        <option value="Hip-Hop">Hip-hop</option>
+                        <option value="R&B">R&B</option>
+                        <option value="Jazz">Jazz</option>
+                        <option value="Classical">Classical</option>
+                    </select>
+                </div>
+                <div className="input-container">
+                    <label>Image URL</label>
+                    <input
+                        value={imageUrl}
+                        className="label"
+                        type="text"
+                        onChange={(e) => setImageUrl(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="input-container">
+                    <label>Audio URL</label>
+                    <input
+                        value={audioUrl}
+                        className="label"
+                        type="text"
+                        onChange={(e) => setAudioUrl(e.target.value)}
+                        required
+                    />
+                </div>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
     );
 }
 

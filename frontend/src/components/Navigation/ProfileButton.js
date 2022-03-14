@@ -34,15 +34,9 @@ function ProfileButton({ user }) {
                         </NavLink>
                     </li>
                     <li className="dropdown-item">
-                        <i className="fa-solid fa-guitar"></i>
-                        <NavLink className="inner-drop" to="/songs">
-                            Songs
-                        </NavLink>
-                    </li>
-                    <li className="dropdown-item">
                         <i className="fa-solid fa-music"></i>
-                        <NavLink className="inner-drop" to="/playlists">
-                            Playlists
+                        <NavLink className="inner-drop" to={`/${user.id}`}>
+                            My Music
                         </NavLink>
                     </li>
                     <li className="signout dropdown-item">

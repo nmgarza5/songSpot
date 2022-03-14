@@ -1,0 +1,27 @@
+.form {
+    width: 30vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label {
+    width: 100%;
+    height: 56px;
+    border-radius: 4px;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: 0.3s all;
+}
+
+.label:hover {
+    background-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+}
+
+input[type="text"],
+input[type="password"] {
+    height: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}

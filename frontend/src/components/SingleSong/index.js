@@ -37,7 +37,7 @@ const SingleSong = ({ songs }) => {
                     alt={song?.title}
                     className="song-image"
                 />
-                <div className="song-details">
+                <div className="song-info">
                     <h1>{song?.title}</h1>
                     <p>Artist - {songOwner}</p>
                     <p>Genre - {song?.genre}</p>
