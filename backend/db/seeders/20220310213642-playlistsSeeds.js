@@ -24,7 +24,7 @@ module.exports = {
                     userId: 2,
                 },
                 {
-                    name: " GET SPRINTING",
+                    name: "Yay Area",
                     userId: 1,
                 },
             ],

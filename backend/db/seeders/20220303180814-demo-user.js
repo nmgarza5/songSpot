@@ -13,12 +13,12 @@ module.exports = {
                 },
                 {
                     email: "user1@user.io",
-                    username: "JD_THE_BeatKing",
+                    username: "JD_BeatMaster",
                     hashedPassword: bcrypt.hashSync("password2"),
                 },
                 {
                     email: "user2@user.io",
-                    username: "Mic-Check",
+                    username: "React-Noob",
                     hashedPassword: bcrypt.hashSync("password3"),
                 },
             ],
