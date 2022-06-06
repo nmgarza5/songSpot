@@ -29,6 +29,11 @@ const SingleSong = ({ songs }) => {
         history.push(`/songs`);
     };
 
+    const handleLike = async () => {
+        // await dispatch(addSongLike(id));
+        // await dispatch(fetchSong(id));
+    }
+
     return (
         <div className="singleSong">
             <div className="song-content">
@@ -41,6 +46,9 @@ const SingleSong = ({ songs }) => {
                     <h1>{song?.title}</h1>
                     <p>Artist - {songOwner}</p>
                     <p>Genre - {song?.genre}</p>
+                    <div onClick={handleLike}>
+                        <i className="fa-regular fa-heart"></i>
+                    </div>
                     <Player songs={song} />
                     {songOwner === currentUser ? (
                         <>

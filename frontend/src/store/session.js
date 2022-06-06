@@ -2,6 +2,8 @@ import { csrfFetch } from "./csrf";
 
 const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
+const ADD_SONG_LIKE = "session/ADD_SONG__LIKE";
+const REMOVE_SONG_LIKE = "session/REMOVE_SONG_LIKE";
 
 const setUser = (user) => {
     return {
@@ -15,6 +17,16 @@ const removeUser = () => {
         type: REMOVE_USER,
     };
 };
+
+const addedSongLike = (newLike) => ({
+	type: ADD_SONG_LIKE,
+	payload: newLike,
+});
+
+const removedSongLike = (removedLike) => ({
+	type: REMOVE_SONG_LIKE,
+	payload: removedLike,
+});
 
 export const login = (user) => async (dispatch) => {
     const { credential, password } = user;
@@ -60,6 +72,29 @@ export const logout = () => async (dispatch) => {
     return response;
 };
 
+
+export const addSongLike = (id) => async (dispatch) => {
+	const res = await fetch("/api/likes/song", {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify(id),
+	});
+	const newLike = await res.json();
+	dispatch(addedSongLike(newLike));
+	return newLike;
+};
+
+export const removeSongLike = (id) => async (dispatch) => {
+	const res = await fetch("/api/likes/song", {
+		method: "DELETE",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify(id),
+	});
+	const like = await res.json();
+	dispatch(removedSongLike(like));
+	return like;
+};
+
 const initialState = { user: null };
 
 const sessionReducer = (state = initialState, action) => {
@@ -72,6 +107,13 @@ const sessionReducer = (state = initialState, action) => {
         case REMOVE_USER:
             newState = Object.assign({}, state);
             newState.user = null;
+            return newState;
+        case ADD_SONG_LIKE:
+            newState.user.beer_likes[action.payload.beer_id] =
+                action.payload;
+            return newState;
+        case REMOVE_SONG_LIKE:
+            delete newState.user.beer_likes[action.payload.beer_id];
             return newState;
         default:
             return state;
