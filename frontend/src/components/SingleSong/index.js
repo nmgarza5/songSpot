@@ -7,6 +7,7 @@ import "./SingleSong.css";
 import { deleteSongThunk, fetchSong } from "../../store/songReducer";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
+import { addSongLike } from "../../store/likes";
 
 const SingleSong = ({ songs }) => {
     const { id } = useParams();
@@ -30,7 +31,7 @@ const SingleSong = ({ songs }) => {
     };
 
     const handleLike = async () => {
-        // await dispatch(addSongLike(id));
+        await dispatch(addSongLike(id));
         // await dispatch(fetchSong(id));
     }
 

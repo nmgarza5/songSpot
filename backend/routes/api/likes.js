@@ -6,6 +6,15 @@ const { PlaylistLike, SongLike } = require("../../db/models");
 const router = express.Router();
 
 
+// get all songs and associated user
+router.get(
+    "/song",
+    asyncHandler(async (req, res) => {
+        const songLikes = await SongLike.findAll();
+        if (songLikes) res.json({ songLikes });
+    })
+);
+
 router.post(
     "/song",
     restoreUser,
