@@ -42,7 +42,9 @@ router.get(
     "/",
     asyncHandler(async (req, res) => {
         const songs = await Song.findAll({
-            include: [{ model: User, as: "user", attributes: ["username"] },
+            include: [
+                { model: User, as: "user", attributes: ["username"] },
+                { model: SongLike }
 
         ],
         });
@@ -60,6 +62,7 @@ router.get(
             const retSong = await Song.findByPk(song.id, {
                 include: [
                     { model: User, as: "user", attributes: ["username"] },
+                    { model: SongLike },
                 ],
             });
             res.json({ retSong });

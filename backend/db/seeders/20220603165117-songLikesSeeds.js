@@ -14,6 +14,8 @@ module.exports = {
      { userId: 1, songId: 5},
      { userId: 1, songId: 4},
      { userId: 1, songId: 2},
+     { userId: 2, songId: 2},
+     { userId: 3, songId: 2},
   ], {});
   },
 
