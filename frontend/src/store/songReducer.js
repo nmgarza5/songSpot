@@ -1,9 +1,18 @@
 import { csrfFetch } from "./csrf";
 
+const LOAD_SONG = "songs/loadSong";
 const LOAD_SONGS = "songs/loadSongs";
 const ADD_SONG = "song/addSong";
 const UPDATE_SONG = "song/updateSong";
 const DELETE_SONG = "song/deleteSong";
+
+
+const loadSong = (song) => {
+    return {
+        type: LOAD_SONG,
+        song,
+    };
+};
 
 const loadSongs = (songs) => {
     return {
@@ -37,7 +46,7 @@ export const fetchSong = (id) => async (dispatch) => {
     const res = await fetch(`/api/songs/${id}`);
     if (res.ok) {
         const song = await res.json();
-        dispatch(addSong(song));
+        dispatch(loadSong(song));
         return song;
     }
 };
@@ -82,11 +91,39 @@ export const deleteSongThunk = (id) => async (dispatch) => {
     }
 };
 
+export const addSongLike = (id) => async (dispatch) => {
+    console.log("id", id)
+	const res = await csrfFetch("/api/likes/song", {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({"songId": id }),
+	});
+	const newLike = await res.json();
+	// dispatch(addedSongLike(newLike));
+	return newLike;
+};
+
+export const removeSongLike = (data) => async (dispatch) => {
+	const res = await csrfFetch("/api/likes/song", {
+		method: "DELETE",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify(data),
+	});
+	const like = await res.json();
+    // console.log(like)
+	// dispatch(removedSongLike(like));
+	return like;
+};
+
+
 const initialState = {};
 
 const songReducer = (state = initialState, action) => {
     let newState = { ...state };
     switch (action.type) {
+        case LOAD_SONG:
+            newState[action.song.retSong.id] = action.song.retSong;
+            return newState;
         case LOAD_SONGS:
             action.songs.forEach((song) => (newState[song.id] = song));
             return newState;

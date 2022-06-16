@@ -7,7 +7,7 @@ import "./SingleSong.css";
 import { deleteSongThunk, fetchSong } from "../../store/songReducer";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
-import { addSongLike } from "../../store/likes";
+ import LikeButton from "../LikeButton";
 
 const SingleSong = ({ songs }) => {
     const { id } = useParams();
@@ -21,6 +21,10 @@ const SingleSong = ({ songs }) => {
     const currentUser = sessionUser?.username;
     const songOwner = song?.user?.username;
 
+    const like = song.SongLikes.find(like => like?.userId === sessionUser?.id);
+    let isLike;
+    if (like) isLike = true;
+
     useEffect(() => {
         dispatch(fetchSong(id));
     }, [dispatch, id]);
@@ -30,10 +34,6 @@ const SingleSong = ({ songs }) => {
         history.push(`/songs`);
     };
 
-    const handleLike = async () => {
-        await dispatch(addSongLike(id));
-        // await dispatch(fetchSong(id));
-    }
 
     return (
         <div className="singleSong">
@@ -47,9 +47,9 @@ const SingleSong = ({ songs }) => {
                     <h1>{song?.title}</h1>
                     <p>Artist - {songOwner}</p>
                     <p>Genre - {song?.genre}</p>
-                    <div onClick={handleLike}>
-                        <i className="fa-regular fa-heart"></i>
-                    </div>
+                    {sessionUser ?
+                        <LikeButton id={+id} type={"song"} isLike={isLike} like={like} />
+                    : null }
                     <Player songs={song} />
                     {songOwner === currentUser ? (
                         <>
