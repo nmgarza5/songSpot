@@ -1,7 +1,9 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
+const { check } = require("express-validator");
+const { handleValidationErrors } = require("../../utils/validation");
 const { restoreUser, requireAuth } = require("../../utils/auth");
-const { PlaylistLike, SongLike } = require("../../db/models");
+const { PlaylistLikes, SongLikes } = require("../../db/models");
 
 const router = express.Router();
 
@@ -75,3 +77,4 @@ router.delete(
 );
 
 module.exports = router;
+

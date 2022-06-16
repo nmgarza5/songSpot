@@ -9,6 +9,7 @@ import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
  import LikeButton from "../LikeButton";
 
+
 const SingleSong = ({ songs }) => {
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -33,7 +34,6 @@ const SingleSong = ({ songs }) => {
         await dispatch(deleteSongThunk(id));
         history.push(`/songs`);
     };
-
 
     return (
         <div className="singleSong">
