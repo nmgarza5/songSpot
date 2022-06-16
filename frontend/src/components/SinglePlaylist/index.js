@@ -12,6 +12,7 @@ import {
     deletePlaylistThunk,
     deleteSongThunk,
 } from "../../store/playlistReducer";
+import LikeButton from "../LikeButton";
 
 const SinglePlaylist = ({ playlists }) => {
     const { id } = useParams();
@@ -22,6 +23,10 @@ const SinglePlaylist = ({ playlists }) => {
     const currentUser = sessionUser?.username;
     const playlistOwner = playlist?.user?.username;
     const songs = playlist?.songs;
+
+    const like = playlist.PlaylistLikes.find(like => like?.userId === sessionUser?.id);
+    let isLike;
+    if (like) isLike = true;
 
     useEffect(() => {
         dispatch(fetchPlaylist(id));
@@ -41,6 +46,9 @@ const SinglePlaylist = ({ playlists }) => {
         <div className="singlePlaylist">
             <h1 className="">{playlist?.name}</h1>
             <h3>Created By - {playlistOwner}</h3>
+            {sessionUser ?
+                        <LikeButton id={+id} type={"playlist"} isLike={isLike} like={like} />
+                    : null }
             {currentUser === playlistOwner ? (
                 <div>
                     <button>
