@@ -1,17 +1,9 @@
 import { csrfFetch } from "./csrf";
 
-const LOAD_PLAYLIST = "playlists/loadPlaylist";
 const LOAD_PLAYLISTS = "playlists/loadPlaylists";
 const ADD_PLAYLIST = "playlists/addPlaylists";
 const UPDATE_PLAYLIST = "playlists/updatePlaylists";
 const DELETE_PLAYLIST = "playlists/deletePlaylists";
-
-const loadPlaylist = (playlist) => {
-    return {
-        type: LOAD_PLAYLIST,
-        playlist,
-    };
-};
 
 const loadPlaylists = (playlists) => {
     return {
@@ -46,7 +38,7 @@ export const fetchPlaylist = (id) => async (dispatch) => {
     const res = await fetch(`/api/playlists/${id}`);
     if (res.ok) {
         const playlist = await res.json();
-        dispatch(loadPlaylist(playlist));
+        dispatch(addPlaylist(playlist));
         return playlist;
     }
 };
@@ -120,39 +112,11 @@ export const deletePlaylistThunk = (id) => async (dispatch) => {
     }
 };
 
-export const addPlaylistLike = (id) => async (dispatch) => {
-    console.log("id", id)
-	const res = await csrfFetch("/api/likes/playlist", {
-		method: "POST",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({"playlistId": id }),
-	});
-	const newLike = await res.json();
-	// dispatch(addedSongLike(newLike));
-	return newLike;
-};
-
-export const removePlaylistLike = (data) => async (dispatch) => {
-	const res = await csrfFetch("/api/likes/playlist", {
-		method: "DELETE",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(data),
-	});
-	const like = await res.json();
-    // console.log(like)
-	// dispatch(removedSongLike(like));
-	return like;
-};
-
 const initialState = {};
 
 const playlistReducer = (state = initialState, action) => {
     let newState = { ...state };
     switch (action.type) {
-        case LOAD_PLAYLIST:
-            newState[action.playlist.retPlaylist.id] =
-                action.playlist.retPlaylist;
-            return newState;
         case LOAD_PLAYLISTS:
             action.playlists.forEach(
                 (playlist) => (newState[playlist.id] = playlist)

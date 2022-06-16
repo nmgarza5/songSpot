@@ -35,8 +35,8 @@ router.delete(
     restoreUser,
     requireAuth,
     asyncHandler(async (req, res) => {
-        const { id } = req.body;
-        const songLike = await SongLike.findByPk(id);
+        const { likeId } = req.body;
+        const songLike = await songLike.findByPk(likeId);
         if (songLike) {
             await songLike.destroy();
             res.json({ response: "Success" });
@@ -49,7 +49,6 @@ router.post(
     requireAuth,
     asyncHandler(async (req, res) => {
         const { playlistId } = req.body;
-        console.log("\n\n PLAYLISTID", playlistId, "\n")
         const playlistLike = await PlaylistLike.create({
             userId: req.user.id,
             playlistId
@@ -64,9 +63,8 @@ router.delete(
     restoreUser,
     requireAuth,
     asyncHandler(async (req, res) => {
-        const { id } = req.body;
-        console.log("\n\n id", id, "\n")
-        const playlistLike = await PlaylistLike.findByPk(id);
+        const { likeId } = req.body;
+        const playlistLike = await PlaylistLike.findByPk(likeId);
         if (playlistLike) {
             await playlistLike.destroy();
             res.json({ response: "Success" });

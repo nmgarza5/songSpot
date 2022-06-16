@@ -5,6 +5,7 @@ import thunk from "redux-thunk";
 import playlistReducer from "./playlistReducer";
 import sessionReducer from "./session";
 import songReducer from "./songReducer";
+import likesReducer from "./likes";
 
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
     session: sessionReducer,
     songState: songReducer,
     playlistState: playlistReducer,
+    likesState: likesReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

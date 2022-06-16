@@ -32,7 +32,6 @@ router.get(
         const playlists = await Playlist.findAll({
             include: [
                 { model: User, as: "user", attributes: ["username"] },
-                { model: PlaylistLike },
                 {
                     model: Song,
                     as: "songs",
@@ -56,7 +55,6 @@ router.get(
             const retPlaylist = await Playlist.findByPk(playlist.id, {
                 include: [
                     { model: User, as: "user", attributes: ["username"] },
-                    { model: PlaylistLike },
                     {
                         model: Song,
                         as: "songs",
