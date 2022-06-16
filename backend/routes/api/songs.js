@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { restoreUser, requireAuth } = require("../../utils/auth");
-const { Song, User, JoinSP, SongLike } = require("../../db/models");
+const { Song, User, JoinSP } = require("../../db/models");
 
 const router = express.Router();
 
@@ -42,11 +42,7 @@ router.get(
     "/",
     asyncHandler(async (req, res) => {
         const songs = await Song.findAll({
-            include: [
-                { model: User, as: "user", attributes: ["username"] },
-                { model: SongLike }
-
-        ],
+            include: [{ model: User, as: "user", attributes: ["username"] }],
         });
         if (songs) res.json({ songs });
     })
@@ -62,7 +58,6 @@ router.get(
             const retSong = await Song.findByPk(song.id, {
                 include: [
                     { model: User, as: "user", attributes: ["username"] },
-                    { model: SongLike },
                 ],
             });
             res.json({ retSong });
@@ -128,11 +123,6 @@ router.delete(
     asyncHandler(async (req, res) => {
         const songId = req.params.id;
         await JoinSP.destroy({
-            where: {
-                songId,
-            },
-        });
-        await SongLike.destroy({
             where: {
                 songId,
             },

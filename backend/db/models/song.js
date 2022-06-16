@@ -23,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: "songId",
             otherKey: "playlistId",
         });
-        Song.hasMany(models.SongLike, { foreignKey: 'songId' });
     };
     return Song;
 };
