@@ -7,6 +7,7 @@ import "./SingleSong.css";
 import { deleteSongThunk, fetchSong } from "../../store/songReducer";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
+import { addSongLike } from "../../store/likes";
 
 const SingleSong = ({ songs }) => {
     const { id } = useParams();
@@ -29,6 +30,11 @@ const SingleSong = ({ songs }) => {
         history.push(`/songs`);
     };
 
+    const handleLike = async () => {
+        await dispatch(addSongLike(id));
+        // await dispatch(fetchSong(id));
+    }
+
     return (
         <div className="singleSong">
             <div className="song-content">
@@ -41,6 +47,9 @@ const SingleSong = ({ songs }) => {
                     <h1>{song?.title}</h1>
                     <p>Artist - {songOwner}</p>
                     <p>Genre - {song?.genre}</p>
+                    <div onClick={handleLike}>
+                        <i className="fa-regular fa-heart"></i>
+                    </div>
                     <Player songs={song} />
                     {songOwner === currentUser ? (
                         <>
