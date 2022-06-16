@@ -22,7 +22,8 @@ const SingleSong = ({ songs }) => {
     const currentUser = sessionUser?.username;
     const songOwner = song?.user?.username;
 
-    const like = song.SongLikes.find(like => like?.userId === sessionUser?.id);
+    let like;
+    if (sessionUser) like = song.SongLikes.find(like => like?.userId === sessionUser?.id);
     let isLike;
     if (like) isLike = true;
 

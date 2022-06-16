@@ -92,7 +92,6 @@ export const deleteSongThunk = (id) => async (dispatch) => {
 };
 
 export const addSongLike = (id) => async (dispatch) => {
-    console.log("id", id)
 	const res = await csrfFetch("/api/likes/song", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },

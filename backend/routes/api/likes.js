@@ -1,9 +1,7 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
 const { restoreUser, requireAuth } = require("../../utils/auth");
-const { PlaylistLikes, SongLikes } = require("../../db/models");
+const { PlaylistLike, SongLike } = require("../../db/models");
 
 const router = express.Router();
 
@@ -51,7 +49,6 @@ router.post(
     requireAuth,
     asyncHandler(async (req, res) => {
         const { playlistId } = req.body;
-        console.log("\n\n PLAYLISTID", playlistId, "\n")
         const playlistLike = await PlaylistLike.create({
             userId: req.user.id,
             playlistId
@@ -67,7 +64,6 @@ router.delete(
     requireAuth,
     asyncHandler(async (req, res) => {
         const { id } = req.body;
-        console.log("\n\n id", id, "\n")
         const playlistLike = await PlaylistLike.findByPk(id);
         if (playlistLike) {
             await playlistLike.destroy();
@@ -77,4 +73,3 @@ router.delete(
 );
 
 module.exports = router;
-
