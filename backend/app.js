@@ -44,6 +44,7 @@ app.use(routes);
 
 // Catch unhandled requests and forward to error handler.
 app.use((_req, _res, next) => {
+    console.log('\n\n REquest ---', _req, '\n\n')
     const err = new Error("The requested resource couldn't be found.");
     err.title = "Resource Not Found";
     err.errors = ["The requested resource couldn't be found."];
