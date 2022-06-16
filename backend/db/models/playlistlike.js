@@ -6,8 +6,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   PlaylistLike.associate = function(models) {
     // associations can be defined here
-    PlaylistLike.belongsTo(models.Playlist, { foreignKey: 'playlistId' });
-    PlaylistLike.belongsTo(models.User, { foreignKey: 'userId' });
   };
   return PlaylistLike;
 };
