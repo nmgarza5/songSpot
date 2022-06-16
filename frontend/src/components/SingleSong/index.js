@@ -7,6 +7,8 @@ import "./SingleSong.css";
 import { deleteSongThunk, fetchSong } from "../../store/songReducer";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
+ import LikeButton from "../LikeButton";
+
 
 const SingleSong = ({ songs }) => {
     const { id } = useParams();
@@ -19,6 +21,11 @@ const SingleSong = ({ songs }) => {
     const sessionUser = useSelector((state) => state.session.user);
     const currentUser = sessionUser?.username;
     const songOwner = song?.user?.username;
+
+    let like;
+    if (sessionUser) like = song.SongLikes.find(like => like?.userId === sessionUser?.id);
+    let isLike;
+    if (like) isLike = true;
 
     useEffect(() => {
         dispatch(fetchSong(id));
@@ -41,6 +48,9 @@ const SingleSong = ({ songs }) => {
                     <h1>{song?.title}</h1>
                     <p>Artist - {songOwner}</p>
                     <p>Genre - {song?.genre}</p>
+                    {sessionUser ?
+                        <LikeButton id={+id} type={"song"} isLike={isLike} like={like} />
+                    : null }
                     <Player songs={song} />
                     {songOwner === currentUser ? (
                         <>
