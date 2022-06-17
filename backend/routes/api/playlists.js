@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { restoreUser, requireAuth } = require("../../utils/auth");
-const { Playlist, User, Song, JoinSP, PlaylistLike } = require("../../db/models");
+const { Playlist, User, Song, JoinSP, PlaylistLike, SongLike } = require("../../db/models");
 
 const router = express.Router();
 
@@ -36,7 +36,7 @@ router.get(
                 {
                     model: Song,
                     as: "songs",
-                    attributes: ["title", "genre", "imageUrl", "audioUrl"],
+                    attributes: ["id", "title", "genre", "imageUrl", "audioUrl"],
                     include: [
                         { model: User, as: "user", attributes: ["username"] },
                     ],
@@ -60,13 +60,14 @@ router.get(
                     {
                         model: Song,
                         as: "songs",
-                        attributes: ["title", "genre", "imageUrl", "audioUrl"],
+                        attributes: ["id", "title", "genre", "imageUrl", "audioUrl"],
                         include: [
                             {
                                 model: User,
                                 as: "user",
                                 attributes: ["username"],
                             },
+                            { model: SongLike }
                         ],
                     },
                 ],
@@ -95,7 +96,7 @@ router.post(
                 {
                     model: Song,
                     as: "songs",
-                    attributes: ["title", "genre", "imageUrl", "audioUrl"],
+                    attributes: ["id", "title", "genre", "imageUrl", "audioUrl"],
                     include: [
                         {
                             model: User,
@@ -127,7 +128,7 @@ router.put(
                     {
                         model: Song,
                         as: "songs",
-                        attributes: ["title", "genre", "imageUrl", "audioUrl"],
+                        attributes: ["id", "title", "genre", "imageUrl", "audioUrl"],
                         include: [
                             {
                                 model: User,
@@ -162,7 +163,7 @@ router.put(
                     {
                         model: Song,
                         as: "songs",
-                        attributes: ["title", "genre", "imageUrl", "audioUrl"],
+                        attributes: ["id", "title", "genre", "imageUrl", "audioUrl"],
                         include: [
                             {
                                 model: User,
@@ -195,7 +196,7 @@ router.put(
                     {
                         model: Song,
                         as: "songs",
-                        attributes: ["title", "genre", "imageUrl", "audioUrl"],
+                        attributes: ["id", "title", "genre", "imageUrl", "audioUrl"],
                         include: [
                             {
                                 model: User,

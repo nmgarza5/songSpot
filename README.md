@@ -11,7 +11,7 @@ This is a clone of [SoundCloud](https://soundcloud.com/). Access the [SongSpot M
 2. Install dependencies from the root directory.
     - `npm install`
     
-3. Create a Postgresql user with CREATEDB and PASSWORD in PSQL.
+3. Create a Postgresql user with CREATDB and PASSWORD in PSQL.
     - `CREATE USER <name> WITH CREATEDB and PASSWORD in PSQL`
     
 4. Create a .env file in the backend directory based on the .env.example found within the respective directory.
