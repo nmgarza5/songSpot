@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import _ from 'lodash'
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import PlaylistEditModal from "../PlaylistEditModal";
@@ -24,7 +25,8 @@ const SinglePlaylist = ({ playlists }) => {
     const playlistOwner = playlist?.user?.username;
     const songs = playlist?.songs;
 
-    const like = playlist.PlaylistLikes.find(like => like?.userId === sessionUser?.id);
+    let like;
+    like = playlist.PlaylistLikes.find(like => like?.userId === sessionUser?.id);
     let isLike;
     if (like) isLike = true;
 
@@ -39,7 +41,7 @@ const SinglePlaylist = ({ playlists }) => {
     const deleteSong = async (songId) => {
         const playlistData = { songId, id };
         await dispatch(deleteSongThunk(playlistData));
-        history.push(`/playlists/${id}`);
+        await dispatch(fetchPlaylist(id))
     };
 
     return (
@@ -58,28 +60,32 @@ const SinglePlaylist = ({ playlists }) => {
                 </div>
             ) : null}
             <Player songs={songs} />
-            {songs?.map(({ title, user, audioUrl, imageUrl, JoinSP }) => (
-                <div key={JoinSP.songId} className="playlist-songs">
-                    <img className="playlist-image" src={imageUrl} alt=""></img>
+            {songs?.map((song) => (
+                <div key={song.JoinSP.songId} className="playlist-songs">
+                    <img className="playlist-image" src={song.imageUrl} alt=""></img>
                     <NavLink
-                        to={`/songs/${JoinSP.songId}`}
+                        to={`/songs/${song.JoinSP.songId}`}
                         className="song-info"
                     >
-                        <h3>{title}</h3>
-                        <h4>Created By - {user?.username}</h4>
+                        <h3>{song.title}</h3>
+                        <h4>Created By - {song.user?.username}</h4>
                     </NavLink>
                     <div className="song-btns">
+                        {console.log("song", song)}
+                        {sessionUser ?
+                        <LikeButton id={song.id} type={"song"} isLike={song.SongLikes.find(like => like?.userId === sessionUser?.id)} like={like} />
+                        : null }
                         <button>
                             <PlaylistDropdown
                                 playlists={playlists}
                                 currentUser={currentUser}
-                                songId={JoinSP.songId}
+                                songId={song.JoinSP.songId}
                             />
                         </button>
                         {currentUser === playlistOwner ? (
                             <button
                                 onClick={() => {
-                                    deleteSong(JoinSP.songId);
+                                    deleteSong(song.JoinSP.songId);
                                 }}
                             >
                                 <i className="fa-solid fa-trash-can"></i>
