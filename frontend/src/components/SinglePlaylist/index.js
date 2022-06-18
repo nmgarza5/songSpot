@@ -71,10 +71,8 @@ const SinglePlaylist = ({ playlists }) => {
                         <h4>Created By - {song.user?.username}</h4>
                     </NavLink>
                     <div className="song-btns">
-                        {console.log("isLike12", (song))}
-                        {console.log("isLike", _.isUndefined(song.SongLikes.find(like => like?.userId === sessionUser?.id)))}
                         {sessionUser ?
-                        <LikeButton id={song.id} type={"song"} isLike={!_.isUndefined(song.SongLikes.find(like => like?.userId === sessionUser?.id))} like={like} />
+                        <LikeButton id={song.id} type={"song"} isLike={!_.isUndefined(song.SongLikes.find(like => like?.userId === sessionUser?.id))} like={song.SongLikes.find(like => like?.userId === sessionUser?.id)} />
                         : null }
                         <button>
                             <PlaylistDropdown
