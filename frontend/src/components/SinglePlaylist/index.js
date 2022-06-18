@@ -30,9 +30,9 @@ const SinglePlaylist = ({ playlists }) => {
     let isLike;
     if (like) isLike = true;
 
-    useEffect(() => {
-        dispatch(fetchPlaylist(id));
-    }, [dispatch, id]);
+    // useEffect(() => {
+    //     dispatch(fetchPlaylist(id));
+    // }, [dispatch, id]);
 
     const handleDelete = async (e) => {
         await dispatch(deletePlaylistThunk(id));
@@ -71,9 +71,8 @@ const SinglePlaylist = ({ playlists }) => {
                         <h4>Created By - {song.user?.username}</h4>
                     </NavLink>
                     <div className="song-btns">
-                        {console.log("song", song)}
                         {sessionUser ?
-                        <LikeButton id={song.id} type={"song"} isLike={song.SongLikes.find(like => like?.userId === sessionUser?.id)} like={like} />
+                        <LikeButton id={song.id} type={"song"} isLike={!_.isUndefined(song.SongLikes.find(like => like?.userId === sessionUser?.id))} like={song.SongLikes.find(like => like?.userId === sessionUser?.id)} />
                         : null }
                         <button>
                             <PlaylistDropdown

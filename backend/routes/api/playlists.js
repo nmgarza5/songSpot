@@ -38,6 +38,7 @@ router.get(
                     as: "songs",
                     attributes: ["id", "title", "genre", "imageUrl", "audioUrl"],
                     include: [
+                        { model: SongLike },
                         { model: User, as: "user", attributes: ["username"] },
                     ],
                 },
@@ -62,12 +63,12 @@ router.get(
                         as: "songs",
                         attributes: ["id", "title", "genre", "imageUrl", "audioUrl"],
                         include: [
+                            { model: SongLike },
                             {
                                 model: User,
                                 as: "user",
                                 attributes: ["username"],
                             },
-                            { model: SongLike }
                         ],
                     },
                 ],
