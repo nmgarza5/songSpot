@@ -39,6 +39,7 @@ router.get(
                     attributes: ["id", "title", "genre", "imageUrl", "audioUrl"],
                     include: [
                         { model: User, as: "user", attributes: ["username"] },
+                        { model: SongLike }
                     ],
                 },
             ],
