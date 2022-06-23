@@ -24,4 +24,20 @@
 
 .title {
     font-weight: bold;
+    font-size: 16px;
+}
+
+.likes {
+    margin-top: -20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.likes i {
+    margin-right: 5px;
+}
+
+.username {
+    margin-top: -10px;
 }

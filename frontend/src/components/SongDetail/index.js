@@ -2,9 +2,8 @@ import { NavLink, useHistory} from "react-router-dom";
 
 import "./SongDetail.css";
 
-const SongDetail = ({ id, title, genre, imageUrl, audioUrl, user, userId }) => {
+const SongDetail = ({ song }) => {
     const history = useHistory();
-
     const goToSong = (id) => {
         history.push(`/songs/${id}`)
     }
@@ -15,19 +14,23 @@ const SongDetail = ({ id, title, genre, imageUrl, audioUrl, user, userId }) => {
 
     return (
         <div className="song-details">
-            <img src={imageUrl} alt={title} className="image" onClick={() => {goToSong(id)}}></img>
-            {title.length < 20
+            <img src={song.imageUrl} alt={song.title} className="image" onClick={() => {goToSong(song.id)}}></img>
+            {song.title.length < 20
                 ?
-                <div onClick={() => {goToSong(id)}} className="title">
-                    {title}
+                <div onClick={() => {goToSong(song.id)}} className="title">
+                    {song.title}
                 </div>
                 :
-                <div onClick={() => {goToSong(id)}} className="title">
-                    {title.slice(0,20)}...
+                <div onClick={() => {goToSong(song.id)}} className="title">
+                    {song.title.slice(0,20)}...
                 </div>
             }
-            <div onClick={() => {goToUserPage(userId)}} className="username">
-                {user.username}
+            <div className="likes">
+                <i className="fa-solid fa-heart"></i>
+                {song.SongLikes.length}
+            </div>
+            <div onClick={() => {goToUserPage(song.userId)}} className="username">
+                {song.user.username}
             </div>
         </div>
     );

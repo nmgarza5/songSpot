@@ -22,16 +22,10 @@ const SongList = () => {
     return (
         <div className="song-container">
             {recent_songs.map(
-                ({ id, title, genre, imageUrl, audioUrl, user, userId }) => (
+                (song) => (
                     <SongDetail
-                        key={id}
-                        id={id}
-                        title={title}
-                        genre={genre}
-                        imageUrl={imageUrl}
-                        audioUrl={audioUrl}
-                        user={user}
-                        userId={userId}
+                        key={song.id}
+                        song={song}
                     />
                 )
             )}
