@@ -86,7 +86,10 @@ router.post(
             audioUrl,
         });
         const retSong = await Song.findByPk(song.id, {
-            include: [{ model: User, as: "user", attributes: ["username"] }],
+            include: [
+                { model: User, as: "user", attributes: ["username"] },
+                { model: SongLike }
+            ],
         });
         if (retSong) res.json({ retSong });
     })
@@ -111,6 +114,7 @@ router.put(
             const retSong = await Song.findByPk(song.id, {
                 include: [
                     { model: User, as: "user", attributes: ["username"] },
+                    { model: SongLike }
                 ],
             });
             return res.json({ retSong });
