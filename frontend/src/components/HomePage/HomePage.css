@@ -61,7 +61,11 @@
 .song-container {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+    height: fit-content;
+    overflow-x: scroll;
+    /* justify-content: space-between; */
+    /* width: 600px; */
 }
 
 .see-more {

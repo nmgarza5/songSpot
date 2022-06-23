@@ -7,7 +7,7 @@ import PlaylistDropdown from "../PlaylistDropdown";
 import Player from "../Player";
 import "./SinglePlaylist.css";
 import { useHistory } from "react-router-dom";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import {
     fetchPlaylist,
     deletePlaylistThunk,
