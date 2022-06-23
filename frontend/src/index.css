@@ -16,9 +16,9 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
 }
-.page-container {
+/* .page-container {
     flex: 1 0 auto;
-}
+} */
 
 .icon-container {
     padding: 10px;

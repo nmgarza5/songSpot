@@ -9,7 +9,7 @@ import SongsPage from "./components/SongsPage";
 import SingleSong from "./components/SingleSong";
 import PlaylistsPage from "./components/PlaylistsPage";
 import SinglePlaylist from "./components/SinglePlaylist";
-import Footer from "./components/Footer";
+import { Footer } from "./components/Footer";
 import ProfilePage from "./components/UserPage";
 
 function App() {
