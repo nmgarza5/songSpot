@@ -23,7 +23,7 @@ const SingleSong = ({ songs }) => {
     const songOwner = song?.user?.username;
 
     let like;
-    if (sessionUser) like = song.SongLikes.find(like => like?.userId === sessionUser?.id);
+    if (sessionUser && song.SongLikes) like = song.SongLikes.find(like => like?.userId === sessionUser?.id);
     let isLike;
     if (like) isLike = true;
 

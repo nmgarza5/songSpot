@@ -1,7 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory} from "react-router-dom";
+
 import "./SongDetail.css";
 
 const SongDetail = ({ id, title, genre, imageUrl, audioUrl, user, userId }) => {
+    const history = useHistory();
     return (
         <div className="song-details">
             <NavLink to={`/songs/${id}`} id={id}>

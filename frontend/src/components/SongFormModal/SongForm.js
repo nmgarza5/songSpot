@@ -26,6 +26,7 @@ function SongForm(props) {
             }
         );
         if (newSong) {
+            console.log("NEWsONG", newSong)
             history.push(`/songs/${newSong?.retSong?.id}`);
             props.onClose();
         }
