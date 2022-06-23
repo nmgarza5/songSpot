@@ -10,10 +10,6 @@ const SongList = () => {
     const songsObject = useSelector((state) => state.songState);
 
     const songs = Object.values(songsObject);
-    let recent_songs = songs.sort((a,b) => (new Date(b.createdAt) - new Date(a.createdAt))).slice(0, 8);
-
-    // console.log(" recent", recent_songs)
-
 
     useEffect(() => {
         dispatch(fetchSongs());
@@ -21,7 +17,7 @@ const SongList = () => {
 
     return (
         <div className="song-container">
-            {recent_songs.map(
+            {songs.map(
                 (song) => (
                     <SongDetail
                         key={song.id}

@@ -29,21 +29,6 @@ function Navigation({ isLoaded }) {
                 SongSpot
             </NavLink>
             <ul className="nav-items">
-                <li className="home-container">
-                    <NavLink className="home-link" to="/home">
-                        Home
-                    </NavLink>
-                </li>
-                <li className="home-container">
-                    <NavLink className="home-link" to="/songs">
-                        Songs
-                    </NavLink>
-                </li>
-                <li className="home-container">
-                    <NavLink className="home-link" to="/playlists">
-                        Playlists
-                    </NavLink>
-                </li>
                 <li>
                     <form className="search-bar">
                         <label htmlFor="search">Search</label>

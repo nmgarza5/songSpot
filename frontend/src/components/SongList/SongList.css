@@ -1,27 +1,10 @@
-
 .song-container {
-    display: flex;
-    flex-direction: row;
-    height: fit-content;
-    overflow-x: scroll;
+  width: 1000px;
+  margin: 0 auto;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-
-.song-container::-webkit-scrollbar {
-    width: 20px;
-  }
-  .song-container::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-  .song-container::-webkit-scrollbar-thumb {
-    background-color: #d6dee1;
-  }
-  .song-container::-webkit-scrollbar-thumb {
-    background-color: #d6dee1;
-    border-radius: 20px;
-  }
-  .song-container::-webkit-scrollbar-thumb {
-    background-color: #d6dee1;
-    border-radius: 20px;
-    border: 6px solid transparent;
-    background-clip: content-box;
-  }

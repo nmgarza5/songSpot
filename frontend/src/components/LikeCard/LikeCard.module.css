@@ -24,7 +24,7 @@
 
 .info div:nth-child(1):hover, .info div:nth-child(2):hover {
     cursor: pointer;
-    color:rgb(158, 158, 158)
+    color:#f50;
 }
 
 .info div:nth-child(1) {

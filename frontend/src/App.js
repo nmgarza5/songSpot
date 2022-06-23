@@ -31,7 +31,7 @@ function App() {
                     <Route exact path="/">
                         <SplashPage />
                     </Route>
-                    <Route path="/home">
+                    <Route path="/discover">
                         <HomePage songs={songs} playlists={playlists} />
                     </Route>
                     <Route path="/songs/:id">

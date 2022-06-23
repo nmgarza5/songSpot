@@ -27,13 +27,26 @@ function ProfileButton({ user }) {
             {showMenu && (
                 <ul className="profile-dropdown">
                     <li className="dropdown-item">
-                        <i className="fa-regular fa-heart"></i>
-                        <NavLink className="inner-drop" to="/">
-                            Likes
+                        <i className="fa-solid fa-headphones"></i>
+                        <NavLink className="inner-drop" to="/discover">
+                            Home
                         </NavLink>
                     </li>
                     <li className="dropdown-item">
                         <i className="fa-solid fa-music"></i>
+
+                        <NavLink className="inner-drop" to="/songs">
+                            Songs
+                        </NavLink>
+                    </li>
+                    <li className="dropdown-item">
+                        <i className="fa-solid fa-compact-disc"></i>
+                        <NavLink className="inner-drop" to="/playlists">
+                            Playlists
+                        </NavLink>
+                    </li>
+                    <li className="dropdown-item">
+                        <i className="fa-brands fa-soundcloud"></i>
                         <NavLink className="inner-drop" to={`/${user.id}`}>
                             My Music
                         </NavLink>

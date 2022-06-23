@@ -25,7 +25,7 @@ function PlaylistDropdown({ playlists, currentUser, songId }) {
                 <i className="fa-regular fa-square-plus"></i>
             </div>
             {showMenu && (
-                <ul className="profile-dropdown">
+                <ul className="playlist-dropdown">
                     {userPlaylists.map((playlist) => {
                         return (
                             <li

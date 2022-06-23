@@ -16,19 +16,21 @@
     position: absolute;
     list-style: none;
     text-align: start;
-    border-radius: 5px;
-    border: black solid;
+    border: black solid thin;
 }
 
 .profile-dropdown li {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    width: 100%;
+    justify-content: flex-start;
+    margin:0;
+    padding-left: 10px;
     align-items: center;
     cursor: pointer;
 }
 .profile-dropdown li:hover {
-    background-color: rgb(173, 199, 255);
+    background-color: #f50;
 }
 
 .dropdown-item {
@@ -38,5 +40,5 @@
 .inner-drop {
     color: black;
     text-decoration: none;
-    margin-left: 1em;
+    /* margin-left: 1em; */
 }
