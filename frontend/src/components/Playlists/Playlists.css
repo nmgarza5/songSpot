@@ -1,4 +1,4 @@
-.playlist-container {
+/* .playlist-container {
     width: 1000px;
     margin: 0 auto;
     background-color: white;
@@ -6,4 +6,32 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+} */
+
+
+.playlist-container {
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    overflow-x: scroll;
 }
+
+.playlist-container::-webkit-scrollbar {
+    width: 20px;
+  }
+  .playlist-container::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  .playlist-container::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+  }
+  .playlist-container::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+  }
+  .playlist-container::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }

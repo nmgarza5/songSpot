@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import SongDetail from "../SongDetail";
 import PlaylistDetail from "../PlaylistDetail";
-import "./UserPage.css";
+import "./ProfilePage.css";
 
 const ProfilePage = ({ songs, playlists }) => {
     const sessionUser = useSelector((state) => state.session.user);
@@ -26,15 +26,10 @@ const ProfilePage = ({ songs, playlists }) => {
                 <section className="user-songs">
                     <h1>Songs</h1>
                     {displaySongs.map(
-                        ({ id, title, genre, imageUrl, audioUrl, user }) => (
+                        (song) => (
                             <SongDetail
-                                key={id}
-                                id={id}
-                                title={title}
-                                genre={genre}
-                                imageUrl={imageUrl}
-                                audioUrl={audioUrl}
-                                user={user}
+                                key={song.id}
+                                song={song}
                             />
                         )
                     )}

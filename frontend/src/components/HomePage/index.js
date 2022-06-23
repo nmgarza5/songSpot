@@ -21,7 +21,7 @@ const HomePage = () => {
                         <Playlists className="song" />
 
                         <NavLink className="see-more" to="/playlists">
-                            <button>See More...</button>
+                            <button>See More</button>
                         </NavLink>
                     </div>
                 </div>

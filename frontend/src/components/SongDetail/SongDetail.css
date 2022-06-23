@@ -3,6 +3,10 @@
     height: 150px;
 }
 
+.image:hover {
+    cursor: pointer;
+}
+
 .song-details {
     width: 200px;
     display: flex;
@@ -25,6 +29,11 @@
 .title {
     font-weight: bold;
     font-size: 16px;
+}
+
+.title:hover {
+    cursor: pointer;
+    color:rgb(158, 158, 158)
 }
 
 .likes {

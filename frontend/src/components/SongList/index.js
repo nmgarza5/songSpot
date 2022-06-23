@@ -12,7 +12,7 @@ const SongList = () => {
     const songs = Object.values(songsObject);
     let recent_songs = songs.sort((a,b) => (new Date(b.createdAt) - new Date(a.createdAt))).slice(0, 8);
 
-    console.log(" recent", recent_songs)
+    // console.log(" recent", recent_songs)
 
 
     useEffect(() => {

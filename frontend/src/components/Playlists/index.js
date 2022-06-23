@@ -13,7 +13,7 @@ const Playlists = () => {
     }, [dispatch]);
 
     return (
-        <div className="playlists">
+        <div className="playlist-container">
             {playlists.map((playlist) => (
                 <PlaylistDetail key={playlist.id} playlist={playlist} />
             ))}
