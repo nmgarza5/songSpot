@@ -3,13 +3,17 @@
     height: 150px;
 }
 
+.image:hover {
+    cursor: pointer;
+}
+
 .song-details {
     width: 200px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 20px;
+    padding: 15px;
 
 }
 
@@ -27,6 +31,11 @@
     font-size: 16px;
 }
 
+.title:hover {
+    cursor: pointer;
+    color:#f50;
+}
+
 .likes {
     margin-top: -20px;
     display: flex;
@@ -40,4 +49,9 @@
 
 .username {
     margin-top: -10px;
+}
+
+.username:hover {
+    cursor: pointer;
+    color:#f50;
 }

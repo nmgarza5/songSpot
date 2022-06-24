@@ -1,6 +1,6 @@
 .navbar {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     width: 100vw;
     height: 50px;
@@ -16,7 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    float: left;
+    margin-left: 5%;
 }
 
 .nav-items {
@@ -24,7 +24,7 @@
     list-style: none;
     text-align: center;
     justify-content: center;
-    width: 70vw;
+    width: 75vw;
     justify-content: flex-end;
     margin-right: 2rem;
 }
@@ -44,6 +44,14 @@
     color: white;
     text-decoration: none;
 }
+
+.upload:hover {
+    color:#f50;
+}
+
+.home-link:hover {
+    color:#f50;
+}
 .search-bar {
     color: white;
     padding: 0 2rem;
@@ -54,7 +62,7 @@
 }
 
 .search-input {
-    border-radius: 15px;
+    /* border-radius: 15px; */
     width: 30vw;
     padding: 0 1rem;
 }
@@ -68,10 +76,11 @@
 
 .search-btn:hover {
     background: none;
-    color: rgb(148, 148, 148);
+    color:#f50;
     cursor: pointer;
     right: 20px;
 }
+
 
 .drop-li {
     margin: auto 0;

@@ -10,7 +10,7 @@ import SingleSong from "./components/SingleSong";
 import PlaylistsPage from "./components/PlaylistsPage";
 import SinglePlaylist from "./components/SinglePlaylist";
 import { Footer } from "./components/Footer";
-import ProfilePage from "./components/UserPage";
+import ProfilePage from "./components/ProfilePage";
 
 function App() {
     const dispatch = useDispatch();
@@ -31,7 +31,7 @@ function App() {
                     <Route exact path="/">
                         <SplashPage />
                     </Route>
-                    <Route path="/home">
+                    <Route path="/discover">
                         <HomePage songs={songs} playlists={playlists} />
                     </Route>
                     <Route path="/songs/:id">
