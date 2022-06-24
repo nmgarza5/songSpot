@@ -15,17 +15,6 @@
     border-radius: 5px;
     border: black solid;
 }
-footer {
-    background-color: black;
-    color: white;
-    font-size: 200%;
-    height: fit-content;
-    text-align: center;
-    margin-top: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 button {
     display: inline-block;
@@ -35,14 +24,19 @@ button {
     align-items: center;
     justify-content: center;
     font-weight: 400;
-    font-size: 1rem;
-    border-radius: 5px;
+    /* font-size: 1rem; */
     color: #ffffff;
-    background: #3b3b3b;
+    background: rgb(109, 109, 109);
     text-align: center;
+    text-decoration: none;
     cursor: pointer;
 }
 
 button:hover {
     background: #535353;
 }
+
+
+/* button: {
+    text-decoration: none;
+   } */

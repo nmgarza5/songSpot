@@ -34,3 +34,10 @@
     text-decoration: none;
     color: black;
 }
+
+.song-btns {
+    display: flex;
+    flex-direction: row;
+    margin-right: 5px;
+    align-items: center;
+}

@@ -1,25 +1,57 @@
 .image {
-    width: 100px;
-    height: 100px;
-    border-radius: 5px;
+    width: 150px;
+    height: 150px;
+}
+
+.image:hover {
+    cursor: pointer;
 }
 
 .song-details {
-    width: 25%;
+    width: 200px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 2em;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 15px;
+
 }
 
 .title,
 .username {
     color: black;
     text-decoration: none;
+    margin: 0;
     padding: 0;
+    font-size: 14px;
 }
 
 .title {
     font-weight: bold;
-    height: 1rem;
+    font-size: 16px;
+}
+
+.title:hover {
+    cursor: pointer;
+    color:#f50;
+}
+
+.likes {
+    margin-top: -20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.likes i {
+    margin-right: 5px;
+}
+
+.username {
+    margin-top: -10px;
+}
+
+.username:hover {
+    cursor: pointer;
+    color:#f50;
 }

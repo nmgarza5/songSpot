@@ -15,7 +15,7 @@ const SingleSong = ({ songs }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const song = songs.find((song) => song.id === +id);
-    const songAudio = song.audioUrl;
+    // const songAudio = song.audioUrl;
     const playlistObject = useSelector((state) => state.playlistState);
     const playlists = Object.values(playlistObject);
     const sessionUser = useSelector((state) => state.session.user);
@@ -23,7 +23,7 @@ const SingleSong = ({ songs }) => {
     const songOwner = song?.user?.username;
 
     let like;
-    if (sessionUser) like = song.SongLikes.find(like => like?.userId === sessionUser?.id);
+    if (sessionUser && song.SongLikes) like = song.SongLikes.find(like => like?.userId === sessionUser?.id);
     let isLike;
     if (like) isLike = true;
 
