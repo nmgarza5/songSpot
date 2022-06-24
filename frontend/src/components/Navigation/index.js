@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import SongFormModal from "../SongFormModal";
+import LoginFormModal from "../LoginFormModal";
+import SignUpFormModal from "../SignUpFormModal";
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector((state) => state.session.user);
@@ -29,9 +31,27 @@ function Navigation({ isLoaded }) {
                 SongSpot
             </NavLink>
             <ul className="nav-items">
+                {!sessionUser &&
+                <>
+                    <li className="home-container">
+                        <NavLink className="home-link" to="/discover">
+                            Discover
+                        </NavLink>
+                    </li>
+                    <li className="home-container">
+                        <NavLink className="home-link" to="/songs">
+                            Songs
+                        </NavLink>
+                    </li>
+                    <li className="home-container">
+                        <NavLink className="home-link" to="/playlists">
+                            Playlists
+                        </NavLink>
+                    </li>
+                </>
+                }
                 <li>
                     <form className="search-bar">
-                        <label htmlFor="search">Search</label>
                         <input
                             name="search"
                             className="search-input"
@@ -46,7 +66,11 @@ function Navigation({ isLoaded }) {
                     <li className="upload">
                         <SongFormModal />
                     </li>
-                ) : null}
+                ) :
+                <div className="btn-container">
+                    <LoginFormModal />
+                    <SignUpFormModal />
+                </div>}
                 <li className="drop-li">{isLoaded && sessionLinks}</li>
             </ul>
         </nav>

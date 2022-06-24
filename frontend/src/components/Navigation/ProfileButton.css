@@ -4,9 +4,9 @@
     cursor: pointer;
 }
 
-.username:hover {
+.username-dropdown:hover {
     cursor: pointer;
-    color: rgb(148, 148, 148);
+    color:#f50;
 }
 
 .profile-dropdown {

@@ -8,11 +8,51 @@
 }
 .music-wrapper {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    width: 800px;
+    margin: 0px auto;
 }
 
-.user-songs {
-    width: 35%;
-    text-align: center;
+.select {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+    border: black thin solid;
+    border-bottom: none;
+}
+
+.select span {
+    width: 33.333333333333333333333%;
+
+    border-right: black thin solid;
+    font-size: 20px;
+    font-weight: 700;
+}
+.select span:nth-child(3) {
+    border-right: none;
+}
+
+.songs_not_selected, .playlists_not_selected, .likes_not_selected {
+    background-color: rgb(182, 182, 182);
+    cursor: pointer
+}
+
+.songs_selected, .playlists_selected, .likes_selected {
+    border-bottom: none;
+    background: white;
+}
+
+
+.content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.likes_content {
+    /* display: flex;
+    flex-wrap: wrap; */
 }

@@ -7,7 +7,7 @@ import "./SongList.css";
 const SongList = () => {
     const dispatch = useDispatch();
 
-    const songsObject = useSelector((state) => state.songState);
+    const songsObject = useSelector((state) => state?.songState);
 
     const songs = Object.values(songsObject);
 
@@ -20,7 +20,7 @@ const SongList = () => {
             {songs.map(
                 (song) => (
                     <SongDetail
-                        key={song.id}
+                        key={song?.id}
                         song={song}
                     />
                 )

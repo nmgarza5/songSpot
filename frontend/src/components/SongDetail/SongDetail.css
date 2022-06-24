@@ -50,3 +50,8 @@
 .username {
     margin-top: -10px;
 }
+
+.username:hover {
+    cursor: pointer;
+    color:#f50;
+}

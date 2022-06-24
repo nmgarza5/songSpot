@@ -53,6 +53,10 @@
     margin-right: 5px;
 }
 
+.inner-side h3 {
+    text-align: center;
+}
+
 .see-more {
     float: right;
 }
@@ -60,6 +64,7 @@
 .see-more button {
     display: flex;
     justify-content: center;
+    text-decoration: none;
 }
 
 .item-container {
@@ -70,21 +75,20 @@
 }
 
 .item-container::-webkit-scrollbar {
-    width: 20px;
+    height: 10px;
   }
+
   .item-container::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-  .item-container::-webkit-scrollbar-thumb {
-    background-color: #d6dee1;
-  }
-  .item-container::-webkit-scrollbar-thumb {
-    background-color: #d6dee1;
+      background-color: #d6dee1;
+      border-radius: 20px;
+    }
+    .item-container::-webkit-scrollbar-thumb {
+      background-color: gray;
     border-radius: 20px;
   }
-  .item-container::-webkit-scrollbar-thumb {
+  /* .item-container::-webkit-scrollbar-thumb {
     background-color: #d6dee1;
     border-radius: 20px;
     border: 6px solid transparent;
     background-clip: content-box;
-  }
+  } */

@@ -7,17 +7,17 @@ import "./HomePage.css";
 
 const HomePage = ({songs, playlists}) => {
     const history = useHistory();
-    const sessionUser = useSelector((state) => state.session.user);
+    const sessionUser = useSelector((state) => state.session?.user);
 
     let userLikes = [];
 
     songs.forEach((song) => {
-        let songLike = song.SongLikes.find((like) => like.userId === sessionUser.id)
+        let songLike = song.SongLikes.find((like) => like.userId === sessionUser?.id)
         if (songLike) userLikes.push(song)
     })
 
     playlists.forEach((playlist) => {
-        let playlistLike = playlist.PlaylistLikes.find((like) => like.userId === sessionUser.id)
+        let playlistLike = playlist.PlaylistLikes.find((like) => like.userId === sessionUser?.id)
         if (playlistLike) userLikes.push(playlist)
     })
 
@@ -27,6 +27,14 @@ const HomePage = ({songs, playlists}) => {
 
     const goToUserPage= (userId) => {
         history.push(`/${userId}`)
+    }
+
+    const goToSongs= () => {
+        history.push(`/songs`)
+    }
+
+    const goToPlaylists= () => {
+        history.push(`/playlists`)
     }
 
     return (
@@ -45,9 +53,9 @@ const HomePage = ({songs, playlists}) => {
                                 )
                             )}
                         </div>
-                        <NavLink className="see-more" to="/songs">
-                            <button>See More</button>
-                        </NavLink>
+                        <div className="see-more" onClick={goToSongs}>
+                                <button>See More</button>
+                        </div>
                     </div>
                     <div className="inner-main">
                         <h2>Recently Added Playlists</h2>
@@ -56,12 +64,13 @@ const HomePage = ({songs, playlists}) => {
                                 <PlaylistDetail key={playlist.id} playlist={playlist} />
                             ))}
                         </div>
-                        <NavLink className="see-more" to="/playlists">
-                            <button>See More</button>
-                        </NavLink>
+                        <div className="see-more" onClick={goToPlaylists}>
+                                <button>See More</button>
+                        </div>
                     </div>
                 </div>
                 <div className="side-container">
+                    {sessionUser ?
                     <div className="inner-side">
                         <h2>
                             <i className="fa-solid fa-heart"></i>
@@ -70,10 +79,19 @@ const HomePage = ({songs, playlists}) => {
                         {recentLikes.map((like) => (
                             <LikeCard like={like} />
                         ))}
-                        <div className="see-more" onClick={()=>goToUserPage(sessionUser.id)}>
+                        <div className="see-more" onClick={()=>goToUserPage(sessionUser?.id)}>
                                 <button>See More</button>
                         </div>
                     </div>
+                    :
+                    <div className="inner-side">
+                        <h2>
+                            <i className="fa-solid fa-heart"></i>
+                            {userLikes.length} likes
+                        </h2>
+                        <h3>Sign in to see your liked songs and playlists here</h3>
+                    </div>
+                    }
                     {/* <div className="inner-side">
                         <h2> Coming Soon! </h2>
                         <h2> Listening History </h2>

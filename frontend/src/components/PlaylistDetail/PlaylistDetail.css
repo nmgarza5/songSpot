@@ -38,7 +38,7 @@
 }
 
 .likes {
-    margin-top: -20px;
+    margin-top: -15px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -46,6 +46,7 @@
 
 .likes i {
     margin-right: 5px;
+    color: rgb(109, 109, 109);
 }
 .likes i:nth-child(2) {
     margin-left: 5px;
