@@ -11,6 +11,7 @@ import PlaylistsPage from "./components/PlaylistsPage";
 import SinglePlaylist from "./components/SinglePlaylist";
 import { Footer } from "./components/Footer";
 import ProfilePage from "./components/ProfilePage";
+import Player from "./components/Player";
 
 function App() {
     const dispatch = useDispatch();

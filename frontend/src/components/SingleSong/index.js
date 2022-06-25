@@ -48,6 +48,10 @@ const SingleSong = ({ songs }) => {
                     <h1>{song?.title}</h1>
                     <p>Artist - {songOwner}</p>
                     <p>Genre - {song?.genre}</p>
+                    <div className='icons'>
+                        <i className="fa-solid fa-heart"></i>
+                        {song.SongLikes.length}
+                    </div>
                     {sessionUser ?
                         <LikeButton id={+id} type={"song"} isLike={isLike} like={like} />
                     : null }

@@ -44,6 +44,15 @@ const SinglePlaylist = ({ playlists }) => {
         await dispatch(fetchPlaylist(id))
     };
 
+    const goToSong = (id) => {
+        history.push(`/songs/${id}`)
+    }
+
+    const goToUserPage= (userId) => {
+        history.push(`/${userId}`)
+    }
+
+
     return (
         <div className="singlePlaylist">
             <h1 className="">{playlist?.name}</h1>
@@ -60,39 +69,46 @@ const SinglePlaylist = ({ playlists }) => {
                 </div>
             ) : null}
             <Player songs={songs} />
-            {songs?.map((song) => (
-                <div key={song.JoinSP.songId} className="playlist-songs">
-                    <img className="playlist-image" src={song.imageUrl} alt=""></img>
-                    <NavLink
-                        to={`/songs/${song.JoinSP.songId}`}
-                        className="song-info"
-                    >
-                        <h3>{song.title}</h3>
-                        <h4>Created By - {song.user?.username}</h4>
-                    </NavLink>
-                    <div className="song-btns">
+            <div className="playlist-content">
+                {songs?.map((song) => (
+                    <div key={song.JoinSP.songId} className="playlist-songs">
+                        <img className="playlist-image" src={song.imageUrl} alt="" onClick={() => {goToSong(song.id)}}></img>
+                        <div className='info'>
+                            <div onClick={() => {goToUserPage(like.userId)}}>
+                                {song.user.username}
+                            </div>
+                            <div onClick={() => {goToSong(song.id)}}>
+                                {song.title}
+                            </div>
+                            <div className='icons'>
+                                <i className="fa-solid fa-heart"></i>
+                                {song.SongLikes.length}
+                            </div>
+                        </div>
                         {sessionUser ?
-                        <LikeButton id={song.id} type={"song"} isLike={!_.isUndefined(song.SongLikes.find(like => like?.userId === sessionUser?.id))} like={song.SongLikes.find(like => like?.userId === sessionUser?.id)} />
-                        : null }
-                        <button>
-                            <PlaylistDropdown
-                                playlists={playlists}
-                                currentUser={currentUser}
-                                songId={song.JoinSP.songId}
-                            />
-                        </button>
-                        {currentUser === playlistOwner ? (
-                            <button
-                                onClick={() => {
-                                    deleteSong(song.JoinSP.songId);
-                                }}
-                            >
-                                <i className="fa-solid fa-trash-can"></i>
-                            </button>
-                        ) : null}
+                            <div className="song-btns">
+                                <LikeButton id={song.id} type={"song"} isLike={!_.isUndefined(song.SongLikes.find(like => like?.userId === sessionUser?.id))} like={song.SongLikes.find(like => like?.userId === sessionUser?.id)} isPlaylist={true} playlistId={+id}/>
+                                <button>
+                                    <PlaylistDropdown
+                                        playlists={playlists}
+                                        currentUser={currentUser}
+                                        songId={song.JoinSP.songId}
+                                    />
+                                </button>
+                                {currentUser === playlistOwner ? (
+                                    <button
+                                        onClick={() => {
+                                            deleteSong(song.JoinSP.songId);
+                                        }}
+                                    >
+                                        <i className="fa-solid fa-trash-can"></i>
+                                    </button>
+                                ) : null}
+                            </div>
+                            : null }
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     );
 };

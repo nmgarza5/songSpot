@@ -21,12 +21,12 @@ const ProfilePage = ({ songs, playlists }) => {
     let userLikes = [];
 
     songs.forEach((song) => {
-        let songLike = song.SongLikes.find((like) => like.userId === sessionUser?.id)
+        let songLike = song.SongLikes.find((like) => like.userId === +userId)
         if (songLike) userLikes.push(song)
     })
 
     playlists.forEach((playlist) => {
-        let playlistLike = playlist.PlaylistLikes.find((like) => like.userId === sessionUser?.id)
+        let playlistLike = playlist.PlaylistLikes.find((like) => like.userId === +userId)
         if (playlistLike) userLikes.push(playlist)
     })
 
@@ -34,7 +34,7 @@ const ProfilePage = ({ songs, playlists }) => {
 
     return (
         <div className="userpage-container">
-            {currentUserId === userId ? (
+            {currentUserId === +userId ? (
                 <h1>My Music</h1>
             ) : (
                 <h1>{displaySongs[0].user.username}'s Music</h1>

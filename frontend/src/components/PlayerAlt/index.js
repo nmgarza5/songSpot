@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import PlayerControls from "./PlayerControls";
 import PlayerDetails from "./PlayerDetails";
-import "./Player.css";
+import "./PlayerAlt.module.css";
 
-const Player = ({ songs }) => {
+const PlayerAlt = () => {
     const audioElement = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
-    const [playerSongs] = useState(songs);
+    const [playerSongs, setPlayerSongs] = useState("");
     const [currentSongIndex, setCurrentSongIndex] = useState(0);
     const [nextSongIndex, setNextSongIndex] = useState(
         currentSongIndex + 1 || 0
@@ -55,42 +55,22 @@ const Player = ({ songs }) => {
 
     return (
         <div className="audio-player">
-            {/* <PlayerControls
-                isPlaying={isPlaying}
-                setIsPlaying={setIsPlaying}
-                skipSong={skipSong}
-            /> */}
-            {songs.length > 1 &&
-                <div className="player-controls">
-                    <button className="skip-btn" onClick={() => skipSong(false)}>
-                        <i className="fa-solid fa-backward-step"></i>
-                    </button>
-                    {/* <button
-                        className="play-btn"
-                        onClick={() => setIsPlaying(!isPlaying)}
-                    >
-                        {isPlaying ? <i className="fa-solid fa-pause"></i> : <i className="fa-solid fa-play"></i>}
-                    </button> */}
-                    <button className="skip-btn" onClick={() => skipSong(true)}>
-                        <i className="fa-solid fa-forward-step"></i>
-                    </button>
-                </div>
-            }
             <audio
-                controls
                 ref={audioElement}
                 src={currentSong.audioUrl}
                 preload="auto"
-                type="audio/mpeg" >
-                <p>
-                    'Your browser doesn't support HTML5 audio. Here is a
-                    <a href={currentSong.audioUrl}>link to the audio</a> instead.
-                </p>
-            </audio>
-            {songs.length > 1 &&
+            />
+            <PlayerControls
+                isPlaying={isPlaying}
+                setIsPlaying={setIsPlaying}
+                skipSong={skipSong}
+            />
             <PlayerDetails currentSong={currentSong} />
-            }
+            <p>
+                <strong>Next up:</strong>
+                {nextSongTitle} by {nextSongArtist}
+            </p>
         </div>
     );
 };
-export default Player;
+export default PlayerAlt;

@@ -2,48 +2,35 @@
 .audio-player {
     display: flex;
     flex-direction: row;
-    /* background: rgb(196, 196, 196); */
-    background: #3b3b3b;
+    background: rgb(196, 196, 196);
+    /* background: #3b3b3b; */
     width: 100%;
     margin: 0 auto;
     margin-bottom: 1%;
     padding: 1%;
-    justify-content: center;
     align-items: center;
     text-align: center;
     color: black;
 }
 
-.audio-player audio {
-    margin: 0 10px
-}
-
 .audio-player h4 {
     text-transform: uppercase;
     text-align: center;
-    /* color: black; */
-    color: white;
+    color: black;
 }
 
 .details-title,
 .details-artist {
     text-transform: uppercase;
     text-align: center;
-    /* color: black; */
-    color: white;
+    color: black;
 }
 
 .player-details {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    color: white;
-    width: 40%
-}
-
-.player-details h2, .player-details h4 {
-    margin: 0 10px;
 }
 
 .player-controls {

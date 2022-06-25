@@ -6,8 +6,6 @@ import {
     FaPauseCircle,
 } from "react-icons/fa";
 
-
-
 function PlayerControls({ isPlaying, setIsPlaying, skipSong }) {
     return (
         <div className="player-controls">
