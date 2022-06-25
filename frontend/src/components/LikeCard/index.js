@@ -1,4 +1,6 @@
 import { useHistory} from "react-router-dom";
+import defaultImage from "../../images/default-playlist.jpg"
+
 
 import styles from "./LikeCard.module.css"
 
@@ -26,6 +28,10 @@ const LikeCard = ({like}) => {
         history.push(`/${userId}`)
     }
 
+    const addDefaultImage = (e) => {
+        e.target.src = defaultImage
+    }
+
     if (!firstImg) firstImg = "/images/default-playlist.jpg";
 
     return (
@@ -33,7 +39,7 @@ const LikeCard = ({like}) => {
             { type === "song"
                 ?
                 <>
-                    <img src={like.imageUrl} alt={like.title} className={styles.image} onClick={() => {goToSong(like.id)}}></img>
+                    <img src={like.imageUrl} alt={like.title} className={styles.image} onError={addDefaultImage} onClick={() => {goToSong(like.id)}}></img>
                     <div className={styles.info}>
                         <div onClick={() => {goToUserPage(like.userId)}}>
                             {like.user.username}
@@ -49,7 +55,7 @@ const LikeCard = ({like}) => {
                 </>
                 :
                 <>
-                    <img src={firstImg} alt={like.name} className={styles.image} onClick={() => {goToPlaylist(like.id)}}></img>
+                    <img src={firstImg} alt={like.name} className={styles.image} onError={addDefaultImage} onClick={() => {goToPlaylist(like.id)}}></img>
                     <div className={styles.info}>
                         <div onClick={() => {goToUserPage(like.userId)}}>
                             {like.user.username}

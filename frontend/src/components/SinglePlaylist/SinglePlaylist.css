@@ -23,7 +23,7 @@
     flex-direction: row;
     margin-bottom: 10px;
     padding-bottom: 10px;
-    border-bottom: rgb(153, 153, 153) solid thin;
+    border-bottom: rgb(224, 224, 224) solid thin;
 }
 
 .playlist-songs:nth-last-child(1) {

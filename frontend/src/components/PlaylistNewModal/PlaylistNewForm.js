@@ -23,7 +23,7 @@ function PlaylistNewForm(props) {
             }
         );
         if (newPlaylist) {
-            history.push(`/songs`);
+            history.push(`/playlists`);
             props.onClose();
         }
     };

@@ -26,7 +26,6 @@ function SongForm(props) {
             }
         );
         if (newSong) {
-            console.log("NEWsONG", newSong)
             history.push(`/songs/${newSong?.retSong?.id}`);
             props.onClose();
         }
@@ -51,7 +50,7 @@ function SongForm(props) {
                 <div className="input-container">
                     <label>Genre</label>
                     <select
-                        className="label"
+                        className="select-label"
                         type="text"
                         onChange={(e) => setGenre(e.target.value)}
                         defaultValue={"Default"}

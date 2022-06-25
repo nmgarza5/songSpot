@@ -130,6 +130,11 @@ router.delete(
     requireAuth,
     asyncHandler(async (req, res) => {
         const songId = req.params.id;
+        await SongLike.destroy({
+            where: {
+                songId,
+            },
+        });
         await JoinSP.destroy({
             where: {
                 songId,

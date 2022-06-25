@@ -1,6 +1,8 @@
 import { useHistory } from "react-router-dom";
 import "./PlaylistDetail.css";
 
+import defaultImage from "../../images/default-playlist.jpg"
+
 const PlaylistDetail = ({ playlist }) => {
     let firstImg = playlist?.songs[0]?.imageUrl;
     if (!firstImg) firstImg = "/images/default-playlist.jpg";
@@ -14,9 +16,13 @@ const goToUserPage= (userId) => {
     history.push(`/${userId}`)
 }
 
+const addDefaultImage = (e) => {
+    e.target.src = defaultImage
+}
+
 return (
     <div className="playlist-details">
-        <img src={firstImg} alt={playlist.name} className="image" onClick={() => {goToPlaylist(playlist.id)}}></img>
+        <img src={firstImg} alt={playlist.name} className="image" onClick={() => {goToPlaylist(playlist.id)}} onError={addDefaultImage}></img>
         {playlist.name.length < 20
             ?
             <div onClick={() => {goToPlaylist(playlist.id)}} className="title">

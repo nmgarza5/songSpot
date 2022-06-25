@@ -15,6 +15,9 @@ import {
 } from "../../store/playlistReducer";
 import LikeButton from "../LikeButton";
 
+import defaultImage from "../../images/default-playlist.jpg"
+
+
 const SinglePlaylist = ({ playlists }) => {
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -35,8 +38,8 @@ const SinglePlaylist = ({ playlists }) => {
     // }, [dispatch, id]);
 
     const handleDelete = async (e) => {
-        await dispatch(deletePlaylistThunk(id));
         history.push(`/playlists`);
+        await dispatch(deletePlaylistThunk(id));
     };
     const deleteSong = async (songId) => {
         const playlistData = { songId, id };
@@ -50,6 +53,10 @@ const SinglePlaylist = ({ playlists }) => {
 
     const goToUserPage= (userId) => {
         history.push(`/${userId}`)
+    }
+
+    const addDefaultImage = (e) => {
+        e.target.src = defaultImage
     }
 
 
@@ -72,7 +79,7 @@ const SinglePlaylist = ({ playlists }) => {
             <div className="playlist-content">
                 {songs?.map((song) => (
                     <div key={song.JoinSP.songId} className="playlist-songs">
-                        <img className="playlist-image" src={song.imageUrl} alt="" onClick={() => {goToSong(song.id)}}></img>
+                        <img className="playlist-image" src={song.imageUrl} alt="" onError={addDefaultImage} onClick={() => {goToSong(song.id)}}></img>
                         <div className='info'>
                             <div onClick={() => {goToUserPage(like.userId)}}>
                                 {song.user.username}
