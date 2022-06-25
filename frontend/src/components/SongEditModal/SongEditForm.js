@@ -52,10 +52,9 @@ function SongEditForm(props) {
                     <label>Genre</label>
                     <select
                         value={genre}
-                        className="label"
+                        className="select-label"
                         type="text"
                         onChange={(e) => setGenre(e.target.value)}
-                        defaultValue={"Default"}
                         required
                     >
                         <option value="Default" disabled>

@@ -5,31 +5,26 @@ import { Redirect } from "react-router-dom";
 import "./SplashPage.css";
 import LoginFormModal from "../LoginFormModal";
 import SignUpFormModal from "../SignUpFormModal";
+import record from "../../images/record-shatter.jpg"
 
 const SplashPage = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
     const [credential] = useState("Demo-lition");
     const [password] = useState("password");
-    const [errors, setErrors] = useState([]);
 
     if (sessionUser) return <Redirect to="/discover" />;
 
     const demoLogin = (e) => {
         e.preventDefault();
-        return dispatch(sessionActions.login({ credential, password })).catch(
-            async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
-            }
-        );
+        return dispatch(sessionActions.login({ credential, password }))
     };
     return (
         <>
             <div className="carosel">
                 <img
                     className="image-container"
-                    src="/images/record-shatter.jpg"
+                    src={record}
                     alt="record-shatter"
                 ></img>
             </div>

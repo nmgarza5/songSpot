@@ -76,8 +76,8 @@ const HomePage = ({songs, playlists}) => {
                             <i className="fa-solid fa-heart"></i>
                             {userLikes.length} likes
                         </h2>
-                        {recentLikes.map((like) => (
-                            <LikeCard like={like} />
+                        {recentLikes.map((like, idx) => (
+                            <LikeCard key={idx}like={like} />
                         ))}
                         <div className="see-more" onClick={()=>goToUserPage(sessionUser?.id)}>
                                 <button>See More</button>
@@ -89,7 +89,7 @@ const HomePage = ({songs, playlists}) => {
                             <i className="fa-solid fa-heart"></i>
                             {userLikes.length} likes
                         </h2>
-                        <h3>Sign in to see your liked songs and playlists here</h3>
+                        <h3>Sign in to see your most recently liked songs and playlists.</h3>
                     </div>
                     }
                     {/* <div className="inner-side">

@@ -94,11 +94,13 @@ router.post(
         const retPlaylist = await Playlist.findByPk(playlist.id, {
             include: [
                 { model: User, as: "user", attributes: ["username"] },
+                {model: PlaylistLike},
                 {
                     model: Song,
                     as: "songs",
                     attributes: ["id", "title", "genre", "imageUrl", "audioUrl"],
                     include: [
+                        { model: SongLike },
                         {
                             model: User,
                             as: "user",
@@ -126,11 +128,13 @@ router.put(
             const retPlaylist = await Playlist.findByPk(playlistId, {
                 include: [
                     { model: User, as: "user", attributes: ["username"] },
+                    {model: PlaylistLike},
                     {
                         model: Song,
                         as: "songs",
                         attributes: ["id", "title", "genre", "imageUrl", "audioUrl"],
                         include: [
+                            { model: SongLike },
                             {
                                 model: User,
                                 as: "user",
@@ -161,11 +165,13 @@ router.put(
             const retPlaylist = await Playlist.findByPk(id, {
                 include: [
                     { model: User, as: "user", attributes: ["username"] },
+                    {model: PlaylistLike},
                     {
                         model: Song,
                         as: "songs",
                         attributes: ["id", "title", "genre", "imageUrl", "audioUrl"],
                         include: [
+                            { model: SongLike },
                             {
                                 model: User,
                                 as: "user",
@@ -194,11 +200,13 @@ router.put(
             const retPlaylist = await Playlist.findByPk(playlist.id, {
                 include: [
                     { model: User, as: "user", attributes: ["username"] },
+                    {model: PlaylistLike},
                     {
                         model: Song,
                         as: "songs",
                         attributes: ["id", "title", "genre", "imageUrl", "audioUrl"],
                         include: [
+                            { model: SongLike },
                             {
                                 model: User,
                                 as: "user",
@@ -219,6 +227,11 @@ router.delete(
     requireAuth,
     asyncHandler(async (req, res) => {
         const playlistId = req.params.id;
+        await PlaylistLike.destroy({
+            where: {
+                playlistId,
+            },
+        });
         await JoinSP.destroy({
             where: {
                 playlistId,
