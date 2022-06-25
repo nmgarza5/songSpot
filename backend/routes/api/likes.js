@@ -25,14 +25,7 @@ router.post(
             userId: req.user.id,
             songId
         });
-        const retLike = await SongLike.findByPk(songLike.id, {
-            include: Song,
-                as: "songs",
-                attributes: ["id", "title", "genre", "imageUrl", "audioUrl"],
-                include: [
-                    { model: User, as: "user", attributes: ["username"] },
-                ],
-            });
+        const retLike = await SongLike.findByPk(songLike.id);
         if (retLike) res.json({ retLike });
     })
 );

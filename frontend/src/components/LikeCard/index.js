@@ -11,7 +11,6 @@ const LikeCard = ({like}) => {
         type = "playlist"
         firstImg = like?.songs[0]?.imageUrl;
     }
-    console.log("first", firstImg)
 
     if (like.title) type = "song"
 

@@ -4,7 +4,7 @@ import styles from "./LikeButton.module.css";
 import { fetchSong, addSongLike, removeSongLike } from "../../store/songReducer";
 import { addPlaylistLike, fetchPlaylist, removePlaylistLike } from "../../store/playlistReducer";
 
-const LikeButton = ({id, type, isLike, like}) => {
+const LikeButton = ({id, type, isLike, like, isPlaylist, playlistId}) => {
     const dispatch = useDispatch();
 
 	const [likeToggle, setLikeToggle] = useState(null);
@@ -28,10 +28,12 @@ const LikeButton = ({id, type, isLike, like}) => {
                 showBoxTimer()
                 await dispatch(addSongLike(id));
                 await dispatch(fetchSong(id))
+                if (isPlaylist) await dispatch(fetchPlaylist(playlistId));
             } else {
                 showBoxTimer()
                 await dispatch(removeSongLike(like));
                 await dispatch(fetchSong(id))
+                if (isPlaylist) await dispatch(fetchPlaylist(playlistId));
             }
         }
         if (type === "playlist") {
@@ -59,7 +61,7 @@ const LikeButton = ({id, type, isLike, like}) => {
                 onMouseLeave={() => setMessage(false)}
                 >
                     <i className="fa-solid fa-heart fa-2x"></i>
-                    {message && (
+                    {/* {message && (
                         <p className={styles.showBox}>
                             Remove Like
                         </p>
@@ -68,7 +70,7 @@ const LikeButton = ({id, type, isLike, like}) => {
                         <p className={styles.showBox}>
                             Liked!
                         </p>
-                    )}
+                    )} */}
                 </div>
             ) : (
                 <div
@@ -77,7 +79,7 @@ const LikeButton = ({id, type, isLike, like}) => {
                     onMouseLeave={() => setMessage(false)}
                 >
                     <i className="fa-regular fa-heart fa-2x"></i>
-                    {message && (
+                    {/* {message && (
                         <p className={styles.showBox}>
                             Like this!
                         </p>
@@ -86,7 +88,7 @@ const LikeButton = ({id, type, isLike, like}) => {
                         <p className={styles.showBox}>
                         Removed Liked!
                     </p>
-                    )}
+                    )} */}
                 </div>
             )}
         </div>
