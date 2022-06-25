@@ -27,7 +27,7 @@ function App() {
         (async () => {
             await dispatch(fetchSongs());
             await dispatch(fetchPlaylists());
-            dispatch(sessionActions.restoreUser());
+            await dispatch(sessionActions.restoreUser());
             setIsLoaded(true);
         })();
     }, [ dispatch]);
@@ -38,7 +38,7 @@ function App() {
 
     return (
         <div className="page-container">
-            <Navigation />
+            <Navigation isLoaded={isLoaded} />
             <Switch>
                 <Route exact path="/">
                     <SplashPage />
