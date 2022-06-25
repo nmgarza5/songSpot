@@ -9,25 +9,33 @@
 }
 
 .playlist-content {
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    width: 60%;
 }
 
 .playlist-songs {
-    width: 70%;
     display: flex;
+    width: 100%;
     align-items: center;
-    justify-content: space-between;
     flex-direction: row;
-    border: black solid;
-    border-radius: 7px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: rgb(153, 153, 153) solid thin;
+}
+
+.playlist-songs:nth-last-child(1) {
+    border-bottom: none;
 }
 
 .playlist-image {
     width: 100px;
     height: 100px;
-    border-radius: 5px 0 0 5px;
+    min-width: 100px;
+    object-fit:cover;
+    cursor: pointer;
 }
 
 .song-info {
@@ -36,8 +44,48 @@
 }
 
 .song-btns {
+    width: 100%;
     display: flex;
     flex-direction: row;
     margin-right: 5px;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin-left: 10px;
+}
+
+.info div {
+    margin: -8px 2px;
+}
+
+.info div:nth-child(1):hover, .info div:nth-child(2):hover {
+    cursor: pointer;
+    color:#f50;
+}
+
+.info div:nth-child(1) {
+    color:rgb(63, 63, 63)
+}
+
+.info div:nth-child(2) {
+    font-weight: 700;
+}
+
+.icons {
+    display: flex;
     align-items: center;
+}
+
+.icons i {
+    margin-right: 5px;
+    color: rgb(109, 109, 109);
+}
+
+.icons i:nth-child(2) {
+    margin-left: 5px;
 }

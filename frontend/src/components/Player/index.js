@@ -81,8 +81,7 @@ const Player = ({ songs }) => {
                 ref={audioElement}
                 src={currentSong.audioUrl}
                 preload="auto"
-                type="audio/mpeg"
-                volume >
+                type="audio/mpeg" >
                 <p>
                     'Your browser doesn't support HTML5 audio. Here is a
                     <a href={currentSong.audioUrl}>link to the audio</a> instead.
