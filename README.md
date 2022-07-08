@@ -58,14 +58,3 @@ Upcoming features:
 
 10. You can use the Demo user or create an account to begin using SongSpot.
 
-
-## Features
-Logged out users can perform the following actions.
-   - View Songs
-   - View Playlists
-   - Listen to Songs/Playlists
-
-Logged in users can perform the following actions
-   - View/Add/Edit/Delete Songs
-   - View/Add/Edit/Delete Playlists
-   - Listen to Songs/Playlists
