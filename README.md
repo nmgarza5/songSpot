@@ -1,5 +1,6 @@
 # SongSpot
-This is a clone of [SoundCloud](https://soundcloud.com/). Access the [SongSpot MVP.](https://github.com/nmgarza5/songSpot/wiki/MVP's).
+
+SongSpot is a loose clone of SoundCloud, a music sharing/listening platform. Users can navigate the site and view/listen to songs uploaded by other users. Users can upload their own songs and create custom playlists to share with others. Users can like their favorite songs and view them on their profile page. In the future, I plan on utlizing AWS uploads to store audio files as well as images used throughout the site. I look forward to spending more time further developing out additional feature such as the search function, friends, and continuous audio playing.
 
 ## Features
 - Create an account, sign in, or log in as a demo user
