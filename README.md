@@ -27,7 +27,16 @@ Upcoming features:
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="70px" width="70px"/>&#160;
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" height="70px" width="70px"/>&#160;
 
-## Getting Started
+# Splashpage
+From the splashpage, users can to choose to create an account, log into an existing account, or log in as a demo user.
+![splashpage](https://user-images.githubusercontent.com/90273783/178118523-7cb08ade-5029-4b92-b633-6807579a8109.png)
+
+# Home/Discover Page
+From the discover page, users can view all of the latest songs and playlists that have been added to the platform. The respective sections include buttons that users can click to navigate to see more songs or playlists. On the right panel, users can view a preview of the 5 most recent songs they have liked and a button to navigate to the user's profile page to see teh rest of their likes.
+![homepage-discover](https://user-images.githubusercontent.com/90273783/178118539-f393252b-e9c7-40af-8b9b-7516168cba20.png)
+
+
+# Getting Started
 1. Clone this repo.
     - `git clone git@github.com:nmgarza5/songSpot.git`
     
