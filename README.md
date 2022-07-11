@@ -1,6 +1,6 @@
 # SongSpot
 
-SongSpot is a loose clone of SoundCloud, a music sharing/listening platform. Users can navigate the site and view/listen to songs uploaded by other users. Users can upload their own songs and create custom playlists to share with others. Users can like their favorite songs and view them on their profile page. In the future, I plan on utlizing AWS uploads to store audio files as well as images used throughout the site. I look forward to spending more time further developing out additional feature such as the search function, friends, and continuous audio playing.
+SongSpot is a loose clone of SoundCloud, a music sharing/listening platform. Users can navigate the site and view/listen to songs uploaded by other users. Users can upload their own songs and create custom playlists to share with others. Users can like their favorite songs and view them on their profile page. In the future, I plan on utlizing AWS uploads to store audio files as well as images used throughout the site. I look forward to spending more time further developing out additional feature such as pagination, the search function, friends, and continuous audio playing.
 
 ## Features
 - Create an account, sign in, or log in as a demo user
@@ -32,8 +32,17 @@ From the splashpage, users can to choose to create an account, log into an exist
 ![splashpage](https://user-images.githubusercontent.com/90273783/178118523-7cb08ade-5029-4b92-b633-6807579a8109.png)
 
 # Home/Discover Page
-From the discover page, users can view all of the latest songs and playlists that have been added to the platform. The respective sections include buttons that users can click to navigate to see more songs or playlists. On the right panel, users can view a preview of the 5 most recent songs they have liked and a button to navigate to the user's profile page to see teh rest of their likes.
+From the discover page, users can view all of the latest songs and playlists that have been added to the platform. The respective sections include buttons that users can click to navigate to see more songs or playlists. On the right panel, users can view a preview of the 5 most recent songs they have liked and a button to navigate to the user's profile page to see the rest of their likes.
 ![homepage-discover](https://user-images.githubusercontent.com/90273783/178118539-f393252b-e9c7-40af-8b9b-7516168cba20.png)
+
+# Songs
+From the Songs Lists page, users can view all songs listed on the site. They can hover over and click on a song's name to be directed to that song's page or the artists name to be taken to their profile page. From the single song page, users can view some specific information pertaining to that song and listen to the song by clicking on the play button.
+
+# Playlists
+From the playlists page
+
+# Profile Page
+From the songs page
 
 
 # Getting Started
