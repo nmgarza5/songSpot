@@ -36,7 +36,10 @@ From the discover page, users can view all of the latest songs and playlists tha
 ![homepage-discover](https://user-images.githubusercontent.com/90273783/178118539-f393252b-e9c7-40af-8b9b-7516168cba20.png)
 
 # Songs
-From the Songs Lists page, users can view all songs listed on the site. They can hover over and click on a song's name to be directed to that song's page or the artists name to be taken to their profile page. From the single song page, users can view some specific information pertaining to that song and listen to the song by clicking on the play button.
+From the Songs Lists page, users can view all songs listed on the site. They can hover over and click on a song's name to be directed to that song's page or the artists name to be taken to their profile page. From the single song page, users can view some specific information pertaining to that song, like/unlike the song by clicking on the green heart icon, and listen to the song by clicking on the play button.
+![songs](https://user-images.githubusercontent.com/90273783/178327207-41b4d797-3022-4c49-b45f-7ad01f86c852.png)
+![single-song](https://user-images.githubusercontent.com/90273783/178327355-50f009a2-3f94-4b57-9244-9ee7fdab9dae.png)
+
 
 # Playlists
 From the playlists page
