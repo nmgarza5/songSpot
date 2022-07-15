@@ -1,22 +1,36 @@
 import { useHistory } from "react-router-dom";
 import "./PlaylistDetail.css";
 
+import defaultImage from "../../images/default-playlist.jpg"
+import LikeButton from "../LikeButton";
+import { useSelector } from "react-redux";
+
 const PlaylistDetail = ({ playlist }) => {
+    const sessionUser = useSelector((state) => state.session.user);
     let firstImg = playlist?.songs[0]?.imageUrl;
     if (!firstImg) firstImg = "/images/default-playlist.jpg";
 
-const history = useHistory();
-const goToPlaylist = (id) => {
-    history.push(`/playlists/${id}`)
-}
+    let like;
+    like = playlist.PlaylistLikes.find(like => like?.userId === sessionUser?.id);
+    let isLike;
+    if (like) isLike = true;
 
-const goToUserPage= (userId) => {
-    history.push(`/${userId}`)
-}
+    const history = useHistory();
+    const goToPlaylist = (id) => {
+        history.push(`/playlists/${id}`)
+    }
+
+    const goToUserPage= (userId) => {
+        history.push(`/${userId}`)
+    }
+
+    const addDefaultImage = (e) => {
+        e.target.src = defaultImage
+    }
 
 return (
     <div className="playlist-details">
-        <img src={firstImg} alt={playlist.name} className="image" onClick={() => {goToPlaylist(playlist.id)}}></img>
+        <img src={firstImg} alt={playlist.name} className="image" onClick={() => {goToPlaylist(playlist.id)}} onError={addDefaultImage}></img>
         {playlist.name.length < 20
             ?
             <div onClick={() => {goToPlaylist(playlist.id)}} className="title">
@@ -30,7 +44,7 @@ return (
         {/* <div className="likes">
         </div> */}
         <div className="likes">
-            <i className="fa-solid fa-heart"></i>
+            <LikeButton />
             {playlist.PlaylistLikes.length}
             <i className="fa-solid fa-music"></i>
             {playlist?.songs?.length}

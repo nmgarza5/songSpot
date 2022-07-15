@@ -15,6 +15,9 @@ import {
 } from "../../store/playlistReducer";
 import LikeButton from "../LikeButton";
 
+import defaultImage from "../../images/default-playlist.jpg"
+
+
 const SinglePlaylist = ({ playlists }) => {
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -35,8 +38,8 @@ const SinglePlaylist = ({ playlists }) => {
     // }, [dispatch, id]);
 
     const handleDelete = async (e) => {
-        await dispatch(deletePlaylistThunk(id));
         history.push(`/playlists`);
+        await dispatch(deletePlaylistThunk(id));
     };
     const deleteSong = async (songId) => {
         const playlistData = { songId, id };
@@ -52,14 +55,22 @@ const SinglePlaylist = ({ playlists }) => {
         history.push(`/${userId}`)
     }
 
+    const addDefaultImage = (e) => {
+        e.target.src = defaultImage
+    }
+
 
     return (
         <div className="singlePlaylist">
             <h1 className="">{playlist?.name}</h1>
             <h3>Created By - {playlistOwner}</h3>
-            {sessionUser ?
-                        <LikeButton id={+id} type={"playlist"} isLike={isLike} like={like} />
-                    : null }
+            <div className="likes">
+                {sessionUser
+                    ? <LikeButton id={+id} type={"playlist"} isLike={isLike} like={like} />
+                    : <i className="fa-regular fa-heart"></i>
+                }
+                {playlist.PlaylistLikes.length}
+            </div>
             {currentUser === playlistOwner ? (
                 <div>
                     <button>
@@ -72,7 +83,7 @@ const SinglePlaylist = ({ playlists }) => {
             <div className="playlist-content">
                 {songs?.map((song) => (
                     <div key={song.JoinSP.songId} className="playlist-songs">
-                        <img className="playlist-image" src={song.imageUrl} alt="" onClick={() => {goToSong(song.id)}}></img>
+                        <img className="playlist-image" src={song.imageUrl} alt="" onError={addDefaultImage} onClick={() => {goToSong(song.id)}}></img>
                         <div className='info'>
                             <div onClick={() => {goToUserPage(like.userId)}}>
                                 {song.user.username}
@@ -81,13 +92,15 @@ const SinglePlaylist = ({ playlists }) => {
                                 {song.title}
                             </div>
                             <div className='icons'>
-                                <i className="fa-solid fa-heart"></i>
+                                {sessionUser
+                                    ? <LikeButton id={song.id} type={"song"} isLike={!_.isUndefined(song.SongLikes.find(like => like?.userId === sessionUser?.id))} like={song.SongLikes.find(like => like?.userId === sessionUser?.id)} isPlaylist={true} playlistId={+id}/>
+                                    : <i className="fa-solid fa-heart"></i>
+                                    }
                                 {song.SongLikes.length}
                             </div>
                         </div>
                         {sessionUser ?
                             <div className="song-btns">
-                                <LikeButton id={song.id} type={"song"} isLike={!_.isUndefined(song.SongLikes.find(like => like?.userId === sessionUser?.id))} like={song.SongLikes.find(like => like?.userId === sessionUser?.id)} isPlaylist={true} playlistId={+id}/>
                                 <button>
                                     <PlaylistDropdown
                                         playlists={playlists}

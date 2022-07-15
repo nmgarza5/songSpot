@@ -26,7 +26,7 @@
     justify-content: flex-start;
     margin:0;
     padding-left: 10px;
-    align-items: center;
+    align-items: baseline;
     cursor: pointer;
 }
 .profile-dropdown li:hover {
@@ -35,6 +35,10 @@
 
 .dropdown-item {
     color: black;
+}
+
+.dropdown-item i {
+    padding-right: 20px;;
 }
 
 .inner-drop {

@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addPlaylistForm } from "../../store/playlistReducer";
+import { addSongThunk } from "../../store/playlistReducer"
 
 function PlaylistNewForm(props) {
+    console.log("Props", props)
+    const songId = props.songId
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
@@ -22,8 +25,16 @@ function PlaylistNewForm(props) {
                 if (data && data.errors) setErrors(data.errors);
             }
         );
+
         if (newPlaylist) {
-            history.push(`/songs`);
+            const playlistId = newPlaylist.retPlaylist.id
+            if (songId) {
+                const addSongData = {songId, playlistId};
+                await dispatch(addSongThunk(addSongData));
+                console.log("newPlayList", songId, playlistId)
+                alert(`Song added to ${newPlaylist.retPlaylist.name} :)`);
+            }
+            history.push(`/playlists/${playlistId}`);
             props.onClose();
         }
     };

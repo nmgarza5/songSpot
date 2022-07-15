@@ -12,6 +12,8 @@ import SinglePlaylist from "./components/SinglePlaylist";
 import { Footer } from "./components/Footer";
 import ProfilePage from "./components/ProfilePage";
 import Player from "./components/Player";
+import { fetchPlaylists } from "./store/playlistReducer";
+import { fetchSongs } from "./store/songReducer";
 
 function App() {
     const dispatch = useDispatch();
@@ -20,38 +22,46 @@ function App() {
     const songs = Object.values(songsObject);
     const playlistObject = useSelector((state) => state.playlistState);
     const playlists = Object.values(playlistObject);
+
     useEffect(() => {
-        dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-    }, [dispatch]);
+        (async () => {
+            await dispatch(fetchSongs());
+            await dispatch(fetchPlaylists());
+            await dispatch(sessionActions.restoreUser());
+            setIsLoaded(true);
+        })();
+    }, [ dispatch]);
+
+    if (!isLoaded) {
+        return null;
+    }
 
     return (
         <div className="page-container">
             <Navigation isLoaded={isLoaded} />
-            {isLoaded && (
-                <Switch>
-                    <Route exact path="/">
-                        <SplashPage />
-                    </Route>
-                    <Route path="/discover">
-                        <HomePage songs={songs} playlists={playlists} />
-                    </Route>
-                    <Route path="/songs/:id">
-                        <SingleSong songs={songs} />
-                    </Route>
-                    <Route path="/songs">
-                        <SongsPage />
-                    </Route>
-                    <Route path="/playlists/:id">
-                        <SinglePlaylist playlists={playlists} />
-                    </Route>
-                    <Route path="/playlists">
-                        <PlaylistsPage />
-                    </Route>
-                    <Route path="/:userId">
-                        <ProfilePage songs={songs} playlists={playlists} />
-                    </Route>
-                </Switch>
-            )}
+            <Switch>
+                <Route exact path="/">
+                    <SplashPage />
+                </Route>
+                <Route path="/discover">
+                    <HomePage songs={songs} playlists={playlists} />
+                </Route>
+                <Route path="/songs/:id">
+                    <SingleSong songs={songs} />
+                </Route>
+                <Route path="/songs">
+                    <SongsPage />
+                </Route>
+                <Route path="/playlists/:id">
+                    <SinglePlaylist playlists={playlists} />
+                </Route>
+                <Route path="/playlists">
+                    <PlaylistsPage />
+                </Route>
+                <Route path="/:userId">
+                    <ProfilePage songs={songs} playlists={playlists} />
+                </Route>
+            </Switch>
             <Footer />
         </div>
     );

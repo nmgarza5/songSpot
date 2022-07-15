@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./PlaylistDropdown.css";
 import { addSongThunk } from "../../store/playlistReducer";
+import PlaylistNewModal from "../PlaylistNewModal";
 
 function PlaylistDropdown({ playlists, currentUser, songId }) {
     const dispatch = useDispatch();
@@ -19,13 +20,16 @@ function PlaylistDropdown({ playlists, currentUser, songId }) {
     return (
         <>
             <div
-                className="username-dropdown"
+                className="dropdown"
                 onClick={() => setShowMenu(!showMenu)}
             >
-                <i className="fa-regular fa-square-plus"></i>
+                Add to Playlist
             </div>
             {showMenu && (
                 <ul className="playlist-dropdown">
+                    <li className="dropdown-item" >
+                        <PlaylistNewModal songId={songId}/>
+                    </li>
                     {userPlaylists.map((playlist) => {
                         return (
                             <li

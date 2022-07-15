@@ -15,6 +15,19 @@ function ProfileButton({ user }) {
         await dispatch(sessionActions.logout());
     };
 
+    const goToDiscover = () => {
+        history.push("/discover")
+    }
+    const goToSongs = () => {
+        history.push("/songs")
+    }
+    const goToPlaylists = () => {
+        history.push("/playlists")
+    }
+    const goToProfile = () => {
+        history.push(`/${user.id}`)
+    }
+
     return (
         <>
             <div
@@ -26,39 +39,25 @@ function ProfileButton({ user }) {
             </div>
             {showMenu && (
                 <ul className="profile-dropdown">
-                    <li className="dropdown-item">
+                    <li className="dropdown-item" onClick={goToDiscover}>
                         <i className="fa-solid fa-headphones"></i>
-                        <NavLink className="inner-drop" to="/discover">
                             Home
-                        </NavLink>
                     </li>
-                    <li className="dropdown-item">
+                    <li className="dropdown-item" onClick={goToSongs}>
                         <i className="fa-solid fa-music"></i>
-
-                        <NavLink className="inner-drop" to="/songs">
                             Songs
-                        </NavLink>
                     </li>
-                    <li className="dropdown-item">
+                    <li className="dropdown-item" onClick={goToPlaylists}>
                         <i className="fa-solid fa-compact-disc"></i>
-                        <NavLink className="inner-drop" to="/playlists">
                             Playlists
-                        </NavLink>
                     </li>
-                    <li className="dropdown-item">
+                    <li className="dropdown-item" onClick={goToProfile}>
                         <i className="fa-brands fa-soundcloud"></i>
-                        <NavLink className="inner-drop" to={`/${user.id}`}>
                             My Music
-                        </NavLink>
                     </li>
-                    <li className="signout dropdown-item">
-                        <i
-                            onClick={logout}
-                            className="fa-solid fa-arrow-right-from-bracket"
-                        />
-                        <div className="inner-drop" onClick={logout}>
+                    <li className="signout dropdown-item" onClick={logout}>
+                        <i className="fa-solid fa-arrow-right-from-bracket" />
                             Sign Out
-                        </div>
                     </li>
                 </ul>
             )}

@@ -7,7 +7,8 @@ import "./SingleSong.css";
 import { deleteSongThunk, fetchSong } from "../../store/songReducer";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
- import LikeButton from "../LikeButton";
+import LikeButton from "../LikeButton";
+import defaultImage from "../../images/default-playlist.jpg"
 
 
 const SingleSong = ({ songs }) => {
@@ -32,9 +33,14 @@ const SingleSong = ({ songs }) => {
     }, [dispatch, id]);
 
     const handleDelete = async (e) => {
-        await dispatch(deleteSongThunk(id));
         history.push(`/songs`);
+        await dispatch(deleteSongThunk(id));
     };
+
+    const addDefaultImage = (e) => {
+        e.target.src = defaultImage
+    }
+
 
     return (
         <div className="singleSong">
@@ -43,18 +49,19 @@ const SingleSong = ({ songs }) => {
                     src={song?.imageUrl}
                     alt={song?.title}
                     className="song-image"
+                    onError={addDefaultImage}
                 />
                 <div className="song-info">
                     <h1>{song?.title}</h1>
                     <p>Artist - {songOwner}</p>
                     <p>Genre - {song?.genre}</p>
-                    <div className='icons'>
-                        <i className="fa-solid fa-heart"></i>
+                    <div className='icons single-song-icons'>
+                        {sessionUser
+                        ? <LikeButton id={+id} type={"song"} isLike={isLike} like={like} />
+                        : <i className="fa-regular fa-heart"></i>
+                        }
                         {song.SongLikes.length}
                     </div>
-                    {sessionUser ?
-                        <LikeButton id={+id} type={"song"} isLike={isLike} like={like} />
-                    : null }
                     <Player songs={song} />
                     {songOwner === currentUser ? (
                         <>

@@ -60,7 +60,7 @@ const LikeButton = ({id, type, isLike, like, isPlaylist, playlistId}) => {
                 onMouseEnter={() => setMessage(true)}
                 onMouseLeave={() => setMessage(false)}
                 >
-                    <i className="fa-solid fa-heart fa-2x"></i>
+                    <i className="fa-solid fa-heart"></i>
                     {/* {message && (
                         <p className={styles.showBox}>
                             Remove Like
@@ -78,7 +78,7 @@ const LikeButton = ({id, type, isLike, like, isPlaylist, playlistId}) => {
                     onMouseEnter={() => setMessage(true)}
                     onMouseLeave={() => setMessage(false)}
                 >
-                    <i className="fa-regular fa-heart fa-2x"></i>
+                    <i className="fa-regular fa-heart"></i>
                     {/* {message && (
                         <p className={styles.showBox}>
                             Like this!
