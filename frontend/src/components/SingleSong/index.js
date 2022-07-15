@@ -60,9 +60,10 @@ const SingleSong = ({ songs }) => {
                         <i className="fa-solid fa-heart"></i>
                         {song.SongLikes.length}
                     </div>
-                    {sessionUser ?
-                        <LikeButton id={+id} type={"song"} isLike={isLike} like={like} />
-                    : null }
+                    {sessionUser
+                    ? <LikeButton id={+id} type={"song"} isLike={isLike} like={like} />
+                    : <i className="fa-regular fa-heart"></i>
+                    }
                     <Player songs={song} />
                     {songOwner === currentUser ? (
                         <>

@@ -7,7 +7,7 @@ function PlaylistNewModal() {
 
     return (
         <>
-            <div onClick={() => setShowModal(true)}>Create New Playlist</div>
+            <div onClick={() => setShowModal(true)}>Create Playlist</div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <PlaylistNewForm onClose={() => setShowModal(false)} />

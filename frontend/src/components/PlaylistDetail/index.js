@@ -2,6 +2,7 @@ import { useHistory } from "react-router-dom";
 import "./PlaylistDetail.css";
 
 import defaultImage from "../../images/default-playlist.jpg"
+import LikeButton from "../LikeButton";
 
 const PlaylistDetail = ({ playlist }) => {
     let firstImg = playlist?.songs[0]?.imageUrl;
@@ -36,7 +37,7 @@ return (
         {/* <div className="likes">
         </div> */}
         <div className="likes">
-            <i className="fa-solid fa-heart"></i>
+            <LikeButton />
             {playlist.PlaylistLikes.length}
             <i className="fa-solid fa-music"></i>
             {playlist?.songs?.length}
