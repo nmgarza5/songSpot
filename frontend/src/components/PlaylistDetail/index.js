@@ -3,23 +3,30 @@ import "./PlaylistDetail.css";
 
 import defaultImage from "../../images/default-playlist.jpg"
 import LikeButton from "../LikeButton";
+import { useSelector } from "react-redux";
 
 const PlaylistDetail = ({ playlist }) => {
+    const sessionUser = useSelector((state) => state.session.user);
     let firstImg = playlist?.songs[0]?.imageUrl;
     if (!firstImg) firstImg = "/images/default-playlist.jpg";
 
-const history = useHistory();
-const goToPlaylist = (id) => {
-    history.push(`/playlists/${id}`)
-}
+    let like;
+    like = playlist.PlaylistLikes.find(like => like?.userId === sessionUser?.id);
+    let isLike;
+    if (like) isLike = true;
 
-const goToUserPage= (userId) => {
-    history.push(`/${userId}`)
-}
+    const history = useHistory();
+    const goToPlaylist = (id) => {
+        history.push(`/playlists/${id}`)
+    }
 
-const addDefaultImage = (e) => {
-    e.target.src = defaultImage
-}
+    const goToUserPage= (userId) => {
+        history.push(`/${userId}`)
+    }
+
+    const addDefaultImage = (e) => {
+        e.target.src = defaultImage
+    }
 
 return (
     <div className="playlist-details">

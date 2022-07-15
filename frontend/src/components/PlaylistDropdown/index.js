@@ -28,7 +28,7 @@ function PlaylistDropdown({ playlists, currentUser, songId }) {
             {showMenu && (
                 <ul className="playlist-dropdown">
                     <li className="dropdown-item" >
-                        <PlaylistNewModal />
+                        <PlaylistNewModal songId={songId}/>
                     </li>
                     {userPlaylists.map((playlist) => {
                         return (
