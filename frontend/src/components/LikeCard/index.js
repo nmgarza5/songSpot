@@ -1,10 +1,14 @@
+import { useSelector } from "react-redux";
 import { useHistory} from "react-router-dom";
 import defaultImage from "../../images/default-playlist.jpg"
+import LikeButton from "../LikeButton";
 
 
 import styles from "./LikeCard.module.css"
 
 const LikeCard = ({like}) => {
+    console.log("like", like)
+    const sessionUser = useSelector((state) => state.session.user);
     const history = useHistory();
     let type;
     let firstImg;
@@ -15,6 +19,7 @@ const LikeCard = ({like}) => {
     }
 
     if (like.title) type = "song"
+
 
     const goToSong = (id) => {
         history.push(`/songs/${id}`)
@@ -48,7 +53,10 @@ const LikeCard = ({like}) => {
                             {like.title}
                         </div>
                         <div className={styles.icons}>
-                            <i className="fa-solid fa-heart"></i>
+                        {sessionUser
+                            ? <LikeButton id={like.id} type={"song"} isLike={true} like={like} />
+                            : <i className="fa-regular fa-heart"></i>
+                        }
                             {like.SongLikes.length}
                         </div>
                     </div>
@@ -64,7 +72,10 @@ const LikeCard = ({like}) => {
                             {like.name}
                         </div>
                         <div className={styles.icons}>
-                            <i className="fa-solid fa-heart"></i>
+                        {sessionUser
+                            ? <LikeButton id={like.id} type={"playlist"} isLike={true} like={like} />
+                            : <i className="fa-regular fa-heart"></i>
+                        }
                             {like.PlaylistLikes.length}
                             <i className="fa-solid fa-music"></i>
                             {like?.songs?.length}

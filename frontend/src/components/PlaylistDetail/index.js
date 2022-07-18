@@ -28,6 +28,8 @@ const PlaylistDetail = ({ playlist }) => {
         e.target.src = defaultImage
     }
 
+
+
 return (
     <div className="playlist-details">
         <img src={firstImg} alt={playlist.name} className="image" onClick={() => {goToPlaylist(playlist.id)}} onError={addDefaultImage}></img>
@@ -44,8 +46,11 @@ return (
         {/* <div className="likes">
         </div> */}
         <div className="likes">
-            <LikeButton />
-            {playlist.PlaylistLikes.length}
+            {sessionUser
+                ? <LikeButton id={playlist.id} type={"playlist"} isLike={isLike} like={like} />
+                : <i className="fa-regular fa-heart"></i>
+            }
+                {playlist.PlaylistLikes.length}
             <i className="fa-solid fa-music"></i>
             {playlist?.songs?.length}
         </div>
