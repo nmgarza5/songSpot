@@ -4,12 +4,14 @@ import LikeCard from "../LikeCard";
 import SongDetail from "../SongDetail"
 import PlaylistDetail from "../PlaylistDetail";
 import "./HomePage.css";
+import { useEffect } from "react";
 
 const HomePage = ({songs, playlists}) => {
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session?.user);
 
     let userLikes = [];
+
 
     songs.forEach((song) => {
         let songLike = song.SongLikes.find((like) => like.userId === sessionUser?.id)
@@ -24,6 +26,8 @@ const HomePage = ({songs, playlists}) => {
     let recent_songs = songs.sort((a,b) => (new Date(b.createdAt) - new Date(a.createdAt))).slice(0, 8);
     let recent_playlists = playlists.sort((a,b) => (new Date(b.createdAt) - new Date(a.createdAt))).slice(0, 8);
     let recentLikes = userLikes.sort((a,b) => (new Date(b.createdAt) - new Date(a.createdAt))).slice(0, 5);
+
+
 
     const goToUserPage= (userId) => {
         history.push(`/${userId}`)
@@ -77,7 +81,7 @@ const HomePage = ({songs, playlists}) => {
                             {userLikes.length} likes
                         </h2>
                         {recentLikes.map((like, idx) => (
-                            <LikeCard key={idx}like={like} />
+                            <LikeCard key={idx} content={like} />
                         ))}
                         <div className="see-more" onClick={()=>goToUserPage(sessionUser?.id)}>
                                 <button>See More</button>
