@@ -22,6 +22,7 @@ function PlaylistDropdown({ playlists, currentUser, songId }) {
             <div
                 className="dropdown"
                 onClick={() => setShowMenu(!showMenu)}
+                // onMouseLeave={() => setTimeout(() => setShowMenu(false), 4000)}
             >
                 Add to Playlist
             </div>

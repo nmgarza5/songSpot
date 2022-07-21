@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import styles from "./LikeButton.module.css";
 import { fetchSong, addSongLike, removeSongLike } from "../../store/songReducer";
 import { addPlaylistLike, fetchPlaylist, removePlaylistLike } from "../../store/playlistReducer";
+import { restoreUser } from "../../store/session";
 
 const LikeButton = ({id, type, isLike, like, isPlaylist, playlistId}) => {
     const dispatch = useDispatch();
@@ -22,18 +23,22 @@ const LikeButton = ({id, type, isLike, like, isPlaylist, playlistId}) => {
     }
 
     const handleLike = async () => {
-		setLikeToggle(!likeToggle);
+
         if (type === "song") {
             if (!likeToggle) {
-                showBoxTimer()
+                // showBoxTimer()
                 await dispatch(addSongLike(id));
                 await dispatch(fetchSong(id))
                 if (isPlaylist) await dispatch(fetchPlaylist(playlistId));
+                // setLikeToggle(true);
+                // await dispatch(restoreUser)
             } else {
-                showBoxTimer()
+                // showBoxTimer()
                 await dispatch(removeSongLike(like));
                 await dispatch(fetchSong(id))
                 if (isPlaylist) await dispatch(fetchPlaylist(playlistId));
+                // setLikeToggle(false);
+                // await dispatch(restoreUser)
             }
         }
         if (type === "playlist") {
@@ -41,10 +46,14 @@ const LikeButton = ({id, type, isLike, like, isPlaylist, playlistId}) => {
                 showBoxTimer()
                 await dispatch(addPlaylistLike(id));
                 await dispatch(fetchPlaylist(id))
+                setLikeToggle(true);
+                // await dispatch(restoreUser)
             } else {
                 showBoxTimer()
                 await dispatch(removePlaylistLike(like));
                 await dispatch(fetchPlaylist(id))
+                setLikeToggle(false);
+                // await dispatch(restoreUser)
             }
         }
 	};
@@ -54,7 +63,7 @@ const LikeButton = ({id, type, isLike, like, isPlaylist, playlistId}) => {
             className={styles.like_container}
             onClick={handleLike}
         >
-            {likeToggle ? (
+            {isLike ? (
                 <div
                 className={styles.like}
                 onMouseEnter={() => setMessage(true)}

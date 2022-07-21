@@ -5,7 +5,6 @@ import { addPlaylistForm } from "../../store/playlistReducer";
 import { addSongThunk } from "../../store/playlistReducer"
 
 function PlaylistNewForm(props) {
-    console.log("Props", props)
     const songId = props.songId
     const dispatch = useDispatch();
     const history = useHistory();
@@ -31,7 +30,6 @@ function PlaylistNewForm(props) {
             if (songId) {
                 const addSongData = {songId, playlistId};
                 await dispatch(addSongThunk(addSongData));
-                console.log("newPlayList", songId, playlistId)
                 alert(`Song added to ${newPlaylist.retPlaylist.name} :)`);
             }
             history.push(`/playlists/${playlistId}`);

@@ -40,3 +40,8 @@ input[type="password"] {
     height: 25px;
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
+
+.small-text {
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.601);
+}
