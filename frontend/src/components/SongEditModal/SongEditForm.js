@@ -71,6 +71,9 @@ function SongEditForm(props) {
                 </div>
                 <div className="input-container">
                     <label>Image URL</label>
+                    <p className="small-text">
+                        Following formats accepted: .jpg, .jpeg, .png, or .gif.
+                    </p>
                     <input
                         value={imageUrl}
                         className="label"
@@ -81,6 +84,9 @@ function SongEditForm(props) {
                 </div>
                 <div className="input-container">
                     <label>Audio URL</label>
+                    <p className="small-text">
+                    Following formats accepted: .mp3.
+                    </p>
                     <input
                         value={audioUrl}
                         className="label"

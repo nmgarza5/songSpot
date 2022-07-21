@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addSongForm } from "../../store/songReducer";
 import { useHistory } from "react-router-dom";
+import "./SongForm.css";
 
 function SongForm(props) {
     const dispatch = useDispatch();
@@ -70,6 +71,9 @@ function SongForm(props) {
                 </div>
                 <div className="input-container">
                     <label>Image URL</label>
+                    <p className="small-text">
+                        Following formats accepted: .jpg, .jpeg, .png, or .gif.
+                    </p>
                     <input
                         className="label"
                         type="text"
@@ -79,6 +83,9 @@ function SongForm(props) {
                 </div>
                 <div className="input-container">
                     <label>Audio URL</label>
+                    <p className="small-text">
+                    Following formats accepted: .mp3.
+                    </p>
                     <input
                         className="label"
                         type="text"
