@@ -15,21 +15,25 @@ function PlaylistDropdown({ playlists, currentUser, songId }) {
         const addSongData = { songId, playlistId };
         await dispatch(addSongThunk(addSongData));
         alert("Song added to your Playlist :)");
+        setShowMenu(false)
     };
+
 
     return (
         <>
             <div
                 className="dropdown"
                 onClick={() => setShowMenu(!showMenu)}
-                // onMouseLeave={() => setTimeout(() => setShowMenu(false), 4000)}
             >
                 Add to Playlist
             </div>
             {showMenu && (
-                <ul className="playlist-dropdown">
-                    <li className="dropdown-item" >
-                        <PlaylistNewModal songId={songId}/>
+                <ul className="playlist-dropdown"
+                    onMouseEnter={() => setShowMenu(true)}
+                    onMouseLeave={() => setShowMenu(false)}>
+                    <li className="dropdown-item"
+                    >
+                        <PlaylistNewModal showMenu={setShowMenu} songId={songId} />
                     </li>
                     {userPlaylists.map((playlist) => {
                         return (

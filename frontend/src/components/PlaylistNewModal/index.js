@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "../../context/Modal";
 import PlaylistNewForm from "./PlaylistNewForm";
 
-function PlaylistNewModal({songId}) {
+function PlaylistNewModal({songId, showMenu}) {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -10,7 +10,7 @@ function PlaylistNewModal({songId}) {
             <div onClick={() => setShowModal(true)}>Create Playlist</div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <PlaylistNewForm songId={songId} onClose={() => setShowModal(false)} />
+                    <PlaylistNewForm showMenu={showMenu} songId={songId} onClose={() => setShowModal(false)} />
                 </Modal>
             )}
         </>
