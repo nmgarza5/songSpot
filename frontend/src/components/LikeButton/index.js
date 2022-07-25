@@ -27,6 +27,7 @@ const LikeButton = ({id, type, isLike, like, isPlaylist, playlistId}) => {
         if (type === "song") {
             if (!likeToggle) {
                 // showBoxTimer()
+
                 await dispatch(addSongLike(id));
                 await dispatch(fetchSong(id))
                 if (isPlaylist) await dispatch(fetchPlaylist(playlistId));
@@ -34,6 +35,7 @@ const LikeButton = ({id, type, isLike, like, isPlaylist, playlistId}) => {
                 // await dispatch(restoreUser)
             } else {
                 // showBoxTimer()
+                console.log("like", like)
                 await dispatch(removeSongLike(like));
                 await dispatch(fetchSong(id))
                 if (isPlaylist) await dispatch(fetchPlaylist(playlistId));
@@ -46,13 +48,14 @@ const LikeButton = ({id, type, isLike, like, isPlaylist, playlistId}) => {
                 showBoxTimer()
                 await dispatch(addPlaylistLike(id));
                 await dispatch(fetchPlaylist(id))
-                setLikeToggle(true);
+                // setLikeToggle(true);
                 // await dispatch(restoreUser)
             } else {
                 showBoxTimer()
+                console.log("like", like)
                 await dispatch(removePlaylistLike(like));
                 await dispatch(fetchPlaylist(id))
-                setLikeToggle(false);
+                // setLikeToggle(false);
                 // await dispatch(restoreUser)
             }
         }
