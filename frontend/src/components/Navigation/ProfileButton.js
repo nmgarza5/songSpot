@@ -33,6 +33,7 @@ function ProfileButton({ user }) {
             <div
                 className="username-dropdown"
                 onClick={() => setShowMenu(!showMenu)}
+                onMouseLeave={() => setTimeout(() => setShowMenu(false), 4000)}
             >
                 {user.username}
                 <i className="fa fa-caret-down" aria-hidden="true"></i>

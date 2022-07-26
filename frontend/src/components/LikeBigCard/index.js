@@ -1,19 +1,39 @@
-import { useHistory} from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useHistory, useParams} from "react-router-dom";
 import defaultImage from "../../images/default-playlist.jpg"
+import LikeButton from "../LikeButton";
+
 
 import styles from "./LikeBigCard.module.css"
 
-const LikeBigCard = ({like}) => {
+const LikeBigCard = ({content}) => {
+    // console.log("like", content)
+    const sessionUser = useSelector((state) => state.session.user);
+    const currentUserId = sessionUser?.id;
+    const { userId } = useParams();
+    let owner;
+    if (currentUserId === +userId) owner = true;
+
     const history = useHistory();
     let type;
     let firstImg;
+    let like;
+    let isLike;
 
-    if (like.name) {
+    if (content.name) {
         type = "playlist"
-        firstImg = like?.songs[0]?.imageUrl;
+        firstImg = content?.songs[0]?.imageUrl;
+        like = content.PlaylistLikes.find(like => like?.userId === sessionUser?.id);
+        isLike = true;
     }
 
-    if (like.title) type = "song"
+    if (content.title) {
+        type = "song"
+        like = content.SongLikes.find(like => like?.userId === sessionUser?.id);
+        isLike = true;
+    }
+
+
 
     const goToSong = (id) => {
         history.push(`/songs/${id}`)
@@ -38,35 +58,35 @@ const LikeBigCard = ({like}) => {
             { type === "song"
                 ?
                 <>
-                    <img src={like.imageUrl} alt={like.title} className={styles.image} onError={addDefaultImage} onClick={() => {goToSong(like.id)}}></img>
+                    <img src={content.imageUrl} alt={content.title} className={styles.image} onError={addDefaultImage} onClick={() => {goToSong(content.id)}}></img>
                     <div className={styles.info}>
-                        <div onClick={() => {goToUserPage(like.userId)}}>
-                            {like.user.username}
+                        <div onClick={() => {goToUserPage(content.userId)}}>
+                            {content.user.username}
                         </div>
                         <div className={styles.icons}>
-                            <i className="fa-solid fa-heart"></i>
-                            {like.SongLikes.length}
+                            <LikeButton id={content.id} type={"song"} isLike={isLike} like={like} />
+                            {content.SongLikes.length}
                         </div>
                         <div>
-                            {like.title}
+                            {content.title}
                         </div>
                     </div>
                 </>
                 :
                 <>
-                    <img src={firstImg} alt={like.name} className={styles.image} onError={addDefaultImage} onClick={() => {goToPlaylist(like.id)}}></img>
+                    <img src={firstImg} alt={content.name} className={styles.image} onError={addDefaultImage} onClick={() => {goToPlaylist(content.id)}}></img>
                     <div className={styles.info}>
-                        <div onClick={() => {goToPlaylist(like.id)}}>
-                            {like.name}
+                        <div onClick={() => {goToPlaylist(content.id)}}>
+                            {content.name}
                         </div>
                         <div className={styles.icons}>
-                            <i className="fa-solid fa-heart"></i>
-                            {like.PlaylistLikes.length}
+                            <LikeButton id={content.id} type={"playlist"} isLike={isLike} like={like} />
+                            {content.PlaylistLikes.length}
                             <i className="fa-solid fa-music"></i>
-                            {like?.songs?.length}
+                            {content?.songs?.length}
                         </div>
-                        <div onClick={() => {goToUserPage(like.userId)}}>
-                            {like.user.username}
+                        <div onClick={() => {goToUserPage(content.userId)}}>
+                            {content.user.username}
                         </div>
                     </div>
                 </>

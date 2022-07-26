@@ -1,18 +1,18 @@
-.username-dropdown {
+.dropdown {
     color: white;
     height: 100%;
     cursor: pointer;
 }
 
-.username:hover {
+.dropdown:hover {
     cursor: pointer;
-    color: rgb(148, 148, 148);
 }
 
 .playlist-dropdown {
     background: rgb(255, 255, 255);
     width: fit-content;
     position: absolute;
+    margin-left: -15px;
     list-style: none;
     text-align: start;
     border: black solid thin;
@@ -25,11 +25,12 @@
     justify-content: flex-start;
     margin:0;
     padding: 0 10px;
-    align-items: baseline;
+    align-items: center;
     cursor: pointer;
 }
 .playlist-dropdown li:hover {
     background-color: #f50;
+    color: black
 }
 
 .dropdown-item {

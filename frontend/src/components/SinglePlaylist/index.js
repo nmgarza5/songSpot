@@ -64,9 +64,13 @@ const SinglePlaylist = ({ playlists }) => {
         <div className="singlePlaylist">
             <h1 className="">{playlist?.name}</h1>
             <h3>Created By - {playlistOwner}</h3>
-            {sessionUser ?
-                        <LikeButton id={+id} type={"playlist"} isLike={isLike} like={like} />
-                    : null }
+            <div className="likes">
+                {sessionUser
+                    ? <LikeButton id={+id} type={"playlist"} isLike={isLike} like={like} />
+                    : <i className="fa-regular fa-heart"></i>
+                }
+                {playlist.PlaylistLikes.length}
+            </div>
             {currentUser === playlistOwner ? (
                 <div>
                     <button>
@@ -88,13 +92,15 @@ const SinglePlaylist = ({ playlists }) => {
                                 {song.title}
                             </div>
                             <div className='icons'>
-                                <i className="fa-solid fa-heart"></i>
+                                {sessionUser
+                                    ? <LikeButton id={song.id} type={"song"} isLike={!_.isUndefined(song.SongLikes.find(like => like?.userId === sessionUser?.id))} like={song.SongLikes.find(like => like?.userId === sessionUser?.id)} isPlaylist={true} playlistId={+id}/>
+                                    : <i className="fa-solid fa-heart"></i>
+                                    }
                                 {song.SongLikes.length}
                             </div>
                         </div>
                         {sessionUser ?
                             <div className="song-btns">
-                                <LikeButton id={song.id} type={"song"} isLike={!_.isUndefined(song.SongLikes.find(like => like?.userId === sessionUser?.id))} like={song.SongLikes.find(like => like?.userId === sessionUser?.id)} isPlaylist={true} playlistId={+id}/>
                                 <button>
                                     <PlaylistDropdown
                                         playlists={playlists}

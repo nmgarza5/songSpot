@@ -46,7 +46,7 @@
 
 .likes i {
     margin-right: 5px;
-    color: rgb(109, 109, 109);
+    /* color: rgb(109, 109, 109); */
 }
 .likes i:nth-child(2) {
     margin-left: 5px;

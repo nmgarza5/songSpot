@@ -77,7 +77,7 @@ const ProfilePage = ({ songs, playlists }) => {
                 {selected === 'likes' &&
                     <section className="content">
                         {likes.map((like, idx) => (
-                            <LikeBigCard key={idx} like={like} />
+                            <LikeBigCard key={idx} content={like} />
                             ))}
                     </section>
                 }

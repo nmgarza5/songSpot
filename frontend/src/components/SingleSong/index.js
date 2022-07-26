@@ -50,19 +50,18 @@ const SingleSong = ({ songs }) => {
                     alt={song?.title}
                     className="song-image"
                     onError={addDefaultImage}
-
                 />
                 <div className="song-info">
                     <h1>{song?.title}</h1>
                     <p>Artist - {songOwner}</p>
                     <p>Genre - {song?.genre}</p>
                     <div className='icons single-song-icons'>
-                        <i className="fa-solid fa-heart"></i>
+                        {sessionUser
+                        ? <LikeButton id={+id} type={"song"} isLike={isLike} like={like} />
+                        : <i className="fa-regular fa-heart"></i>
+                        }
                         {song.SongLikes.length}
                     </div>
-                    {sessionUser ?
-                        <LikeButton id={+id} type={"song"} isLike={isLike} like={like} />
-                    : null }
                     <Player songs={song} />
                     {songOwner === currentUser ? (
                         <>

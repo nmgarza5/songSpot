@@ -1,13 +1,22 @@
+import { useSelector } from "react-redux";
 import { useHistory} from "react-router-dom";
 import defaultImage from "../../images/default-playlist.jpg"
+import LikeButton from "../LikeButton"
 
 import "./SongDetail.css";
 
 const SongDetail = ({ song }) => {
     const history = useHistory();
+
+    const sessionUser = useSelector((state) => state.session.user);
     const goToSong = (id) => {
         history.push(`/songs/${id}`)
     }
+
+    let like;
+    if (sessionUser && song.SongLikes) like = song.SongLikes.find(like => like?.userId === sessionUser?.id);
+    let isLike;
+    if (like) isLike = true;
 
     const goToUserPage= (userId) => {
         history.push(`/${userId}`)
@@ -33,7 +42,10 @@ const SongDetail = ({ song }) => {
                 </div>
             }
             <div className="likes">
-                <i className="fa-solid fa-heart"></i>
+                {sessionUser
+                    ? <LikeButton id={song.id} type={"song"} isLike={isLike} like={like} />
+                    : <i className="fa-regular fa-heart"></i>
+                    }
                 {song.SongLikes.length}
             </div>
             <div onClick={() => {goToUserPage(song.userId)}} className="username">
