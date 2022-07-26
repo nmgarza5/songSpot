@@ -8,7 +8,10 @@ import "./ProfilePage.css";
 
 const ProfilePage = ({ songs, playlists }) => {
     const sessionUser = useSelector((state) => state.session.user);
-    const currentUserId = sessionUser?.id;
+    const sessionUsers = useSelector((state) => state.session.users);
+
+
+    const sessionUserId = sessionUser?.id;
 
     const [selected, setSelected] = useState('songs');
     const { userId } = useParams();
@@ -16,7 +19,11 @@ const ProfilePage = ({ songs, playlists }) => {
     const displaySongs = songs.filter((song) => song.userId === +userId);
     const displayPlaylists = playlists.filter(
         (playlist) => playlist.userId === +userId
-    );
+        );
+
+    const currentUser = sessionUsers.find(user => user.id === +userId)
+
+    // console.log("display SONGS", displaySongs)
 
     let userLikes = [];
 
@@ -35,10 +42,10 @@ const ProfilePage = ({ songs, playlists }) => {
 
     return (
         <div className="userpage-container">
-            {currentUserId === +userId ? (
+            {sessionUserId === +userId ? (
                 <h1>My Music</h1>
             ) : (
-                <h1>{displaySongs[0].user.username}'s Music</h1>
+                <h1>{currentUser.username}'s Music</h1>
             )}
             <div className="music-wrapper">
                 <section className="select">

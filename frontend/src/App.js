@@ -28,6 +28,7 @@ function App() {
             await dispatch(fetchSongs());
             await dispatch(fetchPlaylists());
             await dispatch(sessionActions.restoreUser());
+            await dispatch(sessionActions.receiveUsers())
             setIsLoaded(true);
         })();
     }, [ dispatch]);

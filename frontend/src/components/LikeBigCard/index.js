@@ -64,7 +64,10 @@ const LikeBigCard = ({content}) => {
                             {content.user.username}
                         </div>
                         <div className={styles.icons}>
-                            <LikeButton id={content.id} type={"song"} isLike={isLike} like={like} />
+                        {owner === true
+                            ? <LikeButton id={content.id} type={"song"} isLike={isLike} like={like} />
+                            : <i className="fa-regular fa-heart"></i>
+                        }
                             {content.SongLikes.length}
                         </div>
                         <div>
@@ -80,7 +83,10 @@ const LikeBigCard = ({content}) => {
                             {content.name}
                         </div>
                         <div className={styles.icons}>
-                            <LikeButton id={content.id} type={"playlist"} isLike={isLike} like={like} />
+                        {owner === true
+                            ? <LikeButton id={content.id} type={"playlist"} isLike={isLike} like={like} />
+                            : <i className="fa-regular fa-heart"></i>
+                        }
                             {content.PlaylistLikes.length}
                             <i className="fa-solid fa-music"></i>
                             {content?.songs?.length}

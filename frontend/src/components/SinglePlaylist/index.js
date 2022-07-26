@@ -85,7 +85,7 @@ const SinglePlaylist = ({ playlists }) => {
                     <div key={song.JoinSP.songId} className="playlist-songs">
                         <img className="playlist-image" src={song.imageUrl} alt="" onError={addDefaultImage} onClick={() => {goToSong(song.id)}}></img>
                         <div className='info'>
-                            <div onClick={() => {goToUserPage(like.userId)}}>
+                            <div onClick={() => {goToUserPage(song.user.id)}}>
                                 {song.user.username}
                             </div>
                             <div onClick={() => {goToSong(song.id)}}>
