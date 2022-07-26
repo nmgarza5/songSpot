@@ -7,7 +7,6 @@ import LikeButton from "../LikeButton";
 import styles from "./LikeCard.module.css"
 
 const LikeCard = ({content}) => {
-    // console.log("like", content)
     const sessionUser = useSelector((state) => state.session.user);
     const history = useHistory();
     let type;
