@@ -31,7 +31,7 @@ router.get(
     asyncHandler(async (req, res) => {
         const playlists = await Playlist.findAll({
             include: [
-                { model: User, as: "user", attributes: ["username"] },
+                { model: User, as: "user", attributes: ["id", "username"] },
                 { model: PlaylistLike },
                 {
                     model: Song,
@@ -39,7 +39,7 @@ router.get(
                     attributes: ["id", "title", "genre", "imageUrl", "audioUrl"],
                     include: [
                         { model: SongLike },
-                        { model: User, as: "user", attributes: ["username"] },
+                        { model: User, as: "user", attributes: ["id", "username"], },
                     ],
                 },
             ],
@@ -56,7 +56,7 @@ router.get(
         if (playlist) {
             const retPlaylist = await Playlist.findByPk(playlist.id, {
                 include: [
-                    { model: User, as: "user", attributes: ["username"] },
+                    { model: User, as: "user", attributes: ["id", "username"] },
                     { model: PlaylistLike },
                     {
                         model: Song,
@@ -67,7 +67,7 @@ router.get(
                             {
                                 model: User,
                                 as: "user",
-                                attributes: ["username"],
+                                attributes: ["id", "username"],
                             },
                         ],
                     },
@@ -93,7 +93,7 @@ router.post(
         });
         const retPlaylist = await Playlist.findByPk(playlist.id, {
             include: [
-                { model: User, as: "user", attributes: ["username"] },
+                { model: User, as: "user", attributes: ["id", "username"] },
                 {model: PlaylistLike},
                 {
                     model: Song,
@@ -104,7 +104,7 @@ router.post(
                         {
                             model: User,
                             as: "user",
-                            attributes: ["username"],
+                            attributes: ["id", "username"],
                         },
                     ],
                 },
@@ -127,7 +127,7 @@ router.put(
         if (newEntry) {
             const retPlaylist = await Playlist.findByPk(playlistId, {
                 include: [
-                    { model: User, as: "user", attributes: ["username"] },
+                    { model: User, as: "user", attributes: ["id", "username"] },
                     {model: PlaylistLike},
                     {
                         model: Song,
@@ -138,7 +138,7 @@ router.put(
                             {
                                 model: User,
                                 as: "user",
-                                attributes: ["username"],
+                                attributes: ["id", "username"],
                             },
                         ],
                     },
@@ -164,7 +164,7 @@ router.put(
             await entry.destroy();
             const retPlaylist = await Playlist.findByPk(id, {
                 include: [
-                    { model: User, as: "user", attributes: ["username"] },
+                    { model: User, as: "user", attributes: ["id", "username"] },
                     {model: PlaylistLike},
                     {
                         model: Song,
@@ -175,7 +175,7 @@ router.put(
                             {
                                 model: User,
                                 as: "user",
-                                attributes: ["username"],
+                                attributes: ["id", "username"],
                             },
                         ],
                     },
@@ -199,7 +199,7 @@ router.put(
             await playlist.update({ name });
             const retPlaylist = await Playlist.findByPk(playlist.id, {
                 include: [
-                    { model: User, as: "user", attributes: ["username"] },
+                    { model: User, as: "user", attributes: ["id", "username"] },
                     {model: PlaylistLike},
                     {
                         model: Song,
@@ -210,7 +210,7 @@ router.put(
                             {
                                 model: User,
                                 as: "user",
-                                attributes: ["username"],
+                                attributes: ["id", "username"],
                             },
                         ],
                     },

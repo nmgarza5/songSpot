@@ -121,7 +121,7 @@ export const deletePlaylistThunk = (id) => async (dispatch) => {
 };
 
 export const addPlaylistLike = (id) => async (dispatch) => {
-    console.log("id", id)
+    // console.log("id", id)
 	const res = await csrfFetch("/api/likes/playlist", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
