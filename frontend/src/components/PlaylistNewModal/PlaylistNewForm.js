@@ -22,11 +22,13 @@ function PlaylistNewForm(props) {
         let newPlaylist = await dispatch(addPlaylistForm(playlistData)).catch(
             async (res) => {
                 const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
+                if (data.errors) setErrors(data.errors);
             }
-        );
+            );
 
-        if (newPlaylist) {
+            // POSTING A NEW PLAYLIST WITHOUT A SONG DOES NOT WORK || CURRENT SPOT
+
+            if (newPlaylist) {
             const playlistId = newPlaylist.retPlaylist.id
             if (songId) {
                 const addSongData = {songId, playlistId};

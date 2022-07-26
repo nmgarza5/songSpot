@@ -8,11 +8,11 @@ const PlaylistsPage = () => {
     return (
         <div className="playlists-container">
             <h1 className="h1">Playlists</h1>
-            {sessionUser &&
+            {/* {sessionUser &&
             <button>
                 <PlaylistNewModal />
             </button>
-}
+} */}
             <Playlists />
         </div>
     );
