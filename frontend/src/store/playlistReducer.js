@@ -68,9 +68,11 @@ export const addPlaylistForm = (playlistData) => async (dispatch) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(playlistData),
     });
-    const newPlaylist = await res.json();
-    dispatch(addPlaylist(newPlaylist));
-    return newPlaylist;
+    if (res.ok) {
+        const newPlaylist = await res.json();
+        dispatch(addPlaylist(newPlaylist));
+        return newPlaylist;
+    } else return res.errors
 };
 
 //update a playlist name
@@ -121,7 +123,7 @@ export const deletePlaylistThunk = (id) => async (dispatch) => {
 };
 
 export const addPlaylistLike = (id) => async (dispatch) => {
-    console.log("id", id)
+    // console.log("id", id)
 	const res = await csrfFetch("/api/likes/playlist", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },

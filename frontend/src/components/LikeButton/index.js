@@ -35,7 +35,7 @@ const LikeButton = ({id, type, isLike, like, isPlaylist, playlistId}) => {
                 // await dispatch(restoreUser)
             } else {
                 // showBoxTimer()
-                console.log("like", like)
+                // console.log("like", like)
                 await dispatch(removeSongLike(like));
                 await dispatch(fetchSong(id))
                 if (isPlaylist) await dispatch(fetchPlaylist(playlistId));
@@ -52,7 +52,7 @@ const LikeButton = ({id, type, isLike, like, isPlaylist, playlistId}) => {
                 // await dispatch(restoreUser)
             } else {
                 showBoxTimer()
-                console.log("like", like)
+                // console.log("like", like)
                 await dispatch(removePlaylistLike(like));
                 await dispatch(fetchPlaylist(id))
                 // setLikeToggle(false);
