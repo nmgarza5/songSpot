@@ -32,21 +32,24 @@ From the splashpage, users can to choose to create an account, log into an exist
 ![splashpage](https://user-images.githubusercontent.com/90273783/178118523-7cb08ade-5029-4b92-b633-6807579a8109.png)
 
 # Home/Discover Page
-From the discover page, users can view all of the latest songs and playlists that have been added to the platform. The respective sections include buttons that users can click to navigate to see more songs or playlists. On the right panel, users can view a preview of the 5 most recent songs they have liked and a button to navigate to the user's profile page to see the rest of their likes.
-![homepage-discover](https://user-images.githubusercontent.com/90273783/178118539-f393252b-e9c7-40af-8b9b-7516168cba20.png)
+From the discover page, users can view all of the latest songs and playlists that have been added to the platform. The respective sections include buttons that users can click to navigate to see more songs or playlists. On the right panel, users can view a preview of the 5 most recent songs they have liked and a button to navigate to the user's profile page to see the rest of their likes. While logged in the navbar contains a link to upload a song as well as a dropdown menu when clicking on the logged in user's username. The dropdown menu contains links to the displayed pages.
+![image](https://user-images.githubusercontent.com/90273783/181930352-b1b7b6d1-cd3a-4462-873c-999886710df0.png)
 
 # Songs
 From the Songs Lists page, users can view all songs listed on the site. They can hover over and click on a song's name to be directed to that song's page or the artists name to be taken to their profile page. From the single song page, users can view some specific information pertaining to that song, like/unlike the song by clicking on the green heart icon, and listen to the song by clicking on the play button.
-![songs](https://user-images.githubusercontent.com/90273783/178327207-41b4d797-3022-4c49-b45f-7ad01f86c852.png)
-![single-song](https://user-images.githubusercontent.com/90273783/178327355-50f009a2-3f94-4b57-9244-9ee7fdab9dae.png)
+![image](https://user-images.githubusercontent.com/90273783/181932853-ee6c5301-2a92-466a-9792-edb5798afcb0.png)
+![image](https://user-images.githubusercontent.com/90273783/181933324-d73510a4-6267-4b19-892e-1834f11b33dc.png)
 
 
 # Playlists
-From the playlists page
+From the Playlists page, users can view all playlists listed on the site. They can hover over and click on a playlist's name or picture to be directed to that playlist's page or the artist's name to be taken to their profile page. From the single playlist page, users can view some specific information pertaining to that playlist, like/unlike the song by clicking on the green heart icon, and listen to the playlist by clicking on the play button. Users can swith songs by clikcing the back or forward arrows located to the left of the play button. Below the player, the playlist's songs are displayed. Users can like/unlike each song, create a new playlist or add the song to an existing palylist, or direct themselves to the song or artist's page by clicking on the respective links.
+![image](https://user-images.githubusercontent.com/90273783/181933381-d499a96e-091b-483f-8886-5885e3c830cd.png)
+![image](https://user-images.githubusercontent.com/90273783/181933398-1c67073e-750e-46a1-89a8-357b41424484.png)
 
 # Profile Page
-From the songs page
-
+From a user's profile page, the songs the user has uploaded as well as the playlists the user has created with be displayed when clicking on their respective tabs. Clicking on the likes tab will show the user all of the songs they have liked. This information can be viewed for all users when navigating to their profile pages. 
+![image](https://user-images.githubusercontent.com/90273783/181933991-90ee57f4-1d09-47a2-9e29-2bd8e7b73759.png)
+![image](https://user-images.githubusercontent.com/90273783/181933996-f1dc86d3-eb68-45de-b5a1-a7489e548af8.png)
 
 # Getting Started
 1. Clone this repo.
