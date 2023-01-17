@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === "production") {
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        options.tableName = "PlaylistsLikes";
+        options.tableName = "PlaylistLikes";
         return queryInterface.bulkInsert(
             options,
             [
